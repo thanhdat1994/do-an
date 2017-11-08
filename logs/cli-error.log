@@ -1,0 +1,21 @@
+2017-07-10 14:52:44 Error: [Cake\Database\Exception] SQLSTATE[42S02]: Base table or view not found: 1146 Table 'bookstore.1' doesn't exist in D:\WEBROOT\bookstore\vendor\cakephp\cakephp\src\Database\Schema\Collection.php on line 131
+Stack Trace:
+#0 D:\WEBROOT\bookstore\vendor\cakephp\cakephp\src\Database\Schema\Collection.php(97): Cake\Database\Schema\Collection->_reflect('Column', '1', Array, Object(Cake\Database\Schema\TableSchema))
+#1 D:\WEBROOT\bookstore\vendor\cakephp\cakephp\src\Database\Schema\CachedCollection.php(63): Cake\Database\Schema\Collection->describe('1', Array)
+#2 D:\WEBROOT\bookstore\vendor\cakephp\cakephp\src\ORM\Table.php(531): Cake\Database\Schema\CachedCollection->describe('1')
+#3 D:\WEBROOT\bookstore\vendor\cakephp\cakephp\src\ORM\Table.php(652): Cake\ORM\Table->getSchema()
+#4 D:\WEBROOT\bookstore\vendor\cakephp\bake\src\Shell\Task\ModelTask.php(217): Cake\ORM\Table->getPrimaryKey()
+#5 D:\WEBROOT\bookstore\vendor\cakephp\bake\src\Shell\Task\ModelTask.php(127): Bake\Shell\Task\ModelTask->getAssociations(Object(Cake\ORM\Table))
+#6 D:\WEBROOT\bookstore\vendor\cakephp\bake\src\Shell\Task\ModelTask.php(110): Bake\Shell\Task\ModelTask->getTableContext(Object(Cake\ORM\Table), '1', '1')
+#7 D:\WEBROOT\bookstore\vendor\cakephp\bake\src\Shell\Task\ModelTask.php(97): Bake\Shell\Task\ModelTask->bake('1')
+#8 D:\WEBROOT\bookstore\vendor\cakephp\bake\src\Shell\BakeShell.php(257): Bake\Shell\Task\ModelTask->main('1')
+#9 D:\WEBROOT\bookstore\vendor\cakephp\cakephp\src\Collection\CollectionTrait.php(51): Bake\Shell\BakeShell->Bake\Shell\{closure}('1', 0)
+#10 D:\WEBROOT\bookstore\vendor\cakephp\bake\src\Shell\BakeShell.php(258): Cake\Collection\Collection->each(Object(Closure))
+#11 D:\WEBROOT\bookstore\vendor\cakephp\cakephp\src\Console\Shell.php(458): Bake\Shell\BakeShell->all('1')
+#12 D:\WEBROOT\bookstore\vendor\cakephp\cakephp\src\Console\ShellDispatcher.php(230): Cake\Console\Shell->runCommand(Array, true, Array)
+#13 D:\WEBROOT\bookstore\vendor\cakephp\cakephp\src\Console\ShellDispatcher.php(182): Cake\Console\ShellDispatcher->_dispatch(Array)
+#14 D:\WEBROOT\bookstore\vendor\cakephp\cakephp\src\Console\ShellDispatcher.php(128): Cake\Console\ShellDispatcher->dispatch(Array)
+#15 D:\WEBROOT\bookstore\bin\cake.php(34): Cake\Console\ShellDispatcher::run(Array)
+#16 {main}
+
+

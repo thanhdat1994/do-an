@@ -1,0 +1,346 @@
+body{
+    background: #f8f8f8;
+}
+tr:nth-child(odd) {
+    background: #fff;
+}
+
+tr:nth-child(even) {
+    background: #fcf8e3;
+}
+tr th {
+    vertical-align: middle !important;
+}
+.tabledeals{width: 100%;}
+.tabledeals  tr:nth-child(odd) {background: #f8f8f8}
+table thead{background: #f2dede}
+legend{color: #a94442;  }
+legend a{color: #a94442; font-size: 16px}
+.pulllisthead{color: #d9534f; font-size: 1.4em}
+.formlogin{margin-top: 50px;}
+#flashMessage{padding: 5px 0; background: #5cb85c; color: #fff; font-size: 1.3em}
+.alert {
+    border: 1px solid transparent;
+    border-radius: 4px;
+    margin-bottom: 20px;
+    padding: 15px;
+    position: absolute;
+    right: 20px;
+    width: 30%;
+}
+
+.icon-label-custom {
+    color: #FFF;
+    background: #FB6567;
+    width: 50px;
+    height: 50px;
+    line-height: 50px;
+    border: 2px solid #E42424;
+    float: right;
+    display: -webkit-box !important;
+    display: -ms-flexbox !important;
+    display: flex !important;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+}
+
+.navbar-default .navbar-nav > li > a.active{color: #d9534f}
+/** Paging **/
+.paging {
+    background:#fff;
+    color: #ccc;
+    margin-top: 1em;
+    clear:both;
+}
+.paging .current,
+.paging .disabled,
+.paging a {
+    text-decoration: none;
+    padding: 5px 8px;
+    display: inline-block
+}
+.paging > span {
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-left: 0;
+}
+.paging > span:hover {
+    background: #efefef;
+}
+.paging .prev {
+    border-left: 1px solid #ccc;
+    border-radius: 4px 0 0 4px;
+}
+.paging .next {
+    border-radius: 0 4px 4px 0;
+}
+.paging .disabled {
+    color: #ddd;
+}
+.paging .disabled:hover {
+    background: transparent;
+}
+.paging .current {
+    background: #efefef;
+    color: #c73e14;
+}
+.form-horizontal .form-group {
+    margin-left: 0;
+    margin-right: 0;
+}
+.navbar-default {
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom: 1px solid #d9534f;
+    background-color: #f8f8f8;
+    border-radius: 0px;
+    -webkit-box-shadow: 0 1px 0 1px rgba(217,83,79,0.6);
+            box-shadow: 0 1px 0 1px rgba(217,83,79,0.6);
+}
+.add-deal, .edit-deal {
+    width: 90%;
+    margin: 0 5%;
+}
+#services {margin-left: 30px}
+.checkbox input[type=checkbox] {margin-left: 0px;}
+.checkbox label, .radio label {padding-left: 0px;}
+
+/* css by thanhnd */
+.icon-label {
+    padding-right: 0px !important;
+}
+.form-control {
+    border-radius: 0 !important;
+    height: 50px;
+}
+.icon-large {
+    background-size: 50px 50px;
+    background-repeat: no-repeat;
+    height: 50px;
+    width: 50px;
+    float: right;
+}
+.icon-button {
+    background-size: contain;
+    background-repeat: no-repeat;
+    height: 40px;
+    width: 175px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+.icon-person-red{
+    background-image: url('../img/icon/person_red.jpg');
+}
+.icon-cosmetic-red{
+    background-image: url('../img/icon/cosmetic_red.jpg');
+}
+.icon-number-red{
+    background-image: url('../img/icon/number_red.jpg');
+}
+.icon-dollar-red{
+    background-image: url('../img/icon/dollar_red.jpg');
+}
+.icon-commission-red{
+    background-image: url('../img/icon/commission_red.jpg');
+}
+.icon-home-red{
+    background-image: url('../img/icon/home_red.jpg');
+}
+.icon-dollar-yellow{
+    background-image: url('../img/icon/dollar_yellow.jpg');
+}
+.icon-unit-red{
+    background-image: url('../img/icon/unit_red.jpg');
+}
+.icon-note-red{
+    background-image: url('../img/icon/note_red.jpg');
+}
+.icon-name-red{
+    background-image: url('../img/icon/service_name_red.jpg');
+}
+.icon-calendar-red{
+    background-image: url('../img/icon/calendar_red.jpg');
+}
+.icon-salon-red{
+    background-image: url('../img/icon/salon_red.jpg');
+}
+.icon-salon-yellow{
+    background-image: url('../img/icon/salon_yellow.jpg');
+}
+.icon-salon-from-red{
+    background-image: url('../img/icon/salon_from_red.jpg');
+}
+.icon-salon-to-red{
+    background-image: url('../img/icon/salon_to_red.jpg');
+}
+.icon-number-red{
+    background-image: url('../img/icon/number_red.jpg');
+}
+.icon-class-red{
+    background-image: url('../img/icon/chi_class_red.jpg');
+}
+.icon-old-pass-red{
+    background-image: url('../img/icon/old_pass_red.jpg');
+}
+.icon-new-pass-red{
+    background-image: url('../img/icon/new_pass_red.jpg');
+}
+.icon-reinput-pass-red{
+    background-image: url('../img/icon/reinput_pass_red.jpg');
+}
+.icon-person-yellow {
+    background-image: url('../img/icon/person_yellow.jpg');
+}
+.icon-people-yellow {
+    background-image: url('../img/icon/people_yellow.jpg');
+}
+.icon-address-yellow {
+    background-image: url('../img/icon/site_yellow.jpg');
+}
+.icon-card-yellow {
+    background-image: url('../img/icon/card_yellow.jpg');
+}
+.icon-camera-yellow {
+    background-image: url('../img/icon/camera_yellow.jpg');
+}
+.icon-phone-yellow {
+    background-image: url('../img/icon/phone_yellow.jpg');
+}
+.icon-calendar-yellow {
+    background-image: url('../img/icon/calendar_yellow.jpg');
+}
+.icon-note-yellow {
+    background-image: url('../img/icon/note_yellow.jpg');
+}
+.icon-point-yellow {
+    background-image: url('../img/icon/dollar_yellow.jpg');
+}
+.icon-working-yellow {
+    background-image: url('../img/icon/working_yellow.jpg');
+}
+.icon-calendar-blue2 {
+    background-image: url('../img/icon/calendar_blue2.jpg');
+}
+.icon-view-timekeeping {
+    background-image: url('../img/icon/btn_view_timekeeping.jpg');
+}
+.icon-calculate-salary {
+    background-image: url('../img/icon/btn_calculate_salary.jpg');
+}
+.btn-img {
+    width: 220px;
+    height: 50px;
+    background-size: 220px 50px;
+}
+
+/*.btn-add-customer {
+    border-radius: 0;
+    height: 48px;
+    padding: 12px 12px;
+    border: gray 1px;
+    border-style: ridge;
+}*/
+.btn-search-green {
+    background-image: url('../img/icon/btn_search_green.jpg');
+}
+.btn-edit-red {
+    background-image: url('../img/icon/btn_edit_red.jpg');
+}
+.btn-add-customer {
+     width: 195px;
+    height: 50px;
+    background-size: 195px 50px;
+    background-image: url('../img/icon/add_customer_green.jpg');
+}
+.btn-add-product {
+    background-image: url('../img/icon/btn_add_product_screen.jpg');
+}
+.btn-add-booking {
+    background-image: url('../img/icon/btn_add_booking_green.jpg');
+}
+.btn-add-service {
+    background-image: url('../img/icon/btn_add_servicel_green.jpg');
+}
+.btn-add-employee {
+    width: 195px;
+    height: 50px;
+    background-size: 195px 50px;
+    background-image: url('../img/icon/btn_add_employee_screen.jpg');
+}
+.btn-add-chi {
+    width: 195px;
+    height: 50px;
+    background-size: 195px 50px;
+    background-image: url('../img/icon/btn_add_chi_green.jpg');
+}
+.btn-change-pass-green {
+    width: 195px;
+    height: 50px;
+    background-size: 195px 50px;
+    background-image: url('../img/icon/btn_change_pass_green.jpg');
+}
+
+.btn-link {
+    background-size: 125px 40px !important;
+    padding: 12px 63px 11px 62px;
+}
+.btn-link-exchange-yellow {
+    background-image: url('../img/icon/btn_add_deal_green.jpg');
+}
+.btn-link-exchange-blue {
+    background-image: url('../img/icon/add_exchange_blue.jpg');
+}
+
+.btn-link-view-yellow {
+    background-image: url('../img/icon/btn_view_yellow.jpg');
+}
+
+.btn-link-edit-red {
+    background-image: url('../img/icon/btn_edit_red.jpg');
+}
+.btn-link-edit-green {
+    background-image: url('../img/icon/btn_edit_green.jpg');
+}
+.btn-statistic-green {
+    background-image: url('../img/icon/btn-statistic.jpg');
+}
+
+.table-list tr:nth-child(even) {
+    background: #f1f1f1 !important;
+}
+.table-list tr {
+    height: 50px;
+}
+.table-list {
+    font-size: 16px;
+}
+.table-list>tbody>tr>td, .table-list>thead>tr>th {
+    padding: 14px 8px;
+    font-size: 16px;
+}*/
+.microphone {
+    padding-left: 0px !important;
+}
+button {
+    outline: none;
+    border: none;
+}
+.btn-common-green {
+    border-radius: 0;
+    border: #0c8b34 2px;
+    border-style: double;
+    background-color: #43b968;
+}
+.actions {
+    padding: 5px 10px !important;
+}
+/* end thanhnd */
+
+#print_div p {
+    /*margin-bottom: 0;*/
+}

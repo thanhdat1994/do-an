@@ -1,0 +1,177 @@
+.caption{
+	text-align: center;
+}
+.caption h4{
+	color: #08c;
+}
+
+.product-name{
+	height: 33px;
+}
+.latest-product-name{
+	height: 35px;
+}
+.writer{
+    height: 20px;
+    width: 100%;
+}
+.price{
+	vertical-align: middle;
+}
+
+.thumbnail h4{
+	line-height: 20px;
+}
+a {
+    color: #08c;
+    text-decoration: none;
+}
+#footerSection {
+	background: #202020;
+	color: white;
+	padding: 28px 0 44px;
+	margin-top: 20px;
+	border-top: 1px solid #444;
+}
+#header{	;
+	margin-bottom: 20px;
+}
+
+.container-header{
+	background: #000;
+	color: white;    
+	font-size: 15px;
+	height: 50px;
+}
+.wrap-box{
+	background: url(../img/strip.png);
+  	padding:2px; 
+}
+.account_desc{
+	float: right;	
+    padding: 15px 0;
+}
+.account_desc li {
+    display: inline;
+    border-left: 2px ridge #3D3B3B;
+}
+.account_desc li a{
+	font-size: 120%;
+    color: #9C9C9C;
+    padding: 0 10px;
+    font-family: inherit;
+    text-decoration: none;
+    -webkit-transition: all 0.3s ease-out;
+    -moz-transition: all 0.3s ease-out;
+    -ms-transition: all 0.3s ease-out;
+    -o-transition: all 0.3s ease-out;
+    transition: all 0.3s ease-out;
+}
+
+.account_desc li a:hover{
+	color: #08c;
+}
+.account_desc ul{
+	list-style: none;
+    margin: 0;
+    padding: 0;
+}
+.row-header{
+	height: 50px;	
+	margin-right: auto;
+    margin-left: auto;
+    width: 91%;
+    margin-top: 20px;
+    background: #08c;
+    border-radius: 5px;
+}
+
+.col-sm-3{
+	float:right;
+	height: 40px;
+}
+
+.col-sm-3 input{
+	margin-top: 10px;
+}
+.span3{
+	font-size: 16px;
+}
+.navbar-inner{
+	padding-left: 0px;
+}
+.form-inline{
+	display: inline-block;
+	width: 269px;
+	margin-bottom: 20px;	
+}
+.input-search{
+	float: left;
+	width: 220px;
+	height: 30px;
+}
+ .input-search input{
+ 	width: 100%;
+ 	height: 100%;
+ }
+.input-btn{
+	float: right;
+}
+.span9{
+	margin-left: 10px;
+}
+.panel-default{
+	background-color: #f5f5f5;
+}
+.paginator{
+	text-align: center;
+}
+.content-writer strong{
+	margin-left: 20px;
+}
+.content-writer p{
+	margin-left: 30px;
+}
+.content-book{
+	margin-left: 20px;
+}
+.image-book{
+	height: 175px;
+	width: 175px;
+	float: left;
+}
+.content-info{
+	margin-left: 20px;
+}
+.panel-heading{
+	border-color: #ddd;
+}
+.detail{
+	width:850px;
+	height: 175px;
+}
+.detail-child{
+	width: 650px;
+	height: 175px;
+	float: right;
+	margin-left: 20px;
+}
+.pricetotal{
+	float: right;
+	background: #ddd;
+	margin-right: 30px;
+}
+.thumbnail p{
+	text-align: center;
+}
+.table{
+	width:860px;
+	margin-left: 30PX;
+}
+.cart_link{
+	width: 870px;
+	display: inline;
+}
+.panel .panel-success{
+	margin-top: 10px;
+}
