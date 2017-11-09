@@ -13,11 +13,11 @@ use App\Controller\AppController;
 class CouponsController extends AppController
 {
 
-    public function beforeFilter(Event $event)
+    /*public function beforeFilter(Event $event)
     {
         parent::beforeFilter();
         $this->Auth->allow(['add']);
-    }
+    }*/
 
     /**
      * Index method
