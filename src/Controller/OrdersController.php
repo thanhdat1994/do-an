@@ -142,6 +142,16 @@ class OrdersController extends AppController
             }
         }
         $this->Flash->success(' Thực hiện đặt hàng thành công!','default',['class'=>'alert alert-info'],'orders');
-        $this->redirect($this->referer());
+        $this->redirect(['action' => 'history']);
+    }
+
+    public function history(){
+        $user_info = $this->get_user();
+        $order = $this->Orders->find('all',[
+            'conditions' => ['user_id' => $user_info['id']],
+            'order' => ['created' => 'desc']
+        ]);
+        $this->set('orders', $order);
+        $this->set('cakeDescription','Lịch sử mua hàng');
     }
 }

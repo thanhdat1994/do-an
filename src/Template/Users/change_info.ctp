@@ -25,7 +25,7 @@
                     Email
                 </div>
                 <div class="col-sm-8">
-                    <?php echo $this->Form->input('email', array('type' => 'text', 'label' => false, 'div' => false, "placeholder" => "Email"));?>
+                    <?php echo $this->Form->input('email', array('type' => 'text', 'label' => false, 'div' => false, "placeholder" => "Email", 'readonly' => true));?>
                 </div>
             </div>            
             <div class="control-group">
