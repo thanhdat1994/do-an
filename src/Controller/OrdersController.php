@@ -116,6 +116,7 @@ class OrdersController extends AppController
 
     /*checkout*/
     public function checkout(){
+        $user_info = $this->get_user();
         $session=$this->request->session();
         if($this->request->is('post')){
             # code...
@@ -125,12 +126,12 @@ class OrdersController extends AppController
                 'address'=>$this->request->getData('address'),
                 'phone'=>$this->request->getData('phone')
             ];
-            pr($user_info['id']);
-            $data = ['user_id'=>$user_info['id'],
-            'customer_info'=>json_encode($customer),
-            'orders_info'=>json_encode($session->read('cart')),
-            'payment_info'=>json_encode($session->read('payment')),
-            'status'=>0
+            $data = [
+                'user_id'=>$user_info['id'],
+                'customer_info'=>json_encode($customer),
+                'orders_info'=>json_encode($session->read('cart')),
+                'payment_info'=>json_encode($session->read('payment')),
+                'status'=>0
             ];
             $order = $this->Orders->patchEntity($order,$data);
             if($this->Orders->save($order)){
@@ -153,5 +154,16 @@ class OrdersController extends AppController
         ]);
         $this->set('orders', $order);
         $this->set('cakeDescription','Lịch sử mua hàng');
+    }
+
+    public function detail($id = null){
+        $order = $this->Orders->get($id);
+        if(!empty($order)){
+            $user_info = $this->get_user();
+            if($user_info['id'] == $order['user_id']){
+                $this->set('order', $order);                
+            }
+        }
+        $this->set('cakeDescription','Chi tiết đơn hàng');
     }
 }

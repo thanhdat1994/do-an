@@ -1,5 +1,5 @@
 <div class="panel panel-info" style="width: 872px;">
-<h4 class="panel-heading"> <i class="fa fa-server"></i> Lịch sử mua hàng
+<h4 class="panel-heading"> <i class="fa fa-server"></i> Lịch sử mua hàng</h4>
 	<h4>Dưới đây là toàn bộ thông tin mua hàng của bạn</h4>
 	<hr>
 	<table class="table table-striped">
@@ -18,7 +18,7 @@
 			<?php foreach ($orders as $order): ?>
 				<tr>
 					<td><?php echo $i++; ?></td>
-					<td><?php echo $order['created']->date->format('d-m-Y'); ?></td>
+					<td><?php echo $order['created']->format('d-m-Y H:i:s'); ?></td>
 					<td><?php echo json_decode($order['customer_info'])->email; ?></td>
 					<td><?php echo $this->Number->format(json_decode($order['payment_info'])->total,['places'=> 0,'after'=>'VNĐ']); ?></td>
 					<td>
@@ -30,7 +30,7 @@
 							<span class="label label-danger">Hủy</span>
 						<?php endif ?>
 					</td>
-					<td><a href="#">Chi tiết</td>
+					<td><?php echo $this->Html->link('Xem','/don-hang/'.$order['id']); ?></td>
 				</tr>
 			<?php endforeach ?>
 		</tbody>
