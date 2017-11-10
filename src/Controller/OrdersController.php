@@ -116,6 +116,7 @@ class OrdersController extends AppController
 
     /*checkout*/
     public function checkout(){
+        $user_info = $this->get_user();
         $session=$this->request->session();
         if($this->request->is('post')){
             # code...
@@ -142,6 +143,27 @@ class OrdersController extends AppController
             }
         }
         $this->Flash->success(' Thực hiện đặt hàng thành công!','default',['class'=>'alert alert-info'],'orders');
-        $this->redirect($this->referer());
+        $this->redirect(['action' => 'history']);
+    }
+
+    public function history(){
+        $user_info = $this->get_user();
+        $order = $this->Orders->find('all',[
+            'conditions' => ['user_id' => $user_info['id']],
+            'order' => ['created' => 'desc']
+        ]);
+        $this->set('orders', $order);
+        $this->set('cakeDescription','Lịch sử mua hàng');
+    }
+
+    public function detail($id = null){
+        $order = $this->Orders->get($id);
+        if(!empty($order)){
+            $user_info = $this->get_user();
+            if($user_info['id'] == $order['user_id']){
+                $this->set('order', $order);                
+            }
+        }
+        $this->set('cakeDescription','Chi tiết đơn hàng');
     }
 }

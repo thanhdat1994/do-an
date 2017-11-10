@@ -12,7 +12,7 @@
 						<?php echo $this->Html->link('Giỏ Hàng','/gio-hang'); ?>
 					</li>
 					<li>
-						<?php echo $this->Html->link('Lịch sử mua hàng','/#'); ?>
+						<?php echo $this->Html->link('Lịch sử mua hàng','/lich-su-mua-hang'); ?>
 					</li>
 					<li>
 						<?php echo $this->Html->link('Cập nhật thông tin','/cap-nhat-thong-tin'); ?>

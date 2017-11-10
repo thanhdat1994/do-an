@@ -62,6 +62,8 @@ Router::scope('/', function (RouteBuilder $routes) {
     $routes->connect('/gio-hang',array('controller'=>'Books','action'=>'viewCart'));
     $routes->connect('/doi-mat-khau',array('controller'=>'Users','action'=>'change_password'));
     $routes->connect('/cap-nhat-thong-tin',array('controller'=>'Users','action'=>'change_info'));
+    $routes->connect('/lich-su-mua-hang',array('controller'=>'Orders','action'=>'history'));
+    $routes->connect('/don-hang/:id', ['controller' => 'Orders', 'action' => 'detail'],['pass'=>['id']]);
 
     /**
      * ...and connect the rest of 'Pages' controller's URLs.
