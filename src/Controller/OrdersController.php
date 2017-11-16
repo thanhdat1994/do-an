@@ -126,7 +126,6 @@ class OrdersController extends AppController
                 'address'=>$this->request->getData('address'),
                 'phone'=>$this->request->getData('phone')
             ];
-            $user_info = $this->get_user();
             $data = ['user_id'=>$user_info['id'],
             'customer_info'=>json_encode($customer),
             'orders_info'=>json_encode($session->read('cart')),

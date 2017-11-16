@@ -87,7 +87,7 @@ class AppController extends Controller
 
     public function beforeFilter(Event $event)
     {
-        $this->Auth->allow(['index', 'latest', 'view', 'getKeyword', 'search', 'menu','viewCart','changePassword','signup','login']);
+        $this->Auth->allow(['confirm','index', 'latest', 'view', 'getKeyword', 'search', 'menu','viewCart','changePassword','signup','login','forgot']);
         $this->set('user_info', $this->get_user());
     }
 
@@ -124,5 +124,10 @@ class AppController extends Controller
                 return false;
             }
         }
+    public function generate_code(){
+        $random_number = rand(100000,999999);
+        $code = md5($random_number);
+        return $code;
+    }  
 }
 ?>

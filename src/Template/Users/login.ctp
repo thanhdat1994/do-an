@@ -23,6 +23,9 @@
                         <?php echo $this->Form->input('password', array('type' => 'password', 'label' => false, 'div' => false, "placeholder" => "Mật khẩu"));?>
                     </div>
                 </div>
+                <div class="control-group">
+                    <small>* <?php echo $this->Html->link("Quên mật khẩu?", '/quen-mat-khau');  ?></small>
+                </div>
                 <div class="form-group">
                     <div class="col-sm-12" style="text-align: center;">
                         <button type="submit" class="btn btn btn-primary">Đăng nhập</button>

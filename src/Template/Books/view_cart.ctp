@@ -128,7 +128,7 @@
 					<?php else: ?>
 						<?php echo $this->Form->create('Coupons',['url'=>['controller'=>'coupons','action'=>'add'],'class'=>"form-inline"]); ?>
 						<?php echo $this->Form->input('code',['class'=>'input text','placeholder'=>"Nhập mã giảm giá",'label'=>false,'div'=>false]); ?>
-						<?php echo $this->Form->button('Nhập',['type'=>"submit",onclick=>"validateCoupon();",'class'=>"btn btn-primary"]); ?>
+						<?php echo $this->Form->button('Nhập',['type'=>"submit",'class'=>"btn btn-primary"]); ?>
 						<?php echo $this->Form->end(); ?>
 						<h4>Ghi chú</h4>
 						<ul>
