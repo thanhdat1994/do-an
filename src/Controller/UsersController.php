@@ -268,16 +268,14 @@ class UsersController extends AppController
     }
 
     public function confirm(){
-        $confirm = false;
         $code = md5($this->request->getData('code'));
         if (!empty($code)) {
             # code...
             $user = $this->Users->find('all',['conditions' => ["Users.code" => $code]])->first();
             if (!empty($user)) {
                 # code...
-                $confirm = true;
-            }
+                $this->set('userId', $user['id']);
+                            }
         }
-        $this->set('confirm',$confirm);
     }
 }

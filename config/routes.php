@@ -56,14 +56,16 @@ Router::scope('/', function (RouteBuilder $routes) {
     $routes->connect('/:book_title', ['controller' => 'Books', 'action' => 'view'],['pass'=>['book_title']]);
     $routes->connect('/danh-muc/*',array('controller'=>'Categories','action'=>'view'));
     $routes->connect('/tac-gia/*',array('controller'=>'Writers','action'=>'view'));
-    $routes->connect('/dang-nhap',array('controller'=>'Users','action'=>'login'));
-    $routes->connect('/dang-xuat',array('controller'=>'Users','action'=>'logout'));
+    $routes->connect('/dang-nhap',['controller'=>'Users','action'=>'login']);
+    $routes->connect('/dang-xuat',['controller'=>'Users','action'=>'logout']);
     $routes->connect('/dang-ki',array('controller'=>'Users','action'=>'signup'));
     $routes->connect('/gio-hang',array('controller'=>'Books','action'=>'viewCart'));
     $routes->connect('/doi-mat-khau',array('controller'=>'Users','action'=>'change_password'));
     $routes->connect('/cap-nhat-thong-tin',array('controller'=>'Users','action'=>'change_info'));
     $routes->connect('/lich-su-mua-hang',array('controller'=>'Orders','action'=>'history'));
     $routes->connect('/don-hang/:id', ['controller' => 'Orders', 'action' => 'detail'],['pass'=>['id']]);
+    $routes->connect('/quen-mat-khau',['controller'=>'Users','action'=>'forgot']);
+    $routes->connect('/xac-nhan',['controller'=>'Users','action'=>'confirm']);
 
     /**
      * ...and connect the rest of 'Pages' controller's URLs.
