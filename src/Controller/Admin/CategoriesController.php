@@ -1,5 +1,5 @@
 <?php
-namespace App\Controller;
+namespace App\Controller\Admin;
 
 use App\Controller\AppController;
 
@@ -13,51 +13,6 @@ use App\Controller\AppController;
 class CategoriesController extends AppController
 {
 
-
-    /**
-     * menu method
-     *
-     * @return void
-     */
-    public function menu() {
-        if($this->request->is('requested')){
-            $categories = $this->Categories->find('all',[
-            'order' => ['name'=>'asc']
-            ]);
-            return $categories;
-        }       
-    }
-
-    /**
-     * View method
-     *
-     * @param string|null $id Category id.
-     * @return \Cake\Http\Response|void
-     * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
-     */
-    public function view($slug = null)
-    {
-        $category = $this->Categories->find('all', [
-            'conditions' => ['Categories.slug'=>$slug]
-        ])->first();
-        if (empty($category)) {
-            throw new NotFoundException(__('Không tìm thấy danh mục này'));
-        }    
-
-        $this->set('category', $category);
-
-        //Phân trang dữ liệu book liên quan
-        $this->paginate = [
-            'fields' => ['id','title','image','sale_price','slug'],
-            'order' => ['created' =>'desc'],
-            'limit' => 9,
-            'conditions' => ['published'=>1,'Categories.slug'=>$slug],
-            'contain' => ['Writers','Categories']
-            ];
-        $books = $this->paginate('Books');
-        $this->set('books',$books);
-    }
-
     //----------------------------------------Quản lý Admin------------------
 
     /**
@@ -65,12 +20,27 @@ class CategoriesController extends AppController
      *
      * @return \Cake\Http\Response|void
      */
-    public function admin_index()
+    public function index()
     {
-        $categories = $this->paginate($this->Categories);
-
-        $this->set(compact('categories'));
-        $this->set('_serialize', ['categories']);
+        $this->viewBuilder()->layout('admin');
+        $categories = $this->Categories->newEntity();
+        if($this->request->is(array('post','put'))){
+            $categories = $this->Categories->patchEntity($categories, $this->request->data());
+            $name = $this->request->data['name'];            
+            if(!empty($name)){
+                $this->paginate = [
+                    'fields' => ['id','name','slug','created'],
+                    'order' => ['Categories.name' => 'desc'],
+                    'conditions' => ['Categories.name like' => '%'.$name.'%']
+                ];
+            }
+            $categories = $this->paginate('Categories');
+            $this->set('categories', $categories);
+        }else{
+            $categories = $this->paginate($this->Categories);
+            $this->set(compact('categories'));
+            $this->set('_serialize', ['categories']);
+        }
     }
 
     /**
@@ -78,8 +48,9 @@ class CategoriesController extends AppController
      *
      * @return \Cake\Http\Response|null Redirects on successful add, renders view otherwise.
      */
-    public function admin_add()
+    public function add()
     {
+        $this->viewBuilder()->layout('admin');
         $category = $this->Categories->newEntity();
         if ($this->request->is('post')) {
             $category = $this->Categories->patchEntity($category, $this->request->getData());
@@ -101,8 +72,9 @@ class CategoriesController extends AppController
      * @return \Cake\Http\Response|null Redirects on successful edit, renders view otherwise.
      * @throws \Cake\Network\Exception\NotFoundException When record not found.
      */
-    public function admin_edit($id = null)
+    public function edit($id = null)
     {
+        $this->viewBuilder()->layout('admin');
         $category = $this->Categories->get($id, [
             'contain' => []
         ]);
@@ -126,8 +98,9 @@ class CategoriesController extends AppController
      * @return \Cake\Http\Response|null Redirects to index.
      * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */
-    public function admin_delete($id = null)
+    public function delete($id = null)
     {
+        $this->viewBuilder()->layout('admin');
         $this->request->allowMethod(['post', 'delete']);
         $category = $this->Categories->get($id);
         if ($this->Categories->delete($category)) {

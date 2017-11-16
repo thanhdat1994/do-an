@@ -1,5 +1,5 @@
 <?php
-namespace App\Controller;
+namespace App\Controller\Admin;
 
 use App\Controller\AppController;
 use Cake\Auth\DefaultPasswordHasher;
@@ -139,14 +139,15 @@ class UsersController extends AppController
             $user = $this->Auth->identify();
             if($user){
                 $this->Auth->setUser($user);
-                if(true){
-                    return $this->redirect($this->Auth->redirectUrl());
-                }else{
-                    return $this->redirect(['controller'=>'Categories','action'=>'index', 'prefix' => true]);
-                }       
+                return $this->redirect($this->Auth->redirectUrl());
+                //return $this->redirect(['controller'=>'books','action'=>'index']);           
             }
             $this->Flash->error(__('Sai tên đăng nhập hoặc mật khẩu.'));
         }
+        // $password = "admin";
+        // $hasher = new DefaultPasswordHasher();
+        
+        // $this->set('pass',$hasher->hash($password));
         $this->set('cakeDescription','Đăng nhập');        
     }
 

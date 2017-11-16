@@ -22,6 +22,7 @@ use Cake\Core\Plugin;
 use Cake\Routing\RouteBuilder;
 use Cake\Routing\Router;
 use Cake\Routing\Route\DashedRoute;
+use Cake\Routing\Route\InflectedRoute;
 
 /**
  * The default class to use for all routes
@@ -94,3 +95,8 @@ Router::scope('/', function (RouteBuilder $routes) {
  * how to customize the loading of plugin routes.
  */
 Plugin::routes();
+
+Router::prefix('Admin', function ($routes) {
+    $routes->fallbacks('InflectedRoute');
+    $routes->connect('/', ['controller' => 'Categories', 'action' => 'index']); 
+});
