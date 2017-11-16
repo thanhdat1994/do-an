@@ -80,7 +80,7 @@
                         ?>
                         <?php echo $this->Form->input('Gởi nhận xét',['type'=>'submit','class'=>'btn btn-info']); ?><?php echo $this->Form->end(); ?>
                     <?php else: ?>
-                            Bạn phải <?php echo $this->Html->link('đăng nhập','/login'); ?> trước khi gởi nhận xét
+                            Bạn phải <?php echo $this->Html->link('đăng nhập','/dang-nhap'); ?> trước khi gởi nhận xét
                     <?php endif ?>                    
                 </fieldset>
             </div>

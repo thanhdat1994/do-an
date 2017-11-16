@@ -242,4 +242,39 @@ class UsersController extends AppController
         }        
         $this->set('cakeDescription', 'Cập nhật thông tin');
     }
+    public function forgot(){
+
+        $this->set('cakeDescription','Quên mật khẩu');
+        if ($this->request->is('post')) {
+            # code...
+            $email = $this->request->getData('email');
+            $user = $this->Users->find('all',[
+                'conditions'=>['Users.email'=>$email]
+                ])->first();
+            $data = $this->Users->newEntity();
+            if (!empty($user)) {
+                # code...
+                $user['code'] = $this->generate_code();
+                $link_confirm = 'http://localhost/do-an/xac-nhan/'.$user['code'];
+                // $data = $this->Users->patchEntity($data, $user);
+                $this->Users->save($user);
+                $this->Flash->success($link_confirm);
+                $this->redirect(['action' => 'confirm']);
+            }else{
+                $this->Flash->error("Email không tồn tại. Vui lòng nhập lại email của bạn.");
+            }
+        }
+    }
+
+    public function confirm(){
+        $code = md5($this->request->getData('code'));
+        if (!empty($code)) {
+            # code...
+            $user = $this->Users->find('all',['conditions' => ["Users.code" => $code]])->first();
+            if (!empty($user)) {
+                # code...
+                $this->set('userId', $user['id']);
+                            }
+        }
+    }
 }
