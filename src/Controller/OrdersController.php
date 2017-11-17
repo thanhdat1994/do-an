@@ -137,12 +137,13 @@ class OrdersController extends AppController
                 # code...
                 $session->delete('cart');
                 $session->delete('payment');
+                $this->Flash->success(' Thực hiện đặt hàng thành công!','default',['class'=>'alert alert-info'],'orders');
+                $this->redirect(['action' => 'history']);
             }else{
                 $this->Flash->error("Thanh toán không thực hiện được!",'default',['class'=>"alert alert-danger",'orders']);
             }
         }
-        $this->Flash->success(' Thực hiện đặt hàng thành công!','default',['class'=>'alert alert-info'],'orders');
-        $this->redirect(['action' => 'history']);
+        
     }
 
     public function history(){

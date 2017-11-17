@@ -1,4 +1,4 @@
-<div class="col-md-offset-2 col-md-7 formlogin" style="margin-top: 50px; font-size: 16px;">
+<div class="col-md-offset-5 col-md-7 formlogin" style="margin-top: 50px; font-size: 16px;">
     <div class="panel panel-primary">
         <div class="panel-heading"> <h3 class="panel-title text-center">Nhập mã xác nhận</h3></div>
         <?php //echo $this->Session->Flash('auth'); ?>
@@ -16,12 +16,12 @@
                         Nhập mã xác nhận: 
                     </div>
                     <div class="col-sm-8">
-                        <?php echo $this->Form->input('code', array('type' => 'text', 'label' => false, 'div' => false, "placeholder" => "input your code..."));?>
+                        <?php echo $this->Form->input('code', array('type' => 'text', 'label' => false, 'div' => false, "placeholder" => "Vui lòng nhập mã xác nhận"));?>
                     </div>
                 </div>
                 <div class="form-group">
                     <div class="col-sm-12" style="text-align: center;">
-                        <button type="submit" class="btn btn btn-primary">Nhập</button>
+                        <button type="submit" class="btn btn-primary">Xác nhận</button>
                     </div>
                 </div>
                 <div>

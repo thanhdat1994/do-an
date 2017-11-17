@@ -1,4 +1,4 @@
-<div class="col-md-offset-2 col-md-7 formlogin" style="margin-top: 50px; font-size: 16px;">
+<div class="col-md-offset-5 col-md-7 formlogin" style="margin-top: 50px; font-size: 16px;">
     <div class="panel panel-primary">
         <div class="panel-heading"> <h3 class="panel-title text-center">Đổi mật khẩu</h3></div>
         <?php //echo $this->Session->Flash('auth'); ?>
@@ -9,6 +9,14 @@
                 Bạn chưa đăng nhập, click vào đây để <?php echo $this->Html->link('đăng nhập','/dang-nhap'); ?>
             <?php else: ?>
                 <?php echo $this->Form->create('Users', array('class'=>"form-horizontal",'inputDefaults'=>['label'=>false]))?>
+                <div class="control-group">
+                    <div class="col-sm-4 col-xs-3 pull-left" title="Mật khẩu hiện tại">
+                        Mật khẩu tại
+                    </div>
+                    <div class="col-sm-8">
+                        <?php echo $this->Form->input('password_current', array("placeholder" => "Mật khẩu hiện tại", 'error' => false, 'label' => false, 'type' => 'password'));?>
+                    </div>
+                </div>
                 <div class="control-group">
                     <div class="col-sm-4 col-xs-3 pull-left" title="Mật khẩu mới">
                         Mật khẩu mới

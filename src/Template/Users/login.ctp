@@ -1,4 +1,4 @@
-<div class="col-md-offset-2 col-md-7 formlogin" style="margin-top: 50px; font-size: 16px;">
+<div class="col-md-offset-5 col-md-7 formlogin" style="margin-top: 50px; font-size: 16px;">
     <div class="panel panel-primary">
         <div class="panel-heading"> <h3 class="panel-title text-center">Đăng nhập vào hệ thống</h3></div>
         <?php //echo $this->Session->Flash('auth'); ?>

@@ -135,6 +135,7 @@ class UsersController extends AppController
     }
 
     public function login(){
+        $this->viewBuilder()->layout('form');
         if($this->request->is('post')){
             $user = $this->Auth->identify();
             if($user){
@@ -142,7 +143,7 @@ class UsersController extends AppController
                 if(true){
                     return $this->redirect($this->Auth->redirectUrl());
                 }else{
-                    return $this->redirect(['controller'=>'Categories','action'=>'index', 'prefix' => true]);
+                    return $this->redirect(['controller'=>'Books','action'=>'index', 'prefix' => true]);
                 }       
             }
             $this->Flash->error(__('Sai tên đăng nhập hoặc mật khẩu.'));
@@ -152,27 +153,36 @@ class UsersController extends AppController
 
     public function logout()
     {
+        $session = $this->request->session();
+        $session->delete(['cart', 'coupon']);
         return $this->redirect($this->Auth->logout());
     }
 
     public function changePassword(){
+        $this->viewBuilder()->layout('form');
         if($this->request->is('post')){
             $user = $this->Users->get($this->Auth->user('id'));
             //if($this->Users->validator()){
-                $user = $this->Users->patchEntity($user, [
-                    'password'  => $this->request->data['password'],
-                    'confirm_password'      => $this->request->data['confirm_password']
-                ]);
-                if(strcmp($this->request->data['password'], $this->request->data['confirm_password']) != 0){                    
-                    $this->Flash->error(__('Xác nhận mật khẩu không đúng', ['class'=>'alert alert-danger']));
-                } else {
-                    if ($this->Users->save($user)) {
-                        $this->Flash->success('Đổi mật khẩu thành công!');
-                        $this->redirect(['controller' => 'books', 'action' => 'index']);
+            $hasher = new DefaultPasswordHasher();
+                if($hasher->check($this->request->data['password_current'], $user->password) == 1){
+                       $user = $this->Users->patchEntity($user, [
+                        'password'  => $this->request->data['password'],
+                        'confirm_password'      => $this->request->data['confirm_password']
+                    ]);                
+                       if(strcmp($this->request->data['password'], $this->request->data['confirm_password']) != 0){                    
+                        $this->Flash->error(__('Xác nhận mật khẩu không đúng', ['class'=>'alert alert-danger']));
                     } else {
-                        $this->Flash->error('Có lỗi xảy ra. Vui lòng thử lại!');
-                    }
-                }
+                        if ($this->Users->save($user)) {
+                            $this->Flash->success('Đổi mật khẩu thành công!');
+                            $this->redirect(['controller' => 'books', 'action' => 'index']);
+                        } else {
+                            $this->Flash->error('Có lỗi xảy ra. Vui lòng thử lại!');
+                        }
+                    }   
+                } else{
+                    $this->Flash->error('Mật khẩu hiện tại không đúng, vui lòng thử lại.');
+                    $this->redirect($this->referer());
+                }               
             /*} else{
                 $errors = $this->Users->errors($this->request->data);
                 $session = $this->request->session();
@@ -183,6 +193,7 @@ class UsersController extends AppController
     }
 
     public function signup(){
+        $this->viewBuilder()->layout('form');
         $user = $this->Users->newEntity();
         if ($this->request->is('post')) {
             //Ngày tạo
@@ -225,6 +236,7 @@ class UsersController extends AppController
     }
 
     public function changeInfo(){
+        $this->viewBuilder()->layout('form');
         $user = $this->Users->get($this->Auth->user('id'));
         if ($this->request->is(['post', 'put'])) {
             $user = $this->Users->patchEntity($user, $this->request->data);
@@ -243,7 +255,7 @@ class UsersController extends AppController
         $this->set('cakeDescription', 'Cập nhật thông tin');
     }
     public function forgot(){
-
+        $this->viewBuilder()->layout('form');
         $this->set('cakeDescription','Quên mật khẩu');
         if ($this->request->is('post')) {
             # code...
@@ -267,6 +279,7 @@ class UsersController extends AppController
     }
 
     public function confirm(){
+        $this->viewBuilder()->layout('form');
         $code = md5($this->request->getData('code'));
         if (!empty($code)) {
             # code...

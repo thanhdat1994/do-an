@@ -1,4 +1,4 @@
-<div class="col-md-offset-2 col-md-7 formlogin" style="margin-top: 50px; font-size: 16px;">
+<div class="col-md-offset-5 col-md-7 formlogin" style="margin-top: 50px; font-size: 16px;">
     <div class="panel panel-primary">
         <div class="panel-heading"> <h3 class="panel-title text-center">Quên mật khẩu</h3></div>
         <?php //echo $this->Session->Flash('auth'); ?>
@@ -12,7 +12,7 @@
                         Nhập Email: 
                     </div>
                     <div class="col-sm-8">
-                        <?php echo $this->Form->input('email', array('type' => 'email', 'label' => false, 'div' => false, "placeholder" => "input your email..."));?>
+                        <?php echo $this->Form->input('email', array('type' => 'email', 'label' => false, 'div' => false, "placeholder" => "Vui lòng nhập email của bạn"));?>
                     </div>
                 </div>
                 <div class="form-group">

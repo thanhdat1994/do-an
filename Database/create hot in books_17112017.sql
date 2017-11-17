@@ -1,0 +1,1 @@
+ALTER TABLE `books` ADD `hot` TINYINT(1) NULL DEFAULT '0' AFTER `published`;

@@ -22,7 +22,7 @@
 		 			<p><strong>Mã giảm giá: </strong>
 		 				<span>
 		 					<?php echo $payment_info->coupon; ?>
-		 					<strong>Giảm: </strong><?php echo $payment_info->discount; ?>		
+		 					<strong>Giảm: </strong><?php echo $payment_info->discount.'%'; ?>		
 		 				</span>
 		 			</p>
 		 			<p><strong>Tiền phải trả: </strong><span><?php echo $this->Number->format($payment_info->pay,['places'=> 0,'after'=>'VNĐ']); ?></span></p>
