@@ -3,37 +3,90 @@
   * @var \App\View\AppView $this
   */
 ?>
-<nav class="large-3 medium-4 columns" id="actions-sidebar">
-    <ul class="side-nav">
-        <li class="heading"><?= __('Actions') ?></li>
-        <li><?= $this->Html->link(__('List Books'), ['action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('List Categories'), ['controller' => 'Categories', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Category'), ['controller' => 'Categories', 'action' => 'add']) ?></li>
-        <li><?= $this->Html->link(__('List Comments'), ['controller' => 'Comments', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Comment'), ['controller' => 'Comments', 'action' => 'add']) ?></li>
-        <li><?= $this->Html->link(__('List Writers'), ['controller' => 'Writers', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Writer'), ['controller' => 'Writers', 'action' => 'add']) ?></li>
-    </ul>
-</nav>
-<div class="books form large-9 medium-8 columns content">
+<h3><i class="fa fa-server"></i>&nbsp;&nbsp;Thêm sách mới</h3>
+<hr>
+<div class="col-md-offset-3 col-md-6">
     <?= $this->Form->create($book) ?>
-    <fieldset>
-        <legend><?= __('Add Book') ?></legend>
-        <?php
-            echo $this->Form->control('category_id', ['options' => $categories, 'empty' => true]);
-            echo $this->Form->control('title');
-            echo $this->Form->control('slug');
-            echo $this->Form->control('image');
-            echo $this->Form->control('info');
-            echo $this->Form->control('price');
-            echo $this->Form->control('sale_price');
-            echo $this->Form->control('publisher');
-            echo $this->Form->control('publish_date');
-            echo $this->Form->control('link_download');
-            echo $this->Form->control('published');
-            echo $this->Form->control('writers._ids', ['options' => $writers]);
-        ?>
-    </fieldset>
-    <?= $this->Form->button(__('Submit')) ?>
+    <div class="form-group">
+        <label class="col-sm-3 control-label">Tên Sách:</label>
+        <div class="col-sm-9">
+            <?php echo $this->Form->input('title', array( 'class' => 'form-control',
+            'type' => 'text', 'label' => false, 'div' => false, "placeholder" => "Tên sách"));?>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-3 control-label">Slug:</label>
+        <div class="col-sm-9">
+            <?php echo $this->Form->input('slug', array( 'class' => 'form-control',
+            'type' => 'text', 'label' => false, 'div' => false, "placeholder" => "link thân thiện"));?>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-3 control-label">Image:</label>
+        <div class="col-sm-9">
+            <?php echo $this->Form->input('image', array( 'class' => 'form-control',
+            'type' => 'text', 'label' => false, 'div' => false, "placeholder" => "link tới hình ảnh..."));?>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-3 control-label">Giá nhập:</label>
+        <div class="col-sm-9">
+            <?php echo $this->Form->input('price', array( 'class' => 'form-control',
+            'type' => 'text', 'label' => false, 'div' => false, "placeholder" => "giá nhập sách"));?>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-3 control-label">Giá bán:</label>
+        <div class="col-sm-9">
+            <?php echo $this->Form->input('sale_price', array( 'class' => 'form-control',
+            'type' => 'text', 'label' => false, 'div' => false, "placeholder" => "giá bán"));?>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-3 control-label">Nhà xuất bản:</label>
+        <div class="col-sm-9">
+            <?php echo $this->Form->input('publisher', array( 'class' => 'form-control',
+            'type' => 'text', 'label' => false, 'div' => false, "placeholder" => "nhà xuất bản"));?>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-3 control-label">Ngày xuất bản:</label>
+        <div class="col-sm-9">
+            <?php echo $this->Form->input('publish_date', array( 'class' => 'form-control',
+            'type' => 'text', 'label' => false, 'div' => false, "placeholder" => "ngày xuất bản"));?>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-3 control-label">Link download:</label>
+        <div class="col-sm-9">
+            <?php echo $this->Form->input('link_download', array( 'class' => 'form-control',
+            'type' => 'text', 'label' => false, 'div' => false, "placeholder" => "link download"));?>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-3 control-label">Đã xuất bản?:</label>
+        <div class="col-sm-9">
+            <?php echo $this->Form->input('slug', array( 'class' => 'form-control',
+            'type' => 'text', 'label' => false, 'div' => false, "placeholder" => "1 hoặc 0"));?>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-3 control-label">Tác giả:</label>
+        <div class="col-sm-9">
+            <?php echo $this->Form->input('writers', array( 'class' => 'form-control',
+            'type' => 'text', 'label' => false, 'div' => false, "placeholder" => "mã tác giả"));?>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-3 control-label">Thể loại sách:</label>
+        <div class="col-sm-9">
+            <?php echo $this->Form->input('categories_id', array( 'class' => 'form-control',
+            'type' => 'text', 'label' => false, 'div' => false, "placeholder" => "Mã loại sách"));?>
+        </div>
+    </div>
+    <div class="form-group" style="text-align: center;">
+        <?= $this->Form->button(__('Thêm mới'), ['class'=>'btn btn-primary']) ?>
+    </div>
     <?= $this->Form->end() ?>
 </div>
+

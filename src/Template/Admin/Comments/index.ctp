@@ -4,52 +4,70 @@
   * @var \App\Model\Entity\Comment[]|\Cake\Collection\CollectionInterface $comments
   */
 ?>
-<nav class="large-3 medium-4 columns" id="actions-sidebar">
-    <ul class="side-nav">
-        <li class="heading"><?= __('Actions') ?></li>
-        <li><?= $this->Html->link(__('New Comment'), ['action' => 'add']) ?></li>
-        <li><?= $this->Html->link(__('List Users'), ['controller' => 'Users', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New User'), ['controller' => 'Users', 'action' => 'add']) ?></li>
-        <li><?= $this->Html->link(__('List Books'), ['controller' => 'Books', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Book'), ['controller' => 'Books', 'action' => 'add']) ?></li>
-    </ul>
-</nav>
-<div class="comments index large-9 medium-8 columns content">
-    <h3><?= __('Comments') ?></h3>
-    <table cellpadding="0" cellspacing="0">
-        <thead>
-            <tr>
-                <th scope="col"><?= $this->Paginator->sort('id') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('user_id') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('book_id') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('created') ?></th>
-                <th scope="col" class="actions"><?= __('Actions') ?></th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php foreach ($comments as $comment): ?>
-            <tr>
-                <td><?= $this->Number->format($comment->id) ?></td>
-                <td><?= $comment->has('user') ? $this->Html->link($comment->user->id, ['controller' => 'Users', 'action' => 'view', $comment->user->id]) : '' ?></td>
-                <td><?= $comment->has('book') ? $this->Html->link($comment->book->title, ['controller' => 'Books', 'action' => 'view', $comment->book->id]) : '' ?></td>
-                <td><?= h($comment->created) ?></td>
-                <td class="actions">
-                    <?= $this->Html->link(__('View'), ['action' => 'view', $comment->id]) ?>
-                    <?= $this->Html->link(__('Edit'), ['action' => 'edit', $comment->id]) ?>
-                    <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $comment->id], ['confirm' => __('Are you sure you want to delete # {0}?', $comment->id)]) ?>
-                </td>
-            </tr>
-            <?php endforeach; ?>
-        </tbody>
-    </table>
-    <div class="paginator">
-        <ul class="pagination">
-            <?= $this->Paginator->first('<< ' . __('first')) ?>
-            <?= $this->Paginator->prev('< ' . __('previous')) ?>
-            <?= $this->Paginator->numbers() ?>
-            <?= $this->Paginator->next(__('next') . ' >') ?>
-            <?= $this->Paginator->last(__('last') . ' >>') ?>
-        </ul>
-        <p><?= $this->Paginator->counter(['format' => __('Page {{page}} of {{pages}}, showing {{current}} record(s) out of {{count}} total')]) ?></p>
+<h3><i class="fa fa-server"></i>&nbsp;&nbsp;Quản lý Comments</h3>
+<div class="col-xs-12" style="font-size: 16px;">
+    <div class="products index"> 
+        <div class="box-body table-responsive">
+             <!-- <div class="col-xs-12 ">
+                <div class="pull-left">
+                    <a class="btn btn-primary" href="<?php echo $this->Url->build(
+                        array('action' => "add",)); ?>"><span aria-hidden="true" class="fa fa-plus"></span> <?php echo __(' Thêm comment') ?></a>
+                </div> 
+                <div class="pull-right">
+                    <div class="input-group">
+                        <div class="col-sm-10 pull-left">
+                            <?php echo $this->Form->create('Comments',['url'=>['action'=>'index']]); ?>
+                            <?php echo $this->Form->input('name',['label'=>'','placeholder'=>'Tìm kiếm theo tên sách','error'=>false]); ?>
+                        </div>
+                        <div class="input-btn pull-right">
+                            <button type="submit" id="submitButton" class="btn btn-primary"><i class="fa fa-search"></i></button>
+                        </div>
+                        <?php echo $this->Form->end(); ?>
+                    </div>
+                </div>  -->
+            <table class="table table-hover table-bordered">
+                <thead>
+                    <tr>
+                        <th scope="col"><?= $this->Paginator->sort('STT') ?></th>
+                        <th scope="col"><?= $this->Paginator->sort('User') ?></th>
+                        <th scope="col"><?= $this->Paginator->sort('Tên sách') ?></th>
+                        <th scope="col"><?= $this->Paginator->sort('Nội dung') ?></th>
+                        <th scope="col"><?= $this->Paginator->sort('Ngày tạo') ?></th>      
+                        <th scope="col" class="actions" style="width: 158px;"><?= __('') ?></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php $stt = 1; ?>
+                    <?php foreach ($comments as $comment): ?>
+                    <tr>
+                        <td><?php echo $stt++; ?></td>
+                        <td><?= h($comment->user['username']) ?></td>
+                        <td><?= h($comment->book['title']) ?></td>
+                        <td><?= h($comment->content) ?></td>
+                        <td><?= h($comment->created) ?></td>
+                        <td class="actions">
+                           <!--  <?= $this->Html->link(__('Chỉnh sửa'), [ 'action' => 'edit', $comment->id], ['class' => 'btn btn-success']) ?> -->
+                            <?= $this->Form->postLink(__('Xóa'), ['action' => 'delete', $comment->id], ['class' => 'btn btn-danger', 'confirm' => __('Bạn có chắc muốn xóa comment {0}?', $comment->content)]) ?>
+                        </td>
+                    </tr>
+                    <?php endforeach; ?>
+                </tbody>
+            </table>
+        </div>
     </div>
 </div>
+
+
+
+
+<div class="text-center" style="font-size: 17px;">
+    <ul class="pagination">
+        <?= $this->Paginator->first('<< ' . __('Đầu')) ?>
+        <?= $this->Paginator->prev('< ' . __('Quay lại')) ?>
+        <?= $this->Paginator->numbers() ?>
+        <?= $this->Paginator->next(__('Kế tiếp') . ' >') ?>
+        <?= $this->Paginator->last(__('Cuối') . ' >>') ?>
+    </ul>
+    <p><?= $this->Paginator->counter(['format' => __('Trang {{page}}/{{pages}}, hiển thị {{current}} trong tổng số {{count}} kết quả')]) ?></p>
+</div>
+

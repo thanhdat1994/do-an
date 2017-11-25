@@ -3,24 +3,7 @@
   * @var \App\View\AppView $this
   */
 ?>
-<nav class="large-3 medium-4 columns" id="actions-sidebar">
-    <ul class="side-nav">
-        <li class="heading"><?= __('Actions') ?></li>
-        <li><?= $this->Form->postLink(
-                __('Delete'),
-                ['action' => 'delete', $book->id],
-                ['confirm' => __('Are you sure you want to delete # {0}?', $book->id)]
-            )
-        ?></li>
-        <li><?= $this->Html->link(__('List Books'), ['action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('List Categories'), ['controller' => 'Categories', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Category'), ['controller' => 'Categories', 'action' => 'add']) ?></li>
-        <li><?= $this->Html->link(__('List Comments'), ['controller' => 'Comments', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Comment'), ['controller' => 'Comments', 'action' => 'add']) ?></li>
-        <li><?= $this->Html->link(__('List Writers'), ['controller' => 'Writers', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Writer'), ['controller' => 'Writers', 'action' => 'add']) ?></li>
-    </ul>
-</nav>
+<!-- 
 <div class="books form large-9 medium-8 columns content">
     <?= $this->Form->create($book) ?>
     <fieldset>
@@ -41,5 +24,36 @@
         ?>
     </fieldset>
     <?= $this->Form->button(__('Submit')) ?>
+    <?= $this->Form->end() ?>
+</div> -->
+
+<h3><i class="fa fa-server"></i>&nbsp;&nbsp;Chỉnh sửa sách</h3>
+<hr>
+<div class="col-md-offset-3 col-md-6">
+    <?= $this->Form->create($book) ?>
+    <div class="form-group">
+        <label class="col-sm-3 control-label">Tên danh mục:</label>
+        <div class="col-sm-9">
+            <?php echo $this->Form->input('name', array( 'class' => 'form-control',
+            'type' => 'text', 'label' => false, 'div' => false, "placeholder" => "Tên danh mục"));?>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-3 control-label">Slug:</label>
+        <div class="col-sm-9">
+            <?php echo $this->Form->input('slug', array( 'class' => 'form-control',
+            'type' => 'text', 'label' => false, 'div' => false, "placeholder" => "Slug"));?>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-3 control-label">Mô tả:</label>
+        <div class="col-sm-9">
+            <?php echo $this->Form->input(' description', array( 'class' => 'form-control',
+            'type' => 'text', 'label' => false, 'div' => false, "placeholder" => "Mô tả"));?>
+        </div>
+    </div>
+    <div class="form-group" style="text-align: center;">
+        <?= $this->Form->button(__('Cập nhật'), ['class'=>'btn btn-success']) ?>
+    </div>
     <?= $this->Form->end() ?>
 </div>

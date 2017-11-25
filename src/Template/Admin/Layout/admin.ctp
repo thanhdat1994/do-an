@@ -120,6 +120,10 @@
         <li><a href="<?php echo $this->Url->build(array('controller' => "Orders", 'action' => "index")); ?>"><i class="fa fa-files-o"></i> <span>Đơn hàng</span></a></li>
 
         <li><a href="<?php echo $this->Url->build(array('controller' => "Comments", 'action' => "index")); ?>"><i class="fa fa-server"></i> <span>Bình luận</span></a></li>
+
+        <li><a href="<?php echo $this->Url->build(array('controller' => "Groups", 'action' => "index")); ?>"><i class="fa fa-users"></i> <span>Nhóm User</span></a></li>
+
+        <li><a href="<?php echo $this->Url->build(array('controller' => "Users", 'action' => "index")); ?>"><i class="fa fa-user"></i> <span>Users</span></a></li>
       </ul>
       <!-- /.sidebar-menu -->
     </section>

@@ -20,10 +20,25 @@ class GroupsController extends AppController
      */
     public function index()
     {
-        $groups = $this->paginate($this->Groups);
-
-        $this->set(compact('groups'));
-        $this->set('_serialize', ['groups']);
+        $this->viewBuilder()->layout('admin');
+        $groups = $this->Groups->newEntity();
+        if($this->request->is(array('post','put'))){
+            $groups = $this->Groups->patchEntity($groups, $this->request->data());
+            $name = $this->request->data['name'];            
+            if(!empty($name)){
+                $this->paginate = [
+                    'fields' => ['id','name','percent','description','created'],
+                    'order' => ['Groups.name' => 'desc'],
+                    'conditions' => ['Groups.name like' => '%'.$name.'%']
+                ];
+            }
+            $groups = $this->paginate('Groups');
+            $this->set('groups', $groups);
+        }else{
+            $groups = $this->paginate($this->Groups);
+            $this->set(compact('groups'));
+            $this->set('_serialize', ['groups']);
+        }
     }
 
     /**
@@ -50,15 +65,16 @@ class GroupsController extends AppController
      */
     public function add()
     {
+        $this->viewBuilder()->layout('admin');
         $group = $this->Groups->newEntity();
         if ($this->request->is('post')) {
             $group = $this->Groups->patchEntity($group, $this->request->getData());
             if ($this->Groups->save($group)) {
-                $this->Flash->success(__('The group has been saved.'));
+                $this->Flash->success(__('The category has been saved.'));
 
                 return $this->redirect(['action' => 'index']);
             }
-            $this->Flash->error(__('The group could not be saved. Please, try again.'));
+            $this->Flash->error(__('The category could not be saved. Please, try again.'));
         }
         $this->set(compact('group'));
         $this->set('_serialize', ['group']);
@@ -73,17 +89,18 @@ class GroupsController extends AppController
      */
     public function edit($id = null)
     {
+        $this->viewBuilder()->layout('admin');
         $group = $this->Groups->get($id, [
             'contain' => []
         ]);
         if ($this->request->is(['patch', 'post', 'put'])) {
             $group = $this->Groups->patchEntity($group, $this->request->getData());
             if ($this->Groups->save($group)) {
-                $this->Flash->success(__('The group has been saved.'));
+                $this->Flash->success(__('The category has been saved.'));
 
                 return $this->redirect(['action' => 'index']);
             }
-            $this->Flash->error(__('The group could not be saved. Please, try again.'));
+            $this->Flash->error(__('The category could not be saved. Please, try again.'));
         }
         $this->set(compact('group'));
         $this->set('_serialize', ['group']);
@@ -98,12 +115,13 @@ class GroupsController extends AppController
      */
     public function delete($id = null)
     {
+        $this->viewBuilder()->layout('admin');
         $this->request->allowMethod(['post', 'delete']);
         $group = $this->Groups->get($id);
         if ($this->Groups->delete($group)) {
-            $this->Flash->success(__('The group has been deleted.'));
+            $this->Flash->success(__('The category has been deleted.'));
         } else {
-            $this->Flash->error(__('The group could not be deleted. Please, try again.'));
+            $this->Flash->error(__('The category could not be deleted. Please, try again.'));
         }
 
         return $this->redirect(['action' => 'index']);

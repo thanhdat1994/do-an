@@ -20,14 +20,26 @@ class WritersController extends AppController
      */
     public function index()
     {
-        $this->paginate = array(
-                'fields'=>array('name','slug'),
-                'order'=> array('name'=>'desc'),
-                'limit' => 5,
-                'paramType' => 'querystring'
-            );
-        $writers = $this->paginate();
-        $this->set('writers',$writers);
+        $this->viewBuilder()->layout('admin');
+        //search writers
+        $writers = $this->Writers->newEntity();
+        if($this->request->is(array('post','put'))){
+            $writers = $this->Writers->patchEntity($writers, $this->request->data());
+            $name = $this->request->data['name'];            
+            if(!empty($name)){
+                $this->paginate = [
+                    'fields' => ['id','name','slug','biography','created'],
+                    'order' => ['Writers.name' => 'desc'],
+                    'conditions' => ['Writers.name like' => '%'.$name.'%']
+                ];
+            }
+            $writers = $this->paginate('Writers');
+            $this->set('writers', $writers);
+        }else{
+            $writers = $this->paginate($this->Writers);
+            $this->set(compact('writers'));
+            $this->set('_serialize', ['writers']);
+        }
     }
 
     /**
@@ -82,7 +94,7 @@ class WritersController extends AppController
      */
     public function add()
     {
-        $writer = $this->Writers->newEntity();
+        /*$writer = $this->Writers->newEntity();
         if ($this->request->is('post')) {
             $writer = $this->Writers->patchEntity($writer, $this->request->getData());
             if ($this->Writers->save($writer)) {
@@ -94,6 +106,20 @@ class WritersController extends AppController
         }
         $books = $this->Writers->Books->find('list', ['limit' => 200]);
         $this->set(compact('writer', 'books'));
+        $this->set('_serialize', ['writer']);*/
+
+        $this->viewBuilder()->layout('admin');
+        $writer = $this->Writers->newEntity();
+        if ($this->request->is('post')) {
+            $writer = $this->Writers->patchEntity($writer, $this->request->getData());
+            if ($this->Writers->save($writer)) {
+                $this->Flash->success(__('The category has been saved.'));
+
+                return $this->redirect(['action' => 'index']);
+            }
+            $this->Flash->error(__('The category could not be saved. Please, try again.'));
+        }
+        $this->set(compact('writer'));
         $this->set('_serialize', ['writer']);
     }
 
@@ -106,20 +132,20 @@ class WritersController extends AppController
      */
     public function edit($id = null)
     {
+        $this->viewBuilder()->layout('admin');
         $writer = $this->Writers->get($id, [
-            'contain' => ['Books']
+            'contain' => []
         ]);
         if ($this->request->is(['patch', 'post', 'put'])) {
             $writer = $this->Writers->patchEntity($writer, $this->request->getData());
             if ($this->Writers->save($writer)) {
-                $this->Flash->success(__('The writer has been saved.'));
+                $this->Flash->success(__('The category has been saved.'));
 
                 return $this->redirect(['action' => 'index']);
             }
-            $this->Flash->error(__('The writer could not be saved. Please, try again.'));
+            $this->Flash->error(__('The category could not be saved. Please, try again.'));
         }
-        $books = $this->Writers->Books->find('list', ['limit' => 200]);
-        $this->set(compact('writer', 'books'));
+        $this->set(compact('writer'));
         $this->set('_serialize', ['writer']);
     }
 
@@ -132,12 +158,13 @@ class WritersController extends AppController
      */
     public function delete($id = null)
     {
+        $this->viewBuilder()->layout('admin');
         $this->request->allowMethod(['post', 'delete']);
         $writer = $this->Writers->get($id);
         if ($this->Writers->delete($writer)) {
-            $this->Flash->success(__('The writer has been deleted.'));
+            $this->Flash->success(__('The category has been deleted.'));
         } else {
-            $this->Flash->error(__('The writer could not be deleted. Please, try again.'));
+            $this->Flash->error(__('The category could not be deleted. Please, try again.'));
         }
 
         return $this->redirect(['action' => 'index']);

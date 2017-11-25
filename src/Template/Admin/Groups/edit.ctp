@@ -3,30 +3,33 @@
   * @var \App\View\AppView $this
   */
 ?>
-<nav class="large-3 medium-4 columns" id="actions-sidebar">
-    <ul class="side-nav">
-        <li class="heading"><?= __('Actions') ?></li>
-        <li><?= $this->Form->postLink(
-                __('Delete'),
-                ['action' => 'delete', $group->id],
-                ['confirm' => __('Are you sure you want to delete # {0}?', $group->id)]
-            )
-        ?></li>
-        <li><?= $this->Html->link(__('List Groups'), ['action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('List Users'), ['controller' => 'Users', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New User'), ['controller' => 'Users', 'action' => 'add']) ?></li>
-    </ul>
-</nav>
-<div class="groups form large-9 medium-8 columns content">
+<h3><i class="fa fa-server"></i>&nbsp;&nbsp;Chỉnh sửa nhóm người dùng</h3>
+<hr>
+<div class="col-md-offset-3 col-md-6">
     <?= $this->Form->create($group) ?>
-    <fieldset>
-        <legend><?= __('Edit Group') ?></legend>
-        <?php
-            echo $this->Form->control('name');
-            echo $this->Form->control('percent');
-            echo $this->Form->control('description');
-        ?>
-    </fieldset>
-    <?= $this->Form->button(__('Submit')) ?>
+    <div class="form-group">
+        <label class="col-sm-3 control-label">Tên nhóm:</label>
+        <div class="col-sm-9">
+            <?php echo $this->Form->input('name', array( 'class' => 'form-control',
+            'type' => 'text', 'label' => false, 'div' => false, "placeholder" => "Tên danh mục"));?>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-3 control-label">Percent:</label>
+        <div class="col-sm-9">
+            <?php echo $this->Form->input('slug', array( 'class' => 'form-control',
+            'type' => 'text', 'label' => false, 'div' => false, "placeholder" => $group->percent));?>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-3 control-label">Mô tả:</label>
+        <div class="col-sm-9">
+            <?php echo $this->Form->input('description', array( 'class' => 'form-control',
+            'type' => 'text', 'label' => false, 'div' => false, "placeholder" => "Mô tả"));?>
+        </div>
+    </div>
+    <div class="form-group" style="text-align: center;">
+        <?= $this->Form->button(__('Cập nhật'), ['class'=>'btn btn-success']) ?>
+    </div>
     <?= $this->Form->end() ?>
 </div>

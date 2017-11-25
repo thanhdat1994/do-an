@@ -25,13 +25,32 @@ class CommentsController extends AppController
      */
     public function index()
     {
-        $this->paginate = [
-            'contain' => ['Users', 'Books']
-        ];
-        $comments = $this->paginate($this->Comments);
-
-        $this->set(compact('comments'));
-        $this->set('_serialize', ['comments']);
+        $this->paginate = ['contain' => ['Users','Books']];
+        $this->viewBuilder()->layout('admin');
+        $comments = $this->Comments->newEntity();
+        if($this->request->is(array('post','put'))){
+            $comments = $this->Comments->patchEntity($comments, $this->request->data());
+            $name = $this->request->data['name'];            
+            if(!empty($name)){
+                $this->paginate = [
+                    'order' => ['Comments.id' => 'desc'],
+                    'contain' => ['Books','Users'],
+                    'limit' => 20,
+                    'conditions' => ['Books.title like' => '%'.$name.'%']
+                ];
+            }
+            $comments = $this->paginate('Comments');
+            $this->set('comments', $comments);
+        }else{
+            $this->paginate = [
+             'contain' => ['Books','Users'],
+             'limit' => 20
+            ];
+            $comments = $this->paginate($this->Comments);
+            $this->set(compact('comments'));
+            $this->set('_serialize', ['comments']);
+        }
+        $this->set('comments', $comments);
     }
 
     /**
@@ -74,10 +93,6 @@ class CommentsController extends AppController
             }
             $this->redirect($this->referer());          
         }
-        /*$users = $this->Comments->Users->find('list', ['limit' => 200]);
-        $books = $this->Comments->Books->find('list', ['limit' => 200]);
-        $this->set(compact('comment', 'users', 'books'));
-        $this->set('_serialize', ['comment']);*/
     }
 
     /**

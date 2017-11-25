@@ -40,13 +40,32 @@ class UsersController extends AppController
      */
     public function index()
     {
-        $this->paginate = [
-            'contain' => ['Groups']
-        ];
-        $users = $this->paginate($this->Users);
-
-        $this->set(compact('users'));
-        $this->set('_serialize', ['users']);
+       $this->paginate = ['contain' => ['Groups']];
+        $this->viewBuilder()->layout('admin');
+        $users = $this->Users->newEntity();
+        if($this->request->is(array('post','put'))){
+            $users = $this->Users->patchEntity($users, $this->request->data());
+            $name = $this->request->data['name'];            
+            if(!empty($name)){
+                $this->paginate = [
+                    'order' => ['Users.id' => 'desc'],
+                    'contain' => ['Groups'],
+                    'limit' => 20,
+                    'conditions' => ['Users.username like' => '%'.$name.'%']
+                ];
+            }
+            $users = $this->paginate('Users');
+            $this->set('users', $users);
+        }else{
+            $this->paginate = [
+             'contain' => ['Groups'],
+             'limit' => 20
+            ];
+            $users = $this->paginate($this->Users);
+            $this->set(compact('users'));
+            $this->set('_serialize', ['users']);
+        }
+        $this->set('users', $users);
     }
 
     /**
@@ -73,6 +92,7 @@ class UsersController extends AppController
      */
     public function add()
     {
+        $this->viewBuilder()->layout('admin');
         $user = $this->Users->newEntity();
         if ($this->request->is('post')) {
             $user = $this->Users->patchEntity($user, $this->request->getData());
@@ -97,6 +117,7 @@ class UsersController extends AppController
      */
     public function edit($id = null)
     {
+        $this->viewBuilder()->layout('admin');
         $user = $this->Users->get($id, [
             'contain' => []
         ]);
@@ -242,5 +263,22 @@ class UsersController extends AppController
             $this->set(compact('user'));
         }        
         $this->set('cakeDescription', 'Cập nhật thông tin');
+    }
+    public function active($id = null){
+        $this->request->allowMethod(['post', 'active']);
+        $user = $this->Users->newEntity();
+        $user = $this->Users->get($id);
+        
+        if ($user['active'] == 1) {
+            $user['active'] = 0;
+            $this->Users->save($user);
+            $this->Flash->success(__('Disable!'));
+        } else {
+            $user['active'] = 1;
+            $this->Users->save($user);
+            $this->Flash->success(__('User Activeted!'));
+        }
+
+        return $this->redirect($this->referer());
     }
 }

@@ -3,7 +3,7 @@
   * @var \App\View\AppView $this
   */
 ?>
-<nav class="large-3 medium-4 columns" id="actions-sidebar">
+<!-- <nav class="large-3 medium-4 columns" id="actions-sidebar">
     <ul class="side-nav">
         <li class="heading"><?= __('Actions') ?></li>
         <li><?= $this->Form->postLink(
@@ -29,5 +29,37 @@
         ?>
     </fieldset>
     <?= $this->Form->button(__('Submit')) ?>
+    <?= $this->Form->end() ?>
+</div>
+ -->
+
+ <h3><i class="fa fa-pencil-square-o"></i>&nbsp;&nbsp;Chỉnh sửa tác giả</h3>
+<hr>
+<div class="col-md-offset-3 col-md-6">
+    <?= $this->Form->create($writer) ?>
+    <div class="form-group">
+        <label class="col-sm-3 control-label">Tên tác giả:</label>
+        <div class="col-sm-9">
+            <?php echo $this->Form->input('name', ['class' => 'form-control',
+            'type' => 'text', 'label' => false, 'div' => false, "placeholder" => $writer.['name']]);?>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-3 control-label">Slug:</label>
+        <div class="col-sm-9">
+            <?php echo $this->Form->input('slug', ['class' => 'form-control',
+            'type' => 'text', 'label' => false, 'div' => false, "placeholder" => $writer['slug']]);?>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-3 control-label">Tiểu sử:</label>
+        <div class="col-sm-9">
+            <?php echo $this->Form->input('biography', ['class' => 'form-control',
+            'type' => 'text', 'label' => false, 'div' => false, "placeholder" => $writer.['biography']]);?>
+        </div>
+    </div>
+    <div class="form-group" style="text-align: center;">
+        <?= $this->Form->button(__('Cập nhật'), ['class'=>'btn btn-success']) ?>
+    </div>
     <?= $this->Form->end() ?>
 </div>

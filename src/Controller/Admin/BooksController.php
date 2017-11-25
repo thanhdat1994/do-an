@@ -54,8 +54,6 @@ class BooksController extends AppController
         $this->set('categories', $categories);
         
     }
-
-
     /**
      * View method
      *

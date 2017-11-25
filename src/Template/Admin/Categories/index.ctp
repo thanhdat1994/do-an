@@ -42,6 +42,7 @@
                         <th scope="col"><?= $this->Paginator->sort('ID') ?></th>
                         <th scope="col"><?= $this->Paginator->sort('Danh mục') ?></th>
                         <th scope="col"><?= $this->Paginator->sort('Slug') ?></th>
+                        <th scope="col"><?= $this->Paginator->sort('Mô tả') ?></th>
                         <th scope="col"><?= $this->Paginator->sort('Ngày tạo') ?></th>
                         <th scope="col" class="actions" style="width: 158px;"><?= __('') ?></th>
                     </tr>
@@ -52,6 +53,7 @@
                         <td><?= $this->Number->format($category->id) ?></td>
                         <td><?= h($category->name) ?></td>
                         <td><?= h($category->slug) ?></td>
+                        <td><?= h($category->description) ?></td>
                         <td><?= h($category->created) ?></td>
                         <td class="actions">
                             <!-- <?= $this->Html->link(__('View'), ['action' => 'view', $category->id]) ?> -->
