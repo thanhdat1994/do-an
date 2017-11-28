@@ -20,6 +20,7 @@ class OrdersController extends AppController
      */
     public function index()
     {
+        $this->viewBuilder()->layout('admin');
         $this->paginate = [
             'contain' => ['Users']
         ];
@@ -38,6 +39,7 @@ class OrdersController extends AppController
      */
     public function view($id = null)
     {
+        $this->viewBuilder()->layout('admin');
         $order = $this->Orders->get($id, [
             'contain' => ['Users']
         ]);

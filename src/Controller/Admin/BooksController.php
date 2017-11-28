@@ -31,13 +31,22 @@ class BooksController extends AppController
         $books = $this->Books->newEntity();
         if($this->request->is(array('post','put'))){
             $books = $this->Books->patchEntity($books, $this->request->data());
-            $name = $this->request->data['name'];            
+            $name = $this->request->data['name'];
+            $category = $this->request->data['category_id'];            
             if(!empty($name)){
                 $this->paginate = [
                     'order' => ['Books.title' => 'desc'],
                     'contain' => ['Categories'],
                     'limit' => 20,
                     'conditions' => ['Books.title like' => '%'.$name.'%']
+                ];
+            }
+            if(!empty($category)){
+                $this->paginate = [
+                    'order' => ['Books.title' => 'desc'],
+                    'contain' => ['Categories'],
+                    'limit' => 20,
+                    'conditions' => ['Books.category_id ' => $category]
                 ];
             }
             $books = $this->paginate('Books');
@@ -113,6 +122,7 @@ class BooksController extends AppController
         $book = $this->Books->newEntity();
         if ($this->request->is('post')) {
             $book = $this->Books->patchEntity($book, $this->request->getData());
+            pr($book);
             if ($this->Books->save($book)) {
                 $this->Flash->success(__('The book has been saved.'));
 

@@ -14,74 +14,67 @@
             'type' => 'text', 'label' => false, 'div' => false, "placeholder" => "Tên sách"));?>
         </div>
     </div>
-    <div class="form-group">
+    <!-- <div class="form-group">
         <label class="col-sm-3 control-label">Slug:</label>
         <div class="col-sm-9">
             <?php echo $this->Form->input('slug', array( 'class' => 'form-control',
-            'type' => 'text', 'label' => false, 'div' => false, "placeholder" => "link thân thiện"));?>
+            'type' => 'text', 'label' => false, 'div' => false, "placeholder" => "Slug"));?>
         </div>
-    </div>
+    </div> -->
     <div class="form-group">
-        <label class="col-sm-3 control-label">Image:</label>
+        <label class="col-sm-3 control-label">Hình ảnh:</label>
         <div class="col-sm-9">
             <?php echo $this->Form->input('image', array( 'class' => 'form-control',
-            'type' => 'text', 'label' => false, 'div' => false, "placeholder" => "link tới hình ảnh..."));?>
+            'type' => 'text', 'label' => false, 'div' => false, "placeholder" => "chọn input file tới hình ảnh"));?>
         </div>
     </div>
     <div class="form-group">
         <label class="col-sm-3 control-label">Giá nhập:</label>
         <div class="col-sm-9">
             <?php echo $this->Form->input('price', array( 'class' => 'form-control',
-            'type' => 'text', 'label' => false, 'div' => false, "placeholder" => "giá nhập sách"));?>
+            'type' => 'text', 'label' => false, 'div' => false, "placeholder" => "Giá nhập sách"));?>
         </div>
     </div>
     <div class="form-group">
         <label class="col-sm-3 control-label">Giá bán:</label>
         <div class="col-sm-9">
             <?php echo $this->Form->input('sale_price', array( 'class' => 'form-control',
-            'type' => 'text', 'label' => false, 'div' => false, "placeholder" => "giá bán"));?>
+            'type' => 'text', 'label' => false, 'div' => false, "placeholder" => "Giá bán"));?>
         </div>
     </div>
     <div class="form-group">
         <label class="col-sm-3 control-label">Nhà xuất bản:</label>
         <div class="col-sm-9">
             <?php echo $this->Form->input('publisher', array( 'class' => 'form-control',
-            'type' => 'text', 'label' => false, 'div' => false, "placeholder" => "nhà xuất bản"));?>
+            'type' => 'text', 'label' => false, 'div' => false, "placeholder" => "Nhà xuất bản"));?>
         </div>
     </div>
     <div class="form-group">
         <label class="col-sm-3 control-label">Ngày xuất bản:</label>
         <div class="col-sm-9">
             <?php echo $this->Form->input('publish_date', array( 'class' => 'form-control',
-            'type' => 'text', 'label' => false, 'div' => false, "placeholder" => "ngày xuất bản"));?>
+            'type' => 'text', 'label' => false, 'div' => false, "placeholder" => "chọn datetimepicker"));?>
         </div>
     </div>
-    <div class="form-group">
-        <label class="col-sm-3 control-label">Link download:</label>
-        <div class="col-sm-9">
-            <?php echo $this->Form->input('link_download', array( 'class' => 'form-control',
-            'type' => 'text', 'label' => false, 'div' => false, "placeholder" => "link download"));?>
-        </div>
-    </div>
-    <div class="form-group">
-        <label class="col-sm-3 control-label">Đã xuất bản?:</label>
+    <!-- <div class="form-group">
+        <label class="col-sm-3 control-label">Đã xuất bản:</label>
         <div class="col-sm-9">
             <?php echo $this->Form->input('slug', array( 'class' => 'form-control',
-            'type' => 'text', 'label' => false, 'div' => false, "placeholder" => "1 hoặc 0"));?>
+            'type' => 'text', 'label' => false, 'div' => false, "placeholder" => "chọn select"));?>
         </div>
-    </div>
-    <div class="form-group">
+    </div> -->
+    <!-- <div class="form-group">
         <label class="col-sm-3 control-label">Tác giả:</label>
         <div class="col-sm-9">
             <?php echo $this->Form->input('writers', array( 'class' => 'form-control',
             'type' => 'text', 'label' => false, 'div' => false, "placeholder" => "mã tác giả"));?>
         </div>
-    </div>
+    </div> -->
     <div class="form-group">
         <label class="col-sm-3 control-label">Thể loại sách:</label>
         <div class="col-sm-9">
             <?php echo $this->Form->input('categories_id', array( 'class' => 'form-control',
-            'type' => 'text', 'label' => false, 'div' => false, "placeholder" => "Mã loại sách"));?>
+            'options' => $categories, 'label' => false, 'div' => false, "placeholder" => "Danh mục sách"));?>
         </div>
     </div>
     <div class="form-group" style="text-align: center;">

@@ -1,57 +1,60 @@
-<?php
-/**
-  * @var \App\View\AppView $this
-  * @var \App\Model\Entity\Order $order
-  */
-?>
-<!-- bản cũ 
-    <nav class="large-3 medium-4 columns" id="actions-sidebar">
-    <ul class="side-nav">
-        <li class="heading"><?= __('Actions') ?></li>
-        <li><?= $this->Html->link(__('Edit Order'), ['action' => 'edit', $order->id]) ?> </li>
-        <li><?= $this->Form->postLink(__('Delete Order'), ['action' => 'delete', $order->id], ['confirm' => __('Are you sure you want to delete # {0}?', $order->id)]) ?> </li>
-        <li><?= $this->Html->link(__('List Orders'), ['action' => 'index']) ?> </li>
-        <li><?= $this->Html->link(__('New Order'), ['action' => 'add']) ?> </li>
-        <li><?= $this->Html->link(__('List Users'), ['controller' => 'Users', 'action' => 'index']) ?> </li>
-        <li><?= $this->Html->link(__('New User'), ['controller' => 'Users', 'action' => 'add']) ?> </li>
-    </ul>
-</nav>
-<div class="orders view large-9 medium-8 columns content">
-    <h3><?= h($order->id) ?></h3>
-    <table class="vertical-table">
-        <tr>
-            <th scope="row"><?= __('User') ?></th>
-            <td><?= $order->has('user') ? $this->Html->link($order->user->id, ['controller' => 'Users', 'action' => 'view', $order->user->id]) : '' ?></td>
-        </tr>
-        <tr>
-            <th scope="row"><?= __('Id') ?></th>
-            <td><?= $this->Number->format($order->id) ?></td>
-        </tr>
-        <tr>
-            <th scope="row"><?= __('Status') ?></th>
-            <td><?= $this->Number->format($order->status) ?></td>
-        </tr>
-        <tr>
-            <th scope="row"><?= __('Created') ?></th>
-            <td><?= h($order->created) ?></td>
-        </tr>
-        <tr>
-            <th scope="row"><?= __('Modified') ?></th>
-            <td><?= h($order->modified) ?></td>
-        </tr>
-    </table>
-    <div class="row">
-        <h4><?= __('Customer Info') ?></h4>
-        <?= $this->Text->autoParagraph(h($order->customer_info)); ?>
+<h3><i class="fa fa-server"></i>&nbsp;&nbsp;Chi tiết đơn hàng</h3>
+<div class="col-xs-12" style="font-size: 16px;">
+    <div class="products index"> 
+        <div class="box-body table-responsive">
+             <div class="col-xs-12 ">
+                <?php 
+                    $customer_info = json_decode($order['customer_info']);
+                    $payment_info = json_decode($order['payment_info']);
+                    $order_info = json_decode($order['orders_info']);
+                ?>
+                <div class="col col-lg-6">
+                    <p><strong>Họ tên người mua hàng: </strong><span>&nbsp;&nbsp;<?php echo $customer_info->name; ?></span></p>
+                    <p><strong>Email: </strong><span>&nbsp;&nbsp;<?php echo $customer_info->email; ?></span></p>
+                    <p><strong>Số điện thoại: </strong><span>&nbsp;&nbsp;<?php echo $customer_info->phone; ?></span></p>
+                    <p><strong>Địa chỉ: </strong><span>&nbsp;&nbsp;<?php echo $customer_info->address; ?></span></p>
+                </div>
+                <div class="col col-lg-6">
+                    <p><strong>Mã đơn hàng: </strong><span>&nbsp;&nbsp;<?php echo $order['id']; ?></span></p>
+                    <p><strong>Tổng cộng: </strong><span>&nbsp;&nbsp;<?php echo $this->Number->format($payment_info->total,['places'=> 0,'after'=>'VNĐ']); ?></span></p>
+                    <?php if(isset($payment_info->coupon)): ?>
+                        <p><strong>Mã giảm giá: </strong>&nbsp;&nbsp;
+                            <span>
+                                <?php echo $payment_info->coupon; ?>&nbsp;&nbsp;&nbsp;&nbsp;
+                                <strong>Giảm: </strong>&nbsp;&nbsp;<?php echo $payment_info->discount; ?>%       
+                            </span>
+                        </p>
+                        <p><strong>Tiền phải trả: </strong><span>&nbsp;&nbsp;<?php echo $this->Number->format($payment_info->pay,['places'=> 0,'after'=>'VNĐ']); ?></span></p>
+                    <?php else: ?>
+                        <p><strong>Mã giảm giá: </strong>&nbsp;&nbsp;<span>Không</span>
+                        </p>
+                        <p><strong>Tiền phải trả: </strong><span>&nbsp;&nbsp;<?php echo $this->Number->format($payment_info->total,['places'=> 0,'after'=>'VNĐ']); ?></span></p>                        
+                    <?php endif ?>
+                </div>
+             </div>
+             <hr>
+             <hr>
+            <table class="table table-hover table-bordered">
+                <thead>
+                    <tr>
+                        <th>STT</th>
+                        <th width="540px">Tên sách</th>
+                        <th>Số lượng</th>
+                        <th>Đơn giá</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php $i = 1; ?>
+                    <?php foreach ($order_info as $book): ?>
+                        <tr>
+                            <td><?php echo $i++; ?></td>
+                            <td><?php echo $book->title; ?></td>
+                            <td><?php echo $book->quantity; ?></td>
+                            <td><?php echo $this->Number->format($book->sale_price,['places'=> 0,'after'=>'VNĐ']); ?></td>
+                        </tr>
+                    <?php endforeach ?>
+                </tbody>
+            </table>
+        </div>
     </div>
-    <div class="row">
-        <h4><?= __('Orders Info') ?></h4>
-        <?= $this->Text->autoParagraph(h($order->orders_info)); ?>
-    </div>
-    <div class="row">
-        <h4><?= __('Payment Info') ?></h4>
-        <?= $this->Text->autoParagraph(h($order->payment_info)); ?>
-    </div>
-</div> -->
-
-<!-- view đặt hàngs -->
+</div>

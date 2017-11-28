@@ -13,12 +13,17 @@
                     <a class="btn btn-primary" href="<?php echo $this->Url->build(
                         array('action' => "add",)); ?>"><span aria-hidden="true" class="fa fa-plus"></span> <?php echo __(' Thêm sách mới') ?></a>
                 </div>
-                <div class="pull-right">
+                <div class="col-sm-8 pull-right">
                     <div class="input-group">
                         <div class="col-sm-10 pull-left">
                             <?php echo $this->Form->create('Books',['url'=>['action'=>'index']]); ?>
-                            <?php echo $this->Form->input('name',['label'=>'','placeholder'=>'Tìm kiếm sách','error'=>false]); ?>
-                            <?php echo $this->Form->control('category_id', ['options' => $categories, 'empty' => 'Tất cả']); ?>
+                            <div class="col-sm-7">
+                                <?php echo $this->Form->control('category_id', ['options' => $categories, 'empty' => 'Danh mục sách', 'label' => false]); ?>
+                            </div>
+                            <div class="col-sm-5">
+                                <?php echo $this->Form->input('name',['label'=>'','placeholder'=>'Tìm kiếm sách','error'=>false]); ?>
+                            </div>
+                            
                         </div>
                         <div class="input-btn pull-right">
                             <button type="submit" id="submitButton" class="btn btn-primary"><i class="fa fa-search"></i></button>

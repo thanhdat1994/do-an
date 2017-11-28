@@ -113,15 +113,15 @@
 
         <li><a href="<?php echo $this->Url->build(array('controller' => "Categories", 'action' => "index")); ?>"><i class="fa fa-server"></i> <span>Danh mục sách</span></a></li>
 
-        <li><a href="<?php echo $this->Url->build(array('controller' => "Books", 'action' => "index")); ?>"><i class="fa fa-server"></i> <span>Sách</span></a></li>
+        <li><a href="<?php echo $this->Url->build(array('controller' => "Books", 'action' => "index")); ?>"><i class="fa fa-book"></i> <span>Sách</span></a></li>
 
-        <li><a href="<?php echo $this->Url->build(array('controller' => "Writers", 'action' => "index")); ?>"><i class="fa fa-shield"></i> <span>Tác giả</span></a></li>
+        <li><a href="<?php echo $this->Url->build(array('controller' => "Writers", 'action' => "index")); ?>"><i class="fa fa-address-card"></i> <span>Tác giả</span></a></li>
 
-        <li><a href="<?php echo $this->Url->build(array('controller' => "Orders", 'action' => "index")); ?>"><i class="fa fa-files-o"></i> <span>Đơn hàng</span></a></li>
+        <li><a href="<?php echo $this->Url->build(array('controller' => "Orders", 'action' => "index")); ?>"><i class="fa fa-clipboard"></i> <span>Đơn hàng</span></a></li>
 
-        <li><a href="<?php echo $this->Url->build(array('controller' => "Comments", 'action' => "index")); ?>"><i class="fa fa-server"></i> <span>Bình luận</span></a></li>
+        <li><a href="<?php echo $this->Url->build(array('controller' => "Comments", 'action' => "index")); ?>"><i class="fa fa-comments"></i> <span>Bình luận</span></a></li>
 
-        <li><a href="<?php echo $this->Url->build(array('controller' => "Groups", 'action' => "index")); ?>"><i class="fa fa-users"></i> <span>Nhóm User</span></a></li>
+        <li><a href="<?php echo $this->Url->build(array('controller' => "Groups", 'action' => "index")); ?>"><i class="fa fa-cog"></i> <span>Phân quyền</span></a></li>
 
         <li><a href="<?php echo $this->Url->build(array('controller' => "Users", 'action' => "index")); ?>"><i class="fa fa-user"></i> <span>Users</span></a></li>
       </ul>

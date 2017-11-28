@@ -27,7 +27,7 @@
 		 			</p>
 		 			<p><strong>Tiền phải trả: </strong><span><?php echo $this->Number->format($payment_info->pay,['places'=> 0,'after'=>'VNĐ']); ?></span></p>
 		 		<?php else: ?>
-		 			<p><strong>Tổng cộng: </strong><span><?php echo $this->Number->format($payment_info->total,['places'=> 0,'after'=>'VNĐ']); ?></span></p>
+		 			<p><strong>Tiền phải trả: </strong><span><?php echo $this->Number->format($payment_info->total,['places'=> 0,'after'=>'VNĐ']); ?></span></p>
 		 			<p><strong>Tình trạng đơn hàng: </strong><span>
 		 				<?php if($order['status'] == 0): ?>
 		 					<span class="label label-info">Đang xử lí</span>

@@ -1,55 +1,78 @@
-<?php
-/**
-  * @var \App\View\AppView $this
-  * @var \App\Model\Entity\Order[]|\Cake\Collection\CollectionInterface $orders
-  */
-?>
-<nav class="large-3 medium-4 columns" id="actions-sidebar">
-    <ul class="side-nav">
-        <li class="heading"><?= __('Actions') ?></li>
-        <li><?= $this->Html->link(__('New Order'), ['action' => 'add']) ?></li>
-        <li><?= $this->Html->link(__('List Users'), ['controller' => 'Users', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New User'), ['controller' => 'Users', 'action' => 'add']) ?></li>
-    </ul>
-</nav>
-<div class="orders index large-9 medium-8 columns content">
-    <h3><?= __('Orders') ?></h3>
-    <table cellpadding="0" cellspacing="0">
-        <thead>
-            <tr>
-                <th scope="col"><?= $this->Paginator->sort('id') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('user_id') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('status') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('created') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('modified') ?></th>
-                <th scope="col" class="actions"><?= __('Actions') ?></th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php foreach ($orders as $order): ?>
-            <tr>
-                <td><?= $this->Number->format($order->id) ?></td>
-                <td><?= $order->has('user') ? $this->Html->link($order->user->id, ['controller' => 'Users', 'action' => 'view', $order->user->id]) : '' ?></td>
-                <td><?= $this->Number->format($order->status) ?></td>
-                <td><?= h($order->created) ?></td>
-                <td><?= h($order->modified) ?></td>
-                <td class="actions">
-                    <?= $this->Html->link(__('View'), ['action' => 'view', $order->id]) ?>
-                    <?= $this->Html->link(__('Edit'), ['action' => 'edit', $order->id]) ?>
-                    <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $order->id], ['confirm' => __('Are you sure you want to delete # {0}?', $order->id)]) ?>
-                </td>
-            </tr>
-            <?php endforeach; ?>
-        </tbody>
-    </table>
-    <div class="paginator">
-        <ul class="pagination">
-            <?= $this->Paginator->first('<< ' . __('first')) ?>
-            <?= $this->Paginator->prev('< ' . __('previous')) ?>
-            <?= $this->Paginator->numbers() ?>
-            <?= $this->Paginator->next(__('next') . ' >') ?>
-            <?= $this->Paginator->last(__('last') . ' >>') ?>
-        </ul>
-        <p><?= $this->Paginator->counter(['format' => __('Page {{page}} of {{pages}}, showing {{current}} record(s) out of {{count}} total')]) ?></p>
+<h3><i class="fa fa-server"></i>&nbsp;&nbsp;Quản lý đơn hàng</h3>
+<div class="col-xs-12" style="font-size: 16px;">
+    <div class="products index"> 
+        <div class="box-body table-responsive">
+             <div class="col-xs-12 ">
+                <div class="pull-left">
+                    
+                </div>
+                <div class="pull-right">
+                    <div class="input-group">
+                        <div class="col-sm-10 pull-left">
+                            <?php echo $this->Form->create('Orders',['url'=>['action'=>'index']]); ?>
+                            <?php echo $this->Form->input('name',['label'=>'','placeholder'=>'Tìm kiếm tên khách hàng','error'=>false]); ?>
+                        </div>
+                        <div class="input-btn pull-right">
+                            <button type="submit" id="submitButton" class="btn btn-primary"><i class="fa fa-search"></i></button>
+                        </div>
+                        <?php echo $this->Form->end(); ?>
+                    </div>
+                </div>
+             </div>
+             <hr>
+             <hr>
+            <table class="table table-hover table-bordered">
+                <thead>
+                    <tr>
+                        <th scope="col"><?= $this->Paginator->sort('Mã đơn hàng') ?></th>
+                        <th scope="col"><?= $this->Paginator->sort('Thời gian') ?></th>
+                        <th scope="col"><?= $this->Paginator->sort('Tên tài khoản') ?></th>
+                        <th scope="col"><?= $this->Paginator->sort('Tên khách hàng') ?></th>
+                        <th scope="col"><?= $this->Paginator->sort('Tổng tiền') ?></th>
+                        <th scope="col"><?= $this->Paginator->sort('Tình trạng') ?></th>
+                        <th scope="col" class="actions" style="width: 158px;"><?= __('') ?></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php foreach ($orders as $order): ?>
+                    <tr>
+                        <td><?= $this->Number->format($order->id) ?></td>
+                        <td><?php echo $order['created']->format('d-m-Y H:i:s'); ?></td>
+                        <td><?php echo $order['user']['username']; ?></td>
+                        <td><?php echo json_decode($order['customer_info'])->name; ?></td>
+                        <td><?php echo $this->Number->format(json_decode($order['payment_info'])->total,['places'=> 0,'after'=>'VNĐ']); ?></td>
+                        <td>
+                            <?php if($order['status'] == 0): ?>
+                                <span class="label label-info">Đang xử lí</span>
+                            <?php elseif($order['status'] == 1): ?>
+                                <span class="label label-success">Đã xử lí</span>
+                            <?php else: ?>
+                                <span class="label label-danger">Hủy</span>
+                            <?php endif ?>
+                        </td>
+                        <td class="actions">
+                            <?= $this->Html->link(__('Chi tiết'), ['action' => 'view', $order->id], ['class' => 'btn btn-success']) ?>
+                            <!-- <?= $this->Html->link(__('Chỉnh sửa'), [ 'action' => 'edit', $order->id], ['class' => 'btn btn-success']) ?> -->
+                            <!-- <?= $this->Form->postLink(__('Xóa'), ['action' => 'delete', $order->id], ['class' => 'btn btn-danger', 'confirm' => __('Bạn có chắc muốn xóa danh mục {0}?', $order->name)]) ?> -->
+                        </td>
+                    </tr>
+                    <?php endforeach; ?>
+                </tbody>
+            </table>
+        </div>
     </div>
+</div>
+
+
+
+
+<div class="text-center" style="font-size: 17px;">
+    <ul class="pagination">
+        <?= $this->Paginator->first('<< ' . __('Đầu')) ?>
+        <?= $this->Paginator->prev('< ' . __('Quay lại')) ?>
+        <?= $this->Paginator->numbers() ?>
+        <?= $this->Paginator->next(__('Kế tiếp') . ' >') ?>
+        <?= $this->Paginator->last(__('Cuối') . ' >>') ?>
+    </ul>
+    <p><?= $this->Paginator->counter(['format' => __('Trang {{page}}/{{pages}}, hiển thị {{current}} trong tổng số {{count}} kết quả')]) ?></p>
 </div>
