@@ -5,7 +5,7 @@
 */
 ?>
 
-<h3><i class="fa fa-server"></i>&nbsp;&nbsp;Quản lý Comments</h3>
+<h3><i class="fa fa-server"></i>&nbsp;&nbsp;Quản lý Tác giả</h3>
 <div class="col-xs-12" style="font-size: 16px;">
     <div class="products index"> 
         <div class="box-body table-responsive">
@@ -18,7 +18,7 @@
                     <div class="input-group">
                         <div class="col-sm-10 pull-left">
                             <?php echo $this->Form->create('Comments',['url'=>['action'=>'index']]); ?>
-                            <?php echo $this->Form->input('name',['label'=>'','placeholder'=>'Tìm kiếm theo tên sách','error'=>false]); ?>
+                            <?php echo $this->Form->input('name',['label'=>'','placeholder'=>'Tìm kiếm theo tên tác giả','error'=>false]); ?>
                         </div>
                         <div class="input-btn pull-right">
                             <button type="submit" id="submitButton" class="btn btn-primary"><i class="fa fa-search"></i></button>

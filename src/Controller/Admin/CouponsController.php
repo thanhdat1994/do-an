@@ -26,10 +26,25 @@ class CouponsController extends AppController
      */
     public function index()
     {
-        $coupons = $this->paginate($this->Coupons);
-
-        $this->set(compact('coupons'));
-        $this->set('_serialize', ['coupons']);
+        $this->viewBuilder()->layout('admin');
+        $coupons = $this->Coupons->newEntity();
+        if($this->request->is(array('post','put'))){
+            $coupons = $this->Coupons->patchEntity($coupons, $this->request->data());
+            $name = $this->request->data['code'];            
+            if(!empty($name)){
+                $this->paginate = [
+                    'fields' => ['id','code','percent','description','time_start','time_end','created'],
+                    'order' => ['Coupons.code' => 'desc'],
+                    'conditions' => ['Coupons.code like' => '%'.$name.'%']
+                ];
+            }
+            $coupons = $this->paginate('Coupons');
+            $this->set('coupons', $coupons);
+        }else{
+            $coupons = $this->paginate($this->Coupons);
+            $this->set(compact('coupons'));
+            $this->set('_serialize', ['coupons']);
+        }
     }
 
     /**
@@ -72,30 +87,19 @@ class CouponsController extends AppController
 
     /* add coupons*/
     public function add(){
+         $this->viewBuilder()->layout('admin');
+        $coupon = $this->Coupons->newEntity();
         if ($this->request->is('post')) {
-            # code...
-            $session = $this->request->session();
-            $code = $this->request->getData('code');
-            /*$coupon = $this->Coupons->findByCode($code);*/
-            $coupon = $this->getCoupon($code);
-            if (!empty($coupon)) {
-                # code...
-                $today = date('Y-m-d H:i:s');
-                if($this->between($today,$coupon['time_start'],$coupon['time_end'])) {
-                    # code...
-                        $session->write('payment.coupon',$coupon['code']);
-                        $session->write('payment.discount',$coupon['percent']);
-                        $total = $session->read('payment.total');
-                        $pay = $total - $coupon['percent']/ 100 * $total;
-                        $session->write('payment.pay',$pay);
-                }else{
-                     $this->Flash->error('Mã giảm giá đã hết hạn!',['default',['class'=>'alert alert-danger'],'coupons']);
-                }
-            }else{
-                $this->Flash->error('Mã giảm giá không tồn tại!',['default',['class'=>'alert alert-danger'],'coupons']);
+            $coupon = $this->Coupons->patchEntity($coupon, $this->request->getData());
+            if ($this->Coupons->save($coupon)) {
+                $this->Flash->success(__('The coupon has been saved.'));
+
+                return $this->redirect(['action' => 'index']);
             }
-            $this->redirect($this->referer());
+            $this->Flash->error(__('The coupon could not be saved. Please, try again.'));
         }
+        $this->set(compact('coupon'));
+        $this->set('_serialize', ['coupon']);
     }
     /**
      * Edit method
