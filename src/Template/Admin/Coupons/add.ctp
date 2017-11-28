@@ -3,24 +3,46 @@
   * @var \App\View\AppView $this
   */
 ?>
-<nav class="large-3 medium-4 columns" id="actions-sidebar">
-    <ul class="side-nav">
-        <li class="heading"><?= __('Actions') ?></li>
-        <li><?= $this->Html->link(__('List Coupons'), ['action' => 'index']) ?></li>
-    </ul>
-</nav>
-<div class="coupons form large-9 medium-8 columns content">
+<h3><i class="fa fa-ticket"></i>&nbsp;&nbsp;Thêm mới mã giảm giá</h3>
+<hr>
+<div class="col-md-offset-3 col-md-6">
     <?= $this->Form->create($coupon) ?>
-    <fieldset>
-        <legend><?= __('Add Coupon') ?></legend>
-        <?php
-            echo $this->Form->control('code');
-            echo $this->Form->control('percent');
-            echo $this->Form->control('description');
-            echo $this->Form->control('time_start');
-            echo $this->Form->control('time_end');
-        ?>
-    </fieldset>
-    <?= $this->Form->button(__('Submit')) ?>
+    <div class="form-group">
+        <label class="col-sm-3 control-label">Mã giảm giá:</label>
+        <div class="col-sm-9">
+            <?php echo $this->Form->input('code', array( 'class' => 'form-control',
+            'type' => 'text', 'label' => false, 'div' => false, "placeholder" => "Tên mã giảm giá"));?>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-3 control-label">Percent:</label>
+        <div class="col-sm-9">
+            <?php echo $this->Form->input('percent', array( 'class' => 'form-control',
+            'type' => 'text', 'label' => false, 'div' => false, "placeholder" => "percent"));?>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-3 control-label">Mô tả:</label>
+        <div class="col-sm-9">
+            <?php echo $this->Form->input('description', array( 'class' => 'form-control',
+            'type' => 'text', 'label' => false, 'div' => false, "placeholder" => "Mô tả"));?>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-3 control-label">Ngày bắt đầu:</label>
+        <div class="col-sm-9">
+            <?php echo $this->Form->input('time_start',['class'=>'form-control','type' => 'datetime','label'=>false,'div'=>false,'placeholder'=>'']); ?>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-3 control-label">Ngày kết thúc:</label>
+        <div class="col-sm-9">
+            <?php echo $this->Form->input('time_end', array( 'class' => 'form-control',
+            'type' => 'datetime', 'label' => false, 'div' => false, "placeholder" => "ngày kết thúc"));?>
+        </div>
+    </div>
+    <div class="form-group" style="text-align: center;">
+        <?= $this->Form->button(__('Thêm mới'), ['class'=>'btn btn-primary']) ?>
+    </div>
     <?= $this->Form->end() ?>
 </div>

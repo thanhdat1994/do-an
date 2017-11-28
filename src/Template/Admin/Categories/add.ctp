@@ -23,7 +23,7 @@
         ?>
     </fieldset> -->
     <div class="form-group">
-        <label class="col-sm-3 control-label">Tên danh mục:</label>
+        <label class="col-sm-3 control-label">Danh mục:</label>
         <div class="col-sm-9">
             <?php echo $this->Form->input('name', array( 'class' => 'form-control',
             'type' => 'text', 'label' => false, 'div' => false, "placeholder" => "Tên danh mục"));?>

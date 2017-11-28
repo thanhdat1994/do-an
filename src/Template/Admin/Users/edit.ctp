@@ -29,18 +29,18 @@
         <div class="form-group">
             <label class="col-sm-3 control-label">Tên nhóm:</label>
             <div class="col-sm-9">
-                <?php echo $this->Form->control('group_id', ['options' => $groups,'label' =>""]); ?>
+                <?php echo $this->Form->control('group_id', ['options' => $groups,'label' =>false]); ?>
             </div>
         </div>
         <div class="form-group">
-            <label class="col-sm-3 control-label">Tên người dùng:</label>
+            <label class="col-sm-3 control-label">Tên:</label>
             <div class="col-sm-9">
                 <?php echo $this->Form->input('firstname', array( 'class' => 'form-control',
                 'type' => 'text', 'label' => false, 'div' => false, "placeholder" => $user['firstname']));?>
             </div>
         </div>
         <div class="form-group">
-            <label class="col-sm-3 control-label">Họ người dùng:</label>
+            <label class="col-sm-3 control-label">Họ:</label>
             <div class="col-sm-9">
                 <?php echo $this->Form->input('lastname', array( 'class' => 'form-control',
                 'type' => 'text', 'label' => false, 'div' => false, "placeholder" => $user['lastname']));?>

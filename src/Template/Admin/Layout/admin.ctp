@@ -1,4 +1,4 @@
- <?php
+<?php
     $cakeDescription = 'Books Store';
 ?>
 <!DOCTYPE html>
@@ -120,6 +120,8 @@
         <li><a href="<?php echo $this->Url->build(array('controller' => "Orders", 'action' => "index")); ?>"><i class="fa fa-clipboard"></i> <span>Đơn hàng</span></a></li>
 
         <li><a href="<?php echo $this->Url->build(array('controller' => "Comments", 'action' => "index")); ?>"><i class="fa fa-comments"></i> <span>Bình luận</span></a></li>
+
+        <li><a href="<?php echo $this->Url->build(array('controller' => "Coupons", 'action' => "index")); ?>"><i class="fa fa-ticket"></i> <span>Mã giảm giá</span></a></li>
 
         <li><a href="<?php echo $this->Url->build(array('controller' => "Groups", 'action' => "index")); ?>"><i class="fa fa-cog"></i> <span>Phân quyền</span></a></li>
 
