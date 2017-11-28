@@ -1,5 +1,5 @@
 <div class="container"> 
-	<a class="brand" href="<?php echo $this->Url->build(array('controller' => "Books", 'action' => "index")); ?>"><img src="themes/images/mainlogo.png" alt="BookStore"/></a>
+	<a class="brand" href="<?php echo $this->Url->build(array('controller' => "Books", 'action' => "index")); ?>"><img src="<?php echo $this->Url->build('/'); ?>themes/images/newlogo.png" alt="BookStore"/></a>
 	<?php if(!empty($user_info)) { ?>
 		<?php if($user_info['group_id'] == 2){ ?>
 			<div class="account_desc">

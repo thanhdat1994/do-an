@@ -68,24 +68,19 @@
                 <ul id="sideManu" class="nav nav-tabs nav-stacked panel panel-default">
                 <h4 style="margin-left: 10px;"><i class="fa fa-navicon"></i>&nbsp;&nbsp;Danh mục sách</h4>
                 <?php //echo $this->element('menu_categories'); ?>
-                    <li><a href="danh-muc/ki-nang-song"> Kĩ Năng Sống</a></li>
-                    <li><a href="danh-muc/kinh-te"> Kinh tế</a></li>
-                    <li><a href="danh-muc/lich-su"> Lịch sử</a></li>
-                    <li><a href="danh-muc/van-hoc"> Văn Học</a></li>
-                    <li><a href="danh-muc/giao-khoa"> Giáo Khoa</a></li>
+                    <?php foreach ($categories as $category): ?>
+                    <!--category-products-->       
+                     <li ><?php echo $this->Html->link($category['name'], '/danh-muc/'.$category['slug'],['class'=>'active']) ?></li>            
+                    <?php endforeach ?>
                 </ul>
                 <br/>
                 
                 <ul id="sideManu" class="nav nav-tabs nav-stacked panel panel-default"> 
-                    <h4 style="margin-left: 10px;"><i class="fa fa-address-card-o"></i>&nbsp;&nbsp;Danh mục tác giả </h4>                  
-                    <li><a href="tac-gia/philip-miller"> Philip Miller</a></li>
-                    <li><a href="tac-gia/anđy-andrews"> Andy Andrews</a></li>
-                    <li><a href="tac-gia/dat-lai-lat-ma"> Đạt Lai Lạt Ma</a></li>
-                    <li><a href="tac-gia/anthony-doerr"> Anthony Doerr</a></li>
-                    <li><a href="tac-gia/ernest-hemingway"> Ernest Hemingway</a></li>
-                    <li><a href="tac-gia/do-huan"> Đỗ Huân</a></li>
-                    <li><a href="tac-gia/hidehiko"> Hidehiko</a></li>
-                    <li><a href="tac-gia/dave-trott"> Dave Trott</a></li>
+                    <h4 style="margin-left: 10px;"><i class="fa fa-address-card-o"></i>&nbsp;&nbsp;Danh mục tác giả </h4>
+                    <?php foreach ($writers as $writer): ?>
+                    <!--writer-products-->       
+                     <li ><?php echo $this->Html->link($writer['name'], '/tac-gia/'.$writer['slug'],['class'=>'active']) ?></li>
+                    <?php endforeach ?>
                 </ul>
                 <br/>
             </div>

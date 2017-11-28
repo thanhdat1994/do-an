@@ -89,11 +89,31 @@ class AppController extends Controller
     {
         $this->Auth->allow(['confirm','index', 'latest', 'view', 'getKeyword', 'search', 'menu','viewCart','changePassword','signup','login','forgot']);
         $this->set('user_info', $this->get_user());
+        $this->set('categories', $this->menu_categories());
+        $this->set('writers', $this->menu_writers());
     }
 
     public function get_user()
     {
         return $this->Auth->user();
+    }
+
+    public function menu_categories()
+    {
+        $this->loadModel('Categories');
+        $categories = $this->Categories->find('all',[
+            'order' => ['name'=>'asc']
+            ]);
+        return $categories;
+    }
+
+    public function menu_writers()
+    {
+        $this->loadModel('Writers');
+        $writer = $this->Writers->find('all',[
+            'order' => ['name' => 'asc']
+            ]);
+        return $writer;
     }
 
     public function getCoupon($code){
