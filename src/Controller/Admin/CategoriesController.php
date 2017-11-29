@@ -2,6 +2,7 @@
 namespace App\Controller\Admin;
 
 use App\Controller\AppController;
+use Cake\Filesystem\Folder;
 
 /**
  * Categories Controller
@@ -54,12 +55,23 @@ class CategoriesController extends AppController
         $category = $this->Categories->newEntity();
         if ($this->request->is('post')) {
             $category = $this->Categories->patchEntity($category, $this->request->getData());
-            if ($this->Categories->save($category)) {
-                $this->Flash->success(__('The category has been saved.'));
-
-                return $this->redirect(['action' => 'index']);
+            if(empty($category['slug'])){
+                $category['slug'] = $this->slug($category['name']);
+            }else{
+                $category['slug'] = $this->slug($category['slug']);
             }
-            $this->Flash->error(__('The category could not be saved. Please, try again.'));
+            $folder = new Folder();
+            if($folder->create(WWW_ROOT.'files/'.$category['slug'])){
+                if ($this->Categories->save($category)) {
+                    $this->Flash->success(__('The category has been saved.'));
+
+                    return $this->redirect(['action' => 'index']);
+                }else{
+                    $this->Flash->error(__('The category could not be saved. Please, try again.'));
+                }
+            }else{
+                $this->Flash->error(__('Có lỗi xảy ra. Vui lòng thử lại.'));
+            }
         }
         $this->set(compact('category'));
         $this->set('_serialize', ['category']);
@@ -80,6 +92,7 @@ class CategoriesController extends AppController
         ]);
         if ($this->request->is(['patch', 'post', 'put'])) {
             $category = $this->Categories->patchEntity($category, $this->request->getData());
+            $category['slug'] = $this->slug($category['name']);
             if ($this->Categories->save($category)) {
                 $this->Flash->success(__('The category has been saved.'));
 
@@ -103,8 +116,11 @@ class CategoriesController extends AppController
         $this->viewBuilder()->layout('admin');
         $this->request->allowMethod(['post', 'delete']);
         $category = $this->Categories->get($id);
-        if ($this->Categories->delete($category)) {
-            $this->Flash->success(__('The category has been deleted.'));
+        $folder = new Folder(WWW_ROOT.'files/'.$category['slug']);
+        if($folder->delete()){
+            if ($this->Categories->delete($category)) {
+                $this->Flash->success(__('The category has been deleted.'));
+            }
         } else {
             $this->Flash->error(__('The category could not be deleted. Please, try again.'));
         }

@@ -14,7 +14,7 @@
 <h3><i class="fa fa-server"></i>&nbsp;&nbsp;Thêm mới danh mục sách</h3>
 <hr>
 <div class="col-md-offset-3 col-md-6">
-    <?= $this->Form->create($category) ?>
+    <?= $this->Form->create($category, ['novalidator'=>true]) ?>
     <!-- <fieldset>
         <?php
             echo $this->Form->control('name');
@@ -33,7 +33,7 @@
         <label class="col-sm-3 control-label">Slug:</label>
         <div class="col-sm-9">
             <?php echo $this->Form->input('slug', array( 'class' => 'form-control',
-            'type' => 'text', 'label' => false, 'div' => false, "placeholder" => "Slug"));?>
+            'type' => 'text', 'label' => false, 'div' => false, "placeholder" => "Slug" ,'required'=>false));?>
         </div>
     </div>
     <div class="form-group">
