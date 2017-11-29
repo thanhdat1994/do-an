@@ -155,6 +155,7 @@
     
     <?= $this->Html->script('bootstrap.min.js') ?>
     <?= $this->Html->script('adminlte.min.js') ?>
+    <?= $this->Html->script('/plugin/ckeditor/ckeditor.js') ?>
 
 </body>
 </html>

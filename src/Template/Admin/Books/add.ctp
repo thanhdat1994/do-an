@@ -29,6 +29,12 @@
         </div>
     </div>
     <div class="form-group">
+        <label class="col-sm-3 control-label">Nội dung:</label>
+        <div class="col-sm-9">
+            <?php echo $this->Form->input('info', array( 'class' => 'ckeditor', 'label' => false, 'div' => false, "placeholder" => "Nội dung"));?>
+        </div>
+    </div>
+    <div class="form-group">
         <label class="col-sm-3 control-label">Giá nhập:</label>
         <div class="col-sm-9">
             <?php echo $this->Form->input('price', array( 'class' => 'form-control',
