@@ -25,10 +25,10 @@
     <?= $this->Form->button(__('Submit')) ?>
     <?= $this->Form->end() ?>
 </div> -->
-<h3><i class="fa fa-server"></i>&nbsp;&nbsp;Thêm mới danh mục sách</h3>
+<h3><i class="fa fa-server"></i>&nbsp;&nbsp;Thêm mới tác giả</h3>
 <hr>
 <div class="col-md-offset-3 col-md-6">
-    <?= $this->Form->create($writer) ?>
+    <?= $this->Form->create($writer, ['novalidator'=>true]) ?>
     <div class="form-group">
         <label class="col-sm-3 control-label">Tên tác giả:</label>
         <div class="col-sm-9">
@@ -40,14 +40,14 @@
         <label class="col-sm-3 control-label">Slug:</label>
         <div class="col-sm-9">
             <?php echo $this->Form->input('slug', ['class' => 'form-control',
-            'type' => 'text', 'label' => false, 'div' => false, "placeholder" => "Slug"]);?>
+            'type' => 'text', 'label' => false, 'div' => false, "placeholder" => "Slug",'required'=>false]);?>
         </div>
     </div>
     <div class="form-group">
-        <label class="col-sm-3 control-label">tiểu sử:</label>
+        <label class="col-sm-3 control-label">Tiểu sử:</label>
         <div class="col-sm-9">
             <?php echo $this->Form->input('biography', ['class' => 'form-control',
-            'type' => 'atext', 'label' => false, 'div' => false, "placeholder" => "tiểu sử"]);?>
+            'type' => 'textarea', 'label' => false, 'div' => false, "placeholder" => "Tiểu sử"]);?>
         </div>
     </div>
     <div class="form-group" style="text-align: center;">

@@ -41,21 +41,21 @@
         <label class="col-sm-3 control-label">Tên tác giả:</label>
         <div class="col-sm-9">
             <?php echo $this->Form->input('name', ['class' => 'form-control',
-            'type' => 'text', 'label' => false, 'div' => false, "placeholder" => $writer.['name']]);?>
+            'type' => 'text', 'label' => false, 'div' => false, "placeholder" => 'Tên tác giả']);?>
         </div>
     </div>
     <div class="form-group">
         <label class="col-sm-3 control-label">Slug:</label>
         <div class="col-sm-9">
             <?php echo $this->Form->input('slug', ['class' => 'form-control',
-            'type' => 'text', 'label' => false, 'div' => false, "placeholder" => $writer['slug']]);?>
+            'type' => 'text', 'label' => false, 'div' => false, "placeholder" => 'Slug']);?>
         </div>
     </div>
     <div class="form-group">
         <label class="col-sm-3 control-label">Tiểu sử:</label>
         <div class="col-sm-9">
             <?php echo $this->Form->input('biography', ['class' => 'form-control',
-            'type' => 'text', 'label' => false, 'div' => false, "placeholder" => $writer.['biography']]);?>
+            'type' => 'textarea', 'label' => false, 'div' => false, "placeholder" => 'Tiểu sử']);?>
         </div>
     </div>
     <div class="form-group" style="text-align: center;">

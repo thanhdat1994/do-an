@@ -63,11 +63,9 @@ class CategoriesController extends AppController
             $folder = new Folder();
             if($folder->create(WWW_ROOT.'files/'.$category['slug'])){
                 if ($this->Categories->save($category)) {
-                    $this->Flash->success(__('The category has been saved.'));
+                    $this->Flash->success(__('Đã thêm danh mục thành công.'));
 
                     return $this->redirect(['action' => 'index']);
-                }else{
-                    $this->Flash->error(__('The category could not be saved. Please, try again.'));
                 }
             }else{
                 $this->Flash->error(__('Có lỗi xảy ra. Vui lòng thử lại.'));
@@ -94,11 +92,11 @@ class CategoriesController extends AppController
             $category = $this->Categories->patchEntity($category, $this->request->getData());
             $category['slug'] = $this->slug($category['name']);
             if ($this->Categories->save($category)) {
-                $this->Flash->success(__('The category has been saved.'));
+                $this->Flash->success(__('Đã cập nhật danh mục thành công.'));
 
                 return $this->redirect(['action' => 'index']);
             }
-            $this->Flash->error(__('The category could not be saved. Please, try again.'));
+            $this->Flash->error(__('Có lỗi xảy ra. Vui lòng thử lại.'));
         }
         $this->set(compact('category'));
         $this->set('_serialize', ['category']);
@@ -119,10 +117,10 @@ class CategoriesController extends AppController
         $folder = new Folder(WWW_ROOT.'files/'.$category['slug']);
         if($folder->delete()){
             if ($this->Categories->delete($category)) {
-                $this->Flash->success(__('The category has been deleted.'));
+                $this->Flash->success(__('Đã xóa danh mục thành công'));
             }
         } else {
-            $this->Flash->error(__('The category could not be deleted. Please, try again.'));
+            $this->Flash->error(__('Không thể xóa. Vui lòng thử lại.'));
         }
 
         return $this->redirect(['action' => 'index']);

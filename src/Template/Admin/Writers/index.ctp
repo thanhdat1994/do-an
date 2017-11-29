@@ -51,7 +51,7 @@
                         <td><?= h($writer->created) ?></td>
                         <td class="actions">
                             <?= $this->Html->link(__('Chỉnh sửa'), [ 'action' => 'edit', $writer->id], ['class' => 'btn btn-success']) ?>
-                            <?= $this->Form->postLink(__('Xóa'), ['action' => 'delete', $writer->id], ['class' => 'btn btn-danger', 'confirm' => __('Bạn có chắc muốn xóa comment {0}?', $writer->content)]) ?>
+                            <?= $this->Form->postLink(__('Xóa'), ['action' => 'delete', $writer->id], ['class' => 'btn btn-danger', 'confirm' => __('Bạn có chắc muốn xóa tác giả {0}?', $writer['name'])]) ?>
                         </td>
                     </tr>
                     <?php endforeach; ?>

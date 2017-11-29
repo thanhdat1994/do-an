@@ -122,13 +122,17 @@ class BooksController extends AppController
         $book = $this->Books->newEntity();
         if ($this->request->is('post')) {
             $book = $this->Books->patchEntity($book, $this->request->getData());
-            pr($book);
+            if(empty($book['slug'])){
+                $book['slug'] = $this->slug($book['title']);
+            }else{
+                $book['slug'] = $this->slug($book['slug']);
+            }
             if ($this->Books->save($book)) {
-                $this->Flash->success(__('The book has been saved.'));
+                $this->Flash->success(__('Đã thêm sách thành công.'));
 
                 return $this->redirect(['action' => 'index']);
             }
-            $this->Flash->error(__('The book could not be saved. Please, try again.'));
+            $this->Flash->error(__('Có lỗi xảy ra. Vui lòng thử lại.'));
         }
         $categories = $this->Books->Categories->find('list', ['limit' => 200]);
         $writers = $this->Books->Writers->find('list', ['limit' => 200]);
@@ -151,12 +155,13 @@ class BooksController extends AppController
         ]);
         if ($this->request->is(['patch', 'post', 'put'])) {
             $book = $this->Books->patchEntity($book, $this->request->getData());
+            $book['slug'] = $this->slug($book['title']);
             if ($this->Books->save($book)) {
-                $this->Flash->success(__('The book has been saved.'));
+                $this->Flash->success(__('Đã cập nhật sách thành công.'));
 
                 return $this->redirect(['action' => 'index']);
             }
-            $this->Flash->error(__('The book could not be saved. Please, try again.'));
+            $this->Flash->error(__('Có lỗi xảy ra. Vui lòng thử lại.'));
         }
         $categories = $this->Books->Categories->find('list', ['limit' => 200]);
         $writers = $this->Books->Writers->find('list', ['limit' => 200]);
@@ -176,9 +181,9 @@ class BooksController extends AppController
         $this->request->allowMethod(['post', 'delete']);
         $book = $this->Books->get($id);
         if ($this->Books->delete($book)) {
-            $this->Flash->success(__('The book has been deleted.'));
+            $this->Flash->success(__('Đã xóa sách thành công.'));
         } else {
-            $this->Flash->error(__('The book could not be deleted. Please, try again.'));
+            $this->Flash->error(__('Không thể xóa. Vui lòng thử lại.'));
         }
 
         return $this->redirect(['action' => 'index']);

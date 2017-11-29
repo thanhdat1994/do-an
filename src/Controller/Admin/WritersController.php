@@ -112,12 +112,17 @@ class WritersController extends AppController
         $writer = $this->Writers->newEntity();
         if ($this->request->is('post')) {
             $writer = $this->Writers->patchEntity($writer, $this->request->getData());
+            if(empty($writer['slug'])){
+                $writer['slug'] = $this->slug($writer['name']);
+            }else{
+                $writer['slug'] = $this->slug($writer['slug']);
+            }
             if ($this->Writers->save($writer)) {
-                $this->Flash->success(__('The category has been saved.'));
+                $this->Flash->success(__('Đã thêm tác giả thành công.'));
 
                 return $this->redirect(['action' => 'index']);
             }
-            $this->Flash->error(__('The category could not be saved. Please, try again.'));
+            $this->Flash->error(__('Có lỗi xảy ra. Vui lòng thử lại.'));
         }
         $this->set(compact('writer'));
         $this->set('_serialize', ['writer']);
@@ -138,12 +143,13 @@ class WritersController extends AppController
         ]);
         if ($this->request->is(['patch', 'post', 'put'])) {
             $writer = $this->Writers->patchEntity($writer, $this->request->getData());
+            $writer['slug'] = $this->slug($writer['name']);
             if ($this->Writers->save($writer)) {
-                $this->Flash->success(__('The category has been saved.'));
+                $this->Flash->success(__('Đã cập nhật tác giả thành công.'));
 
                 return $this->redirect(['action' => 'index']);
             }
-            $this->Flash->error(__('The category could not be saved. Please, try again.'));
+            $this->Flash->error(__('Có lỗi xảy ra. Vui lòng thử lại.'));
         }
         $this->set(compact('writer'));
         $this->set('_serialize', ['writer']);
@@ -162,9 +168,9 @@ class WritersController extends AppController
         $this->request->allowMethod(['post', 'delete']);
         $writer = $this->Writers->get($id);
         if ($this->Writers->delete($writer)) {
-            $this->Flash->success(__('The category has been deleted.'));
+            $this->Flash->success(__('Đã xóa tác giả thành công.'));
         } else {
-            $this->Flash->error(__('The category could not be deleted. Please, try again.'));
+            $this->Flash->error(__('Không thể xóa. Vui lòng thử lại.'));
         }
 
         return $this->redirect(['action' => 'index']);

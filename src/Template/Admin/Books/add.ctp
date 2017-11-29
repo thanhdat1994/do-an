@@ -6,7 +6,7 @@
 <h3><i class="fa fa-server"></i>&nbsp;&nbsp;Thêm sách mới</h3>
 <hr>
 <div class="col-md-offset-3 col-md-6">
-    <?= $this->Form->create($book) ?>
+    <?= $this->Form->create($book, ['novalidator'=>true]) ?>
     <div class="form-group">
         <label class="col-sm-3 control-label">Tên Sách:</label>
         <div class="col-sm-9">
@@ -14,13 +14,13 @@
             'type' => 'text', 'label' => false, 'div' => false, "placeholder" => "Tên sách"));?>
         </div>
     </div>
-    <!-- <div class="form-group">
+    <div class="form-group">
         <label class="col-sm-3 control-label">Slug:</label>
         <div class="col-sm-9">
             <?php echo $this->Form->input('slug', array( 'class' => 'form-control',
-            'type' => 'text', 'label' => false, 'div' => false, "placeholder" => "Slug"));?>
+            'type' => 'text', 'label' => false, 'div' => false, "placeholder" => "Slug", 'required'=>false));?>
         </div>
-    </div> -->
+    </div>
     <div class="form-group">
         <label class="col-sm-3 control-label">Hình ảnh:</label>
         <div class="col-sm-9">
