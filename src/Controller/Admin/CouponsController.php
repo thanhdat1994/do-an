@@ -110,6 +110,7 @@ class CouponsController extends AppController
      */
     public function edit($id = null)
     {
+        $this->viewBuilder()->layout('admin');
         $coupon = $this->Coupons->get($id, [
             'contain' => []
         ]);
@@ -135,6 +136,7 @@ class CouponsController extends AppController
      */
     public function delete($id = null)
     {
+        $this->viewBuilder()->layout('admin');
         $this->request->allowMethod(['post', 'delete']);
         $coupon = $this->Coupons->get($id);
         if ($this->Coupons->delete($coupon)) {

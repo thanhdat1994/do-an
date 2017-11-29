@@ -31,14 +31,30 @@
     <div class="form-group">
         <label class="col-sm-3 control-label">Ngày bắt đầu:</label>
         <div class="col-sm-9">
-            <?php echo $this->Form->input('time_start',['class'=>'form-control','type' => 'datetime','label'=>false,'div'=>false,'placeholder'=>'']); ?>
+            <?php echo $this->Form->input('time_start', array( 'class' => 'form-control',
+            'type' => 'datetime', 'label' => false, 'div' => false));?>
+            <!--
+            <div class="form-group">
+                <div class = 'input-group date' id = 'datetimepicker'>
+                    <?php echo $this->Form->input('time_start', ['type' => 'text', 'class'=>'form-control','label'=>false]) ?>
+                </div>
+            </div>
         </div>
+    </div>
+    <script type="text/javascript">
+        $(function (){
+            $('#datetimepicker').datetimepicker({
+                locale:'ru'
+            });
+        });
+    </script>
+-->
     </div>
     <div class="form-group">
         <label class="col-sm-3 control-label">Ngày kết thúc:</label>
         <div class="col-sm-9">
             <?php echo $this->Form->input('time_end', array( 'class' => 'form-control',
-            'type' => 'datetime', 'label' => false, 'div' => false, "placeholder" => "ngày kết thúc"));?>
+            'type' => 'datetime', 'label' => false, 'div' => false));?>
         </div>
     </div>
     <div class="form-group" style="text-align: center;">
@@ -46,3 +62,5 @@
     </div>
     <?= $this->Form->end() ?>
 </div>
+<?= $this->Html->script('bootstrap-datetimepicker.js') ?>
+<?= $this->fetch('script') ?>

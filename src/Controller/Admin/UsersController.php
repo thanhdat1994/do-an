@@ -144,6 +144,7 @@ class UsersController extends AppController
      */
     public function delete($id = null)
     {
+        $this->viewBuilder()->layout('admin');
         $this->request->allowMethod(['post', 'delete']);
         $user = $this->Users->get($id);
         if ($this->Users->delete($user)) {

@@ -3,30 +3,42 @@
   * @var \App\View\AppView $this
   */
 ?>
-<nav class="large-3 medium-4 columns" id="actions-sidebar">
-    <ul class="side-nav">
-        <li class="heading"><?= __('Actions') ?></li>
-        <li><?= $this->Form->postLink(
-                __('Delete'),
-                ['action' => 'delete', $coupon->id],
-                ['confirm' => __('Are you sure you want to delete # {0}?', $coupon->id)]
-            )
-        ?></li>
-        <li><?= $this->Html->link(__('List Coupons'), ['action' => 'index']) ?></li>
-    </ul>
-</nav>
-<div class="coupons form large-9 medium-8 columns content">
+<h3><i class="fa fa-server"></i>&nbsp;&nbsp;Chỉnh sửa Mã giảm giá</h3>
+<hr>
+<div class="col-md-offset-3 col-md-6">
     <?= $this->Form->create($coupon) ?>
-    <fieldset>
-        <legend><?= __('Edit Coupon') ?></legend>
-        <?php
-            echo $this->Form->control('code');
-            echo $this->Form->control('percent');
-            echo $this->Form->control('description');
-            echo $this->Form->control('time_start');
-            echo $this->Form->control('time_end');
-        ?>
-    </fieldset>
-    <?= $this->Form->button(__('Submit')) ?>
+    <div class="form-group">
+        <label class="col-sm-3 control-label">Mã giảm giá:</label>
+        <div class="col-sm-9">
+            <?php echo $this->Form->control('code',['label'=>false,'class' => 'form-control','type' => 'text']);  ?>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-3 control-label">Percent:</label>
+        <div class="col-sm-9">
+            <?php echo $this->Form->control('percent', ['class' => 'form-control', 'label' =>false]);?>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-3 control-label">Mô tả:</label>
+        <div class="col-sm-9">
+            <?php echo $this->Form->control('description',['label'=>false,'class' => 'form-control']);?>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-3 control-label">Ngày bắt đầu:</label>
+        <div class="col-sm-9">
+            <?php echo $this->Form->control('time_start',['label'=>false,'class' => 'form-control']);?>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-3 control-label">Ngày kết thúc:</label>
+        <div class="col-sm-9">
+            <?php echo $this->Form->control('time_end',['label'=>false,'class' => 'form-control']);?>
+        </div>
+    </div>
+    <div class="form-group" style="text-align: center;">
+        <?= $this->Form->button(__('Cập nhật'), ['class'=>'btn btn-success']) ?>
+    </div>
     <?= $this->Form->end() ?>
 </div>

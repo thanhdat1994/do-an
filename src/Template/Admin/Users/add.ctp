@@ -26,7 +26,7 @@
 </div> -->
 <h3><i class="fa fa-server"></i>&nbsp;&nbsp;Thêm người dùng</h3>
 <hr>
-<div class="col-md-offset-3 col-md-6">
+<div class="col-md-offset-2 col-md-8">
     <?= $this->Form->create($user) ?>
     <div class="form-group">
         <label class="col-sm-3 control-label">Nhóm người dùng: </label>
@@ -34,7 +34,7 @@
             <?php echo $this->Form->input('group_id', array( 'class' => 'form-control',
             'type' => 'text', 'label' => false, 'div' => false));?>
         </div> -->
-        <?php  echo $this->Form->control('group_id', ['options' => $groups]); ?>
+        <?php  echo $this->Form->control('group_id', ['options' => $groups, 'label'=>false]); ?>
     </div>
     <div class="form-group">
         <label class="col-sm-3 control-label">Tên đăng nhập:</label>
@@ -79,31 +79,17 @@
         </div>
     </div>
     <div class="form-group">
-        <label class="col-sm-3 control-label">Link download:</label>
+        <label class="col-sm-3 control-label">Địa chỉ:</label>
         <div class="col-sm-9">
-            <?php echo $this->Form->input('link_download', array( 'class' => 'form-control',
-            'type' => 'text', 'label' => false, 'div' => false, "placeholder" => "link download"));?>
+            <?php echo $this->Form->input('address', array( 'class' => 'form-control',
+            'type' => 'text', 'label' => false, 'div' => false, "placeholder" => "Nhập địa chỉ"));?>
         </div>
     </div>
     <div class="form-group">
-        <label class="col-sm-3 control-label">Đã xuất bản?:</label>
+        <label class="col-sm-3 control-label">Số ĐT:</label>
         <div class="col-sm-9">
-            <?php echo $this->Form->input('slug', array( 'class' => 'form-control',
-            'type' => 'text', 'label' => false, 'div' => false, "placeholder" => "1 hoặc 0"));?>
-        </div>
-    </div>
-    <div class="form-group">
-        <label class="col-sm-3 control-label">Tác giả:</label>
-        <div class="col-sm-9">
-            <?php echo $this->Form->input('writers', array( 'class' => 'form-control',
-            'type' => 'text', 'label' => false, 'div' => false, "placeholder" => "mã tác giả"));?>
-        </div>
-    </div>
-    <div class="form-group">
-        <label class="col-sm-3 control-label">Thể loại sách:</label>
-        <div class="col-sm-9">
-            <?php echo $this->Form->input('categories_id', array( 'class' => 'form-control',
-            'type' => 'text', 'label' => false, 'div' => false, "placeholder" => "Mã loại sách"));?>
+            <?php echo $this->Form->input('phone_number', array( 'class' => 'form-control',
+            'type' => 'text', 'label' => false, 'div' => false, "placeholder" => "nhập số điện thoại"));?>
         </div>
     </div>
     <div class="form-group" style="text-align: center;">
