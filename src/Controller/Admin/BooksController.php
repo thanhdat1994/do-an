@@ -122,12 +122,27 @@ class BooksController extends AppController
         $book = $this->Books->newEntity();
         if ($this->request->is('post')) {
             $book = $this->Books->patchEntity($book, $this->request->getData());
+            //Tạo slug
             if(empty($book['slug'])){
                 $book['slug'] = $this->slug($book['title']);
             }else{
                 $book['slug'] = $this->slug($book['slug']);
             }
-            if ($this->Books->save($book)) {
+
+            //save image
+            $category_id = $this->Categories->find('all', ['conditions'=>['id'=>$book['categories_id']]])->first();
+            $file = $book['image']['tmp_name'];
+            $size = 300;
+            $folder = $category_id['slug'];
+            $filename = $book['slug'];
+            if($this->uploadFile($file, $folder)){
+                $location = 'webroot/files/'.$folder.'/'.$filename;
+                $book['image'] = $location;
+            }else{
+                $this->Flash->error(__('Không upload được hình ảnh. Vui lòng thử lại.'));
+            } 
+            pr($book);die;
+            if ($this->Books->save($book)) {                
                 $this->Flash->success(__('Đã thêm sách thành công.'));
 
                 return $this->redirect(['action' => 'index']);
