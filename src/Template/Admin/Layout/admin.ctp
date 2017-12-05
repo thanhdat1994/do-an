@@ -23,10 +23,10 @@
     <?= $this->Html->css('font-awesome/css/font-awesome.css') ?>
     <?= $this->Html->css('AdminLTE.min.css') ?>
     <?= $this->Html->css('skin-blue.min.css') ?>
-    <?= $this->Html->script('jquery.min.js') ?>
+    
     <!-- <?= $this->Html->css('home.css') ?> -->
     <?= $this->Html->css('common.css') ?>
-
+<?= $this->Html->script('jquery.min.js') ?>
     <?= $this->fetch('meta') ?>
     <?= $this->fetch('css') ?>
     <?= $this->fetch('script') ?>

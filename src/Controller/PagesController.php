@@ -18,7 +18,7 @@ use Cake\Core\Configure;
 use Cake\Network\Exception\ForbiddenException;
 use Cake\Network\Exception\NotFoundException;
 use Cake\View\Exception\MissingTemplateException;
-
+use Cake\Mailer\Email;
 /**
  * Static content controller
  *
@@ -65,5 +65,31 @@ class PagesController extends AppController
             }
             throw new NotFoundException();
         }
+    }
+    public function contactMe(){
+        $this->viewBuilder()->layout('static_layout');
+        $this->set('cakeDescription','Liên hệ');
+        if ($this->request->is('post')) {
+            # code...
+            $this->Pages->set($this->request->data);
+            if ($this->Pages->validates()) {
+                # code...
+                App::uses('CakeEmail','Network/Email');
+                $email = new Email();
+                $email->config('smtp')
+                    ->emailFormat('both')
+                    ->subject("Đã có một liên hệ mới trên bookstore")
+                    ->send('Người gởi: '.$this->request->data['Pages']['fullname'].'<br/> Email:'.$this->request->data['Pages']['email']);
+                $this->Flash->success(__h("Cảm ơn bạn đã gửi liên hệ, chúng tôi sẽ phản hồi trong thời gian ngắn nhất có thể!"));
+                $this->request->data['Pages'] = null;
+            }
+            else{
+                $this->Flash->error(__h("Ooops, ", $this->Pages->validationErrors));
+            }
+        }
+    }
+    public function info(){
+        $this->viewBuilder()->layout('static_layout');
+        $this->set('cakeDescription','Giới thiệu');
     }
 }

@@ -4,8 +4,8 @@
 		<?php if($user_info['group_id'] == 2){ ?>
 			<div class="account_desc">
 				<ul class="navbar-header">
-					<li><a href="#">Giới Thiệu</a></li>
-					<li><a href="#">Liên Hệ</a></li>
+					<li><?php echo $this->Html->link('Giới Thiệu', '/gioi-thieu'); ?></li>
+					<li><?php echo $this->Html->link('Liên Hệ', '/lien-he'); ?></li>
 					<li class="dropdown">
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Xin chào <strong> <?php echo $user_info['firstname']." ".$user_info['lastname']; ?></strong><span class="caret"></span></a>
 						<ul class="dropdown-menu">
@@ -31,8 +31,8 @@
 		<?php } else if($user_info['group_id'] == 1) { ?>
 			<div class="account_desc">
 				<ul class="navbar-header">
-					<li><a href="#">Giới Thiệu</a></li>
-					<li><a href="#">Liên Hệ</a></li>
+					<li><?php echo $this->Html->link('Giới Thiệu', '/gioi-thieu'); ?></li>
+					<li><?php echo $this->Html->link('Liên Hệ', '/lien-he'); ?></li>
 					<li class="dropdown">
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Xin chào <strong> <?php echo $user_info['firstname']." ".$user_info['lastname']; ?></strong><span class="caret"></span></a>
 						<ul class="dropdown-menu">
@@ -53,8 +53,8 @@
 	<?php } else { ?>
 		<div class="account_desc">
 		<ul class="navbar-header">
-			<li><a href="#">Giới Thiệu</a></li>
-			<li><a href="#">Liên Hệ</a></li>
+			<li><?php echo $this->Html->link('Giới Thiệu', '/gioi-thieu'); ?></li>
+			<li><?php echo $this->Html->link('Liên Hệ', '/lien-he'); ?></li>
 			<li>
 				<?php echo $this->Html->link('Đăng kí','/dang-ki'); ?>
 			</li>

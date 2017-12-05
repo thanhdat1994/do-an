@@ -91,6 +91,17 @@ class CouponsController extends AppController
         $coupon = $this->Coupons->newEntity();
         if ($this->request->is('post')) {
             $coupon = $this->Coupons->patchEntity($coupon, $this->request->getData());
+
+            /*format time_start*/
+            $time_start = str_replace('/', '-', $this->request->data['time_start']);
+            $time_start = date('Y-m-d',strtotime($time_start));
+            $coupon['time_start'] = $time_start;
+
+            /*format time_end*/
+            $time_end = str_replace('/', '-', $this->request->data['time_end']);
+            $time_end = date('Y-m-d',strtotime($time_end));
+            $coupon['time_end'] = $time_end;
+
             if ($this->Coupons->save($coupon)) {
                 $this->Flash->success(__('The coupon has been saved.'));
 
@@ -116,6 +127,17 @@ class CouponsController extends AppController
         ]);
         if ($this->request->is(['patch', 'post', 'put'])) {
             $coupon = $this->Coupons->patchEntity($coupon, $this->request->getData());
+            
+            /*format time_start*/
+            $time_start = str_replace('/', '-', $this->request->data['time_start']);
+            $time_start = date('Y-m-d',strtotime($time_start));
+            $coupon['time_start'] = $time_start;
+
+            /*format time_end*/
+            $time_end = str_replace('/', '-', $this->request->data['time_end']);
+            $time_end = date('Y-m-d',strtotime($time_end));
+            $coupon['time_end'] = $time_end;
+
             if ($this->Coupons->save($coupon)) {
                 $this->Flash->success(__('The coupon has been saved.'));
 
