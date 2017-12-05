@@ -67,7 +67,8 @@ Router::scope('/', function (RouteBuilder $routes) {
     $routes->connect('/don-hang/:id', ['controller' => 'Orders', 'action' => 'detail'],['pass'=>['id']]);
     $routes->connect('/quen-mat-khau',['controller'=>'Users','action'=>'forgot']);
     $routes->connect('/xac-nhan',['controller'=>'Users','action'=>'confirm']);
-
+    $routes->connect('/lien-he',['controller'=>'Pages','action'=>'contactMe']);
+    $routes->connect('/gioi-thieu',['controller'=>'Pages','action'=>'inFo']);
     /**
      * ...and connect the rest of 'Pages' controller's URLs.
      */
