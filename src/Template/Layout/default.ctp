@@ -64,6 +64,17 @@
                         </div>
                     <?php } ?>    
                 <?php } ?>
+                <?php if($user_info['group_id'] == null){ ?>
+                    <?php $session = $this->request->session(); ?>
+                        <?php if ($session != null): ?>
+                            <?php if($session->read('cart')){?>
+                            <div id="sideManu" class="nav nav-tabs nav-stacked panel panel-default">
+                                <h4 class="panel-heading"><i class="fa fa-shopping-cart"></i>&nbsp;&nbsp;Giỏ Hàng</h4>
+                                <?php echo $this->element('cart'); ?>
+                            </div>
+                        <?php } ?>
+                    <?php endif ?>   
+                <?php } ?>
                     <br/>
                 <ul id="sideManu" class="nav nav-tabs nav-stacked panel panel-default">
                 <h4 style="margin-left: 10px;"><i class="fa fa-navicon"></i>&nbsp;&nbsp;Danh mục sách</h4>
