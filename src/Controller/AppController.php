@@ -88,7 +88,7 @@ class AppController extends Controller
 
     public function beforeFilter(Event $event)
     {
-        $this->Auth->allow(['quantityUpdate','emptyCart','inFo','addToCart','confirm','index', 'latest', 'view', 'getKeyword', 'search', 'menu','viewCart','changePassword','signup','login','forgot','contactMe']);
+        $this->Auth->allow(['add','quantityUpdate','emptyCart','inFo','addToCart','confirm','index', 'latest', 'view', 'getKeyword', 'search', 'menu','viewCart','changePassword','signup','login','forgot','contactMe']);
         $this->set('user_info', $this->get_user());
         $this->set('categories', $this->menu_categories());
         $this->set('writers', $this->menu_writers());

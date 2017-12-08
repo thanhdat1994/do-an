@@ -8,9 +8,9 @@
     <h1 class="header-title"> Liên hệ BookStore </h1>
     <hr>
     <div class="col-sm-12" id="parent">
-        <div class="col-sm-6">
+        <!-- <div class="col-sm-6">
         <iframe width="100%" height="320px;" frameborder="0" style="border:0" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4641.806278988405!2d108.44184211986534!3d11.955226321168604!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x317112d959f88991%3A0x9c66baf1767356fa!2zVHLGsOG7nW5nIMSQ4bqhaSBo4buNYyDEkMOgIEzhuqF0!5e0!3m2!1sen!2sus!4v1512463120180" allowfullscreen></iframe>
-        </div>
+        </div> -->
 
         <div class="col-sm-6">
             <?= $this->Form->create('Pages',['class' => 'contact-form']) ?>
@@ -28,6 +28,9 @@
               <button class="btn btn-default btn-send" type="submit"> <span class="fa fa-send"></span> Send </button>
               </div>
             <?= $this->Form->end() ?>
+        </div>
+        <div class="col-sm-6">
+            <img src="webroot/img/bird.png" style ="width: 577px; height: 324px;">
         </div>
     </div>
   </div>
@@ -76,7 +79,7 @@
                     <div class="info">
                         <h3 class="title">Địa chỉ</h3>
                         <p>
-                             <i class="fa fa-map-marker" aria-hidden="true"></i> &nbsp 1, Phù Đổng Thiên Vương, P.8, TP Đà Lạt, Lâm Đồng
+                             <i class="fa fa-map-marker" aria-hidden="true"></i><a href="https://www.google.com/maps/place/Tr%C6%B0%E1%BB%9Dng+%C4%90%E1%BA%A1i+h%E1%BB%8Dc+%C4%90%C3%A0+L%E1%BA%A1t/@11.9545656,108.4420162,17z/data=!3m1!4b1!4m5!3m4!1s0x317112d959f88991:0x9c66baf1767356fa!8m2!3d11.9545604!4d108.4442049"> &nbsp 1, Phù Đổng Thiên Vương, P.8, TP Đà Lạt, Lâm Đồng</a>
                         </p>
                     </div>
                 </div>

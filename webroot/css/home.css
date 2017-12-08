@@ -192,7 +192,7 @@ a {
         .header-title
         {
           text-align: center;
-          color:#00bfff;
+          color: #0000ee;
         }
 
         #tip 
@@ -225,8 +225,8 @@ a {
         .btn-send
         {
         	border-radius: 0px;
-        	border:1px solid #00bfff;
-        	background:#00bfff;
+        	border:1px solid #0000ee;
+        	background:#0000ee;
         	color:#fff; 
         }
 
@@ -247,7 +247,7 @@ a {
 		@import "http://fonts.googleapis.com/css?family=Roboto:400,500";
 
 		.box > .icon { text-align: center; position: relative; }
-		.box > .icon > .image { position: relative; z-index: 2; margin: auto; width: 88px; height: 88px; border: 8px solid white; line-height: 88px; border-radius: 50%; background: #00bfff; vertical-align: middle; }
+		.box > .icon > .image { position: relative; z-index: 2; margin: auto; width: 88px; height: 88px; border: 8px solid white; line-height: 88px; border-radius: 50%; background: #0000ee; vertical-align: middle; }
 		.box > .icon:hover > .image { background: #333; }
 		.box > .icon > .image > i { font-size: 36px !important; color: #fff !important; }
 		.box > .icon:hover > .image > i { color: white !important; }

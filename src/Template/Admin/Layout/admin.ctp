@@ -36,58 +36,57 @@
         href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600&amp;subset=vietnamese" rel="stylesheet">
 </head>
-
 <body class="hold-transition skin-blue sidebar-mini">
-<div class="wrapper">
+  <div class="wrapper">
+    <!-- Main Header -->
+    <?php if ($user_info['group_id'] == 1): ?>
+    <header class="main-header">
 
-  <!-- Main Header -->
-  <header class="main-header">
-
-    <a href="<?php echo $this->Url->build(array('controller' => "Books", 'action' => "index", 'prefix' => false)); ?>" class="logo">
-      <span class="logo-lg"><b>Trang chủ</b></span>
-    </a>
-
-    <!-- Header Navbar -->
-    <nav class="navbar navbar-static-top" role="navigation">
-      <!-- Sidebar toggle button-->
-      <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
-        <span class="sr-only">Toggle navigation</span>
+      <a href="<?php echo $this->Url->build(array('controller' => "Books", 'action' => "index", 'prefix' => false)); ?>" class="logo">
+        <span class="logo-lg"><b>Trang chủ</b></span>
       </a>
-      <!-- Navbar Right Menu -->
-      <div class="navbar-custom-menu">
-        <ul class="nav navbar-nav">
-          <!-- User Account Menu -->
-          <li class="dropdown user user-menu">
-            <!-- Menu Toggle Button -->
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              <?php echo $this->Html->image('menu_nhanvien1.jpg', ['class'=>"user-image", 'alt'=>"User Image"]); ?> 
-              <span class="hidden-xs"><strong> <?php echo $user_info['firstname']." ".$user_info['lastname']; ?></strong></span>
-            </a>
-            <ul class="dropdown-menu">
-              <!-- The user image in the menu -->
-              <li class="user-header">
-                <?php echo $this->Html->image('menu_nhanvien1.jpg', ['class'=>"img-circle", 'alt'=>"User Image"]); ?>
-                <p>
-                  Tài Khoản: <span><strong> <?php echo $user_info['firstname']." ".$user_info['lastname']; ?></strong></span>
-                </p>
-              </li>
-              <!-- Menu Footer-->
-              <li class="user-footer">
-                <div class="pull-left">
-                  <a href="<?php echo $this->Url->build(
-        array('controller' => "Users", 'action' => "changePassword",)); ?>" class="btn btn-default btn-flat">Đổi mật khẩu</a>
-                </div>
-                <div class="pull-right">
-                  <a href="<?php echo $this->Url->build(
-        array('controller' => "Users", 'action' => "logout",)); ?>" class="btn btn-default btn-flat">Đăng xuất</a>
-                </div>
-              </li>
-            </ul>
-          </li>
-        </ul>
-      </div>
-    </nav>
-  </header>
+
+      <!-- Header Navbar -->
+      <nav class="navbar navbar-static-top" role="navigation">
+        <!-- Sidebar toggle button-->
+        <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
+          <span class="sr-only">Toggle navigation</span>
+        </a>
+        <!-- Navbar Right Menu -->
+        <div class="navbar-custom-menu">
+          <ul class="nav navbar-nav">
+            <!-- User Account Menu -->
+            <li class="dropdown user user-menu">
+              <!-- Menu Toggle Button -->
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                <?php echo $this->Html->image('menu_nhanvien1.jpg', ['class'=>"user-image", 'alt'=>"User Image"]); ?> 
+                <span class="hidden-xs"><strong> <?php echo $user_info['firstname']." ".$user_info['lastname']; ?></strong></span>
+              </a>
+              <ul class="dropdown-menu">
+                <!-- The user image in the menu -->
+                <li class="user-header">
+                  <?php echo $this->Html->image('menu_nhanvien1.jpg', ['class'=>"img-circle", 'alt'=>"User Image"]); ?>
+                  <p>
+                    Tài Khoản: <span><strong> <?php echo $user_info['firstname']." ".$user_info['lastname']; ?></strong></span>
+                  </p>
+                </li>
+                <!-- Menu Footer-->
+                <li class="user-footer">
+                  <div class="pull-left">
+                    <a href="<?php echo $this->Url->build(
+          array('controller' => "Users", 'action' => "changePassword",)); ?>" class="btn btn-default btn-flat">Đổi mật khẩu</a>
+                  </div>
+                  <div class="pull-right">
+                    <a href="<?php echo $this->Url->build(
+          array('controller' => "Users", 'action' => "logout",)); ?>" class="btn btn-default btn-flat">Đăng xuất</a>
+                  </div>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </header>
   <!-- Left side column. contains the logo and sidebar -->
   <aside class="main-sidebar">
 
@@ -131,7 +130,6 @@
     </section>
     <!-- /.sidebar -->
   </aside>
-
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -150,10 +148,18 @@
   <footer class="main-footer">
 
   </footer>
+   
+  <?php else : ?>
+      <div class="thumbnail" style="text-align: center;">
+      <h5 > &nbsp; &nbsp; &nbsp;Bạn chưa được cấp quyền vào trang này! Vui lòng liên hệ ban quản trị để được hỗ trợ!</h5>
+        <p><?php echo $this->Html->link('Về trang chủ','/',['class'=>"btn btn-primary"]); ?></p>
+    </div>
+  <?php endif; ?>
+
 </div>
 <!-- ./wrapper -->
     
-    <?= $this->Html->script('bootstrap.min.js') ?>
+  <?= $this->Html->script('bootstrap.min.js') ?>
     <?= $this->Html->script('adminlte.min.js') ?>
     <?= $this->Html->script('/plugin/ckeditor/ckeditor.js') ?>
 
