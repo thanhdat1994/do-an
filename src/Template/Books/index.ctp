@@ -10,7 +10,7 @@
 		<div id="featured" class="carousel slide">
 			<div class="carousel-inner">
 				<div class="item active">
-					<ul class="thumbnails">
+					<ul class="thumbnails owl-carousel" id="owl-slide">
 						
 						<li class="span3">
 							<div class="thumbnail">

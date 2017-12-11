@@ -3,7 +3,7 @@ namespace App\Controller\Admin;
 
 use App\Controller\AppController;
 use Cake\Validation\Validator;
-
+use Cake\Filesystem\File;
 /**
  * Books Controller
  *
@@ -122,6 +122,7 @@ class BooksController extends AppController
         $book = $this->Books->newEntity();
         if ($this->request->is('post')) {
             $book = $this->Books->patchEntity($book, $this->request->getData());
+            
             //Tạo slug
             if(empty($book['slug'])){
                 $book['slug'] = $this->slug($book['title']);
@@ -129,25 +130,31 @@ class BooksController extends AppController
                 $book['slug'] = $this->slug($book['slug']);
             }
 
+            // format date
+            $date_push = str_replace('/', '-', $this->request->data['publish_date']);
+            $date_push = date('Y-m-d', strtotime($date_push));
+            $book['publish_date'] = $date_push;
+
             //save image
-            $category_id = $this->Categories->find('all', ['conditions'=>['id'=>$book['categories_id']]])->first();
-            $file = $book['image']['tmp_name'];
-            $size = 300;
+            $category_id = $this->Categories->find('all', ['conditions'=>['id'=>$book['category_id']]])->first();            
             $folder = $category_id['slug'];
-            $filename = $book['slug'];
-            if($this->uploadFile($file, $folder)){
-                $location = 'webroot/files/'.$folder.'/'.$filename;
-                $book['image'] = $location;
-            }else{
-                $this->Flash->error(__('Không upload được hình ảnh. Vui lòng thử lại.'));
-            } 
-            pr($book);die;
+
+            $arr = explode('.', $book['data']['image']['name']);
+            $ext = end($arr);
+            $filename = $book['slug'].'.'.$ext;
+            $file = new File($book['data']['image']['tmp_name']);
+            $file->copy(WWW_ROOT.'files/'.$folder.'/'.$filename);
+            $book['image'] = '/webroot/files/'.$folder.'/'.$filename;
+            
+            //pr($book);die;
+
             if ($this->Books->save($book)) {                
                 $this->Flash->success(__('Đã thêm sách thành công.'));
 
                 return $this->redirect(['action' => 'index']);
+            }else{
+                $this->Flash->error(__('Có lỗi xảy ra. Vui lòng thử lại.'));
             }
-            $this->Flash->error(__('Có lỗi xảy ra. Vui lòng thử lại.'));
         }
         $categories = $this->Books->Categories->find('list', ['limit' => 200]);
         $writers = $this->Books->Writers->find('list', ['limit' => 200]);
@@ -170,7 +177,26 @@ class BooksController extends AppController
         ]);
         if ($this->request->is(['patch', 'post', 'put'])) {
             $book = $this->Books->patchEntity($book, $this->request->getData());
+            //Tạo slug
             $book['slug'] = $this->slug($book['title']);
+
+            // format date
+            $date_push = str_replace('/', '-', $this->request->data['publish_date']);
+            $date_push = date('Y-m-d', strtotime($date_push));
+            $book['publish_date'] = $date_push;
+
+            //save image
+            $category_id = $this->Categories->find('all', ['conditions'=>['id'=>$book['category_id']]])->first();            
+            $folder = $category_id['slug'];
+
+            $arr = explode('.', $book['data']['image']['name']);
+            $ext = end($arr);
+            $filename = $book['slug'].'.'.$ext;
+            $file = new File($book['data']['image']['tmp_name']);
+            $file->copy(WWW_ROOT.'files/'.$folder.'/'.$filename);
+            $book['image'] = '/webroot/files/'.$folder.'/'.$filename;
+
+            //pr($book);die;
             if ($this->Books->save($book)) {
                 $this->Flash->success(__('Đã cập nhật sách thành công.'));
 
@@ -180,8 +206,20 @@ class BooksController extends AppController
         }
         $categories = $this->Books->Categories->find('list', ['limit' => 200]);
         $writers = $this->Books->Writers->find('list', ['limit' => 200]);
+        /*if (!empty($this->request->data['Writers'])) {
+            foreach ($this->request->data['Writers'] as $writer) {
+                $writerList[] = $writer['name'];
+            }
+            $writers = implode(', ', $writerList);
+        } else {
+            $writers = null;
+        }*/
+        $date_push = $book['publish_date'];
+        $date_push = date('d/m/Y', strtotime($date_push));
         $this->set(compact('book', 'categories', 'writers'));
         $this->set('_serialize', ['book']);
+        $this->set('dateDeal', $date_push);
+       //pr($book);die;
     }
 
     /**
@@ -195,6 +233,9 @@ class BooksController extends AppController
     {
         $this->request->allowMethod(['post', 'delete']);
         $book = $this->Books->get($id);
+        $url = substr($book['image'], 9);
+        $file = new File(WWW_ROOT.$url);
+        $file->delete();
         if ($this->Books->delete($book)) {
             $this->Flash->success(__('Đã xóa sách thành công.'));
         } else {
@@ -202,5 +243,27 @@ class BooksController extends AppController
         }
 
         return $this->redirect(['action' => 'index']);
+    }
+
+    private function check_writer($writers_list = null){
+        $writers = explode(',', $writers_list);
+        $this->loadModel('Writers');
+        foreach ($writers as $writer) {
+            $slug = $this->slug($writer);
+            $writer_info = $this->Writers->find('all', ['conditions'=>['slug'=>$slug]])->first();
+            if(empty($writer_info)){
+                $data = [
+                    'name' => ucwords(trim($writer)),
+                    'slug' => $slug,
+                    'biography' => 'Đang cập nhật'
+                ];
+                $this->Writers->create();
+                $this->Writers->save($data);
+                //$save_info[] = $this->Writers->get()
+            } else{
+                 $saveInfo[] = $writerInfo['id'];
+            }
+        }
+        $this->request->data['Writer'] = $saveInfo;
     }
 }

@@ -19,18 +19,79 @@
           weekStart: 0
       };
 
-      $('.datepicker').datepicker({
-          format: 'dd/mm/yyyy',
-          todayHighlight: true,
-          language: 'vi',
-          autoclose: true
+          $('.datepicker').datepicker({
+              format: 'dd/mm/yyyy',
+              todayHighlight: true,
+              language: 'vi',
+              autoclose: true
+          });
       });
-  });
+
+    function number_format (number, decimals, dec_point, thousands_sep) {
+        var n = number, prec = decimals;
+
+        var toFixedFix = function (n,prec) {
+            var k = Math.pow(10,prec);
+            return (Math.round(n*k)/k).toString();
+        };
+
+        n = !isFinite(+n) ? 0 : +n;
+        prec = !isFinite(+prec) ? 0 : Math.abs(prec);
+        var sep = (typeof thousands_sep === 'undefined') ? ',' : thousands_sep;
+        var dec = (typeof dec_point === 'undefined') ? '.' : dec_point;
+
+        var s = (prec > 0) ? toFixedFix(n, prec) : toFixedFix(Math.round(n), prec);
+        //fix for IE parseFloat(0.55).toFixed(0) = 0;
+
+        var abs = toFixedFix(Math.abs(n), prec);
+        var _, i;
+
+        if (abs >= 1000) {
+            _ = abs.split(/\D/);
+            i = _[0].length % 3 || 3;
+
+            _[0] = s.slice(0,i + (n < 0)) +
+                   _[0].slice(i).replace(/(\d{3})/g, sep+'$1');
+            s = _.join(dec);
+        } else {
+            s = s.replace('.', dec);
+        }
+
+        var decPos = s.indexOf(dec);
+        if (prec >= 1 && decPos !== -1 && (s.length-decPos-1) < prec) {
+            s += new Array(prec-(s.length-decPos-1)).join(0)+'0';
+        }
+        else if (prec >= 1 && decPos === -1) {
+            s += dec+new Array(prec).join(0)+'0';
+        }
+        return s;
+    }
+
+    function format_price(){
+        var sale = document.getElementById('sale').value.replace(/,/g,"");
+        document.getElementById('sale').value = number_format(sale*1)
+
+        var price = document.getElementById('price').value.replace(/,/g,"");
+        document.getElementById('price').value = number_format(price*1)
+    }
 </script>
 <h3><i class="fa fa-server"></i>&nbsp;&nbsp;Thêm sách mới</h3>
 <hr>
 <div class="col-md-offset-3 col-md-6">
     <?= $this->Form->create($book, ['novalidator'=>true, 'type'=>'file']) ?>
+    <div class="form-group">
+        <label class="col-sm-3 control-label">Sách bán chạy:</label>
+        <div class="col-sm-9">
+            <input type="checkbox" name="hot" /><br/><br/>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-3 control-label">Danh mục sách:</label>
+        <div class="col-sm-9">
+            <?php echo $this->Form->input('category_id', array( 'class' => 'form-control',
+            'options' => $categories, 'label' => false, 'div' => false, "placeholder" => "Danh mục sách"));?>
+        </div>
+    </div>
     <div class="form-group">
         <label class="col-sm-3 control-label">Tên Sách:</label>
         <div class="col-sm-9">
@@ -38,31 +99,31 @@
             'type' => 'text', 'label' => false, 'div' => false, "placeholder" => "Tên sách"));?>
         </div>
     </div>
-    <div class="form-group">
+    <!-- <div class="form-group">
         <label class="col-sm-3 control-label">Slug:</label>
         <div class="col-sm-9">
             <?php echo $this->Form->input('slug', array( 'class' => 'form-control',
-            'type' => 'text', 'label' => false, 'div' => false, "placeholder" => "Slug", 'required'=>false));?>
+            'type' => 'hidden', 'label' => false, 'div' => false, "placeholder" => "Slug", 'required'=>false));?>
         </div>
-    </div>
+    </div> -->
     <div class="form-group">
         <label class="col-sm-3 control-label">Hình ảnh:</label>
         <div class="col-sm-9">
-            <input type="file" name="data[image]" accept="image/*" id="SalonImage" required="">
+            <input type="file" name="data[image]" accept="image/*" id="SalonImage">
         </div>
     </div>    
     <div class="form-group">
         <label class="col-sm-3 control-label">Giá nhập:</label>
         <div class="col-sm-9">
             <?php echo $this->Form->input('price', array( 'class' => 'form-control',
-            'type' => 'text', 'label' => false, 'div' => false, "placeholder" => "Giá nhập sách"));?>
+            'type' => 'text', 'label' => false, 'div' => false, "placeholder" => "Giá nhập sách", 'id'=>"price"/*, 'onblur'=>"format_price()"*/));?>
         </div>
     </div>
     <div class="form-group">
         <label class="col-sm-3 control-label">Giá bán:</label>
         <div class="col-sm-9">
             <?php echo $this->Form->input('sale_price', array( 'class' => 'form-control',
-            'type' => 'text', 'label' => false, 'div' => false, "placeholder" => "Giá bán"));?>
+            'type' => 'text', 'label' => false, 'div' => false, "placeholder" => "Giá bán", 'id'=>"sale"/*, 'onblur'=>"format_price()"*/));?>
         </div>
     </div>
     <div class="form-group">
@@ -76,36 +137,28 @@
         <label class="col-sm-3 control-label">Ngày xuất bản:</label>
         <div class="col-sm-9">
             <?php echo $this->Form->input('publish_date', array( 'class' => 'form-control datepicker',
-            'type' => 'text', 'label' => false, 'div' => false, "placeholder" => "Ngày xuất bản", 'id'=>'datepicker'));?>
+            'type' => 'text', 'label' => false, 'div' => false, "placeholder" => "Ngày xuất bản"));?>
         </div>
     </div>
-    <!-- <div class="form-group">
+    <div class="form-group">
         <label class="col-sm-3 control-label">Đã xuất bản:</label>
         <div class="col-sm-9">
-            <?php echo $this->Form->input('slug', array( 'class' => 'form-control',
-            'type' => 'text', 'label' => false, 'div' => false, "placeholder" => "chọn select"));?>
+            <input type="checkbox" name="published" value="1" /><br/><br/>
         </div>
-    </div> -->
-    <!-- <div class="form-group">
+    </div>
+    <div class="form-group">
         <label class="col-sm-3 control-label">Tác giả:</label>
         <div class="col-sm-9">
             <?php echo $this->Form->input('writers', array( 'class' => 'form-control',
-            'type' => 'text', 'label' => false, 'div' => false, "placeholder" => "mã tác giả"));?>
+            'multiple' => 'multiple', 'type' => 'select', 'label' => false, 'div' => false, "placeholder" => "Tác giả", 'value' => $writers));?>
         </div>
-    </div> -->
+    </div>
     <div class="form-group">
         <label class="col-sm-3 control-label">Nội dung:</label>
         <div class="col-sm-9">
             <?php echo $this->Form->input('info', array( 'class' => 'ckeditor', 'label' => false, 'div' => false, "placeholder" => "Nội dung"));?>
         </div>
-    </div>
-    <div class="form-group">
-        <label class="col-sm-3 control-label">Danh mục sách:</label>
-        <div class="col-sm-9">
-            <?php echo $this->Form->input('categories_id', array( 'class' => 'form-control',
-            'options' => $categories, 'label' => false, 'div' => false, "placeholder" => "Danh mục sách"));?>
-        </div>
-    </div>
+    </div>    
     <div class="form-group" style="text-align: center;">
         <?= $this->Form->button(__('Thêm mới'), ['class'=>'btn btn-primary']) ?>
     </div>

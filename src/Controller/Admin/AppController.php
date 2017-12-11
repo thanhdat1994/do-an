@@ -155,65 +155,9 @@ class AppController extends Controller
         }
     }
 
-    public function upload_image($image_details, $size, $category, $obj="tmp"){
-        $file_path = "";
-        $image_name = $image_details['name'];
-        $uploaded_image = $image_details['tmp_name'];
-
-        $filename = stripslashes($image_details['name']);
-        $extension = strtolower($this->_getExtension($filename));
-        $arr_extension = array('jpg', 'jpeg', 'png', 'gif');
-
-        if (in_array($extension, $arr_extension)) {
-            if($extension == "jpg" || $extension == "jpeg" ) {
-                $src = imagecreatefromjpeg($uploaded_image);
-
-            } else if($extension == "png"){
-                $src = imagecreatefrompng($uploaded_image);
-
-            } else {
-                $src = imagecreatefromgif($uploaded_image);
-            }
-
-            list($width, $height) = getimagesize($uploaded_image);
-            $width_config = $size;
-            $new_width = $width;
-            $new_height = $height;
-
-            if ($width > $width_config) {
-                $new_width = $width_config;
-                $new_height = ($height/$width)*$new_width;
-            }
-
-            $temp = imagecreatetruecolor($new_width, $new_height);
-            imagecopyresampled($temp, $src, 0, 0, 0, 0, $new_width, $new_height, $width, $height);
-            $new_image_name = $this->getAppCurSalon() . strtotime("now") . "." . $extension;
-
-            $dir_storage = "files" . DS. $category;
-
-            if (!file_exists($dir_storage)) {
-                mkdir($dir_storage, 0777, true);
-            }
-
-            $new_image = $dir_storage . DS . $new_image_name;
-            $dir_image_web = "webroot/files/". $category."/" . $new_image_name;
-
-            imagejpeg($temp, $new_image, 100);
-            imagedestroy($src);
-            imagedestroy($temp);
-            $file_path = $dir_image_web;
-        }
-
-        return $file_path;
-    }
-
-    public function uploadFile($image, $folder, $filename){
+    public function uploadFile($image, $folder){    
       $file = new File($image);
-      if($file->copy(WWW_ROOT.'files/'.$folder.'/'.$filename)){
-        return true;
-      }else{
-        return false;
-      }
+      $file->copy(WWW_ROOT.'files/'.$folder);
     }
 }
 ?>
