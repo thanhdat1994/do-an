@@ -25,6 +25,7 @@
 		 					<strong>Giảm: </strong><?php echo $payment_info->discount; ?>		
 		 				</span>
 		 			</p>
+		 			<?php endif ?>
 		 			<p><strong>Tiền phải trả: </strong><span><?php echo $this->Number->format($payment_info->pay,['places'=> 0,'after'=>'VNĐ']); ?></span></p>
 		 		<?php else: ?>
 		 			<p><strong>Tổng cộng: </strong><span><?php echo $this->Number->format($payment_info->total,['places'=> 0,'after'=>'VNĐ']); ?></span></p>
@@ -36,7 +37,7 @@
 		 				<?php else: ?>
 		 					<span class="label label-danger">Hủy</span>
 		 				<?php endif ?>
-		 		<?php endif ?>
+		 		
 		 	</div>		
 	<hr>
 	<h4>Sách đã mua</h4>

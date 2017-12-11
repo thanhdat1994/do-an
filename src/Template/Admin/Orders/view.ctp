@@ -28,14 +28,26 @@
                     <?php else: ?>
                         <p><strong>Mã giảm giá: </strong>&nbsp;&nbsp;<span>Không</span>
                         </p>
-                        <p><strong>Tiền phải trả: </strong><span>&nbsp;&nbsp;<?php echo $this->Number->format($payment_info->total,['places'=> 0,'after'=>'VNĐ']); ?></span></p>                        
-                    <?php endif ?>
+                        <p><strong>Tiền phải trả: </strong><span>&nbsp;&nbsp;<?php echo $this->Number->format($payment_info->total,['places'=> 0,'after'=>'VNĐ']); ?></span></p>
+                    <?php endif ?>   
+                        <p><strong>Tình trạng đơn hàng: </strong><span>
+                        <?php if($order['status'] == 0): ?>
+                            <span class="label label-info">Đang xử lí</span>
+                        <?php elseif($order['status'] == 1): ?>
+                            <span class="label label-success">Đã xử lí</span>
+                        <?php elseif($order['status'] == 2): ?>
+                            <span class="label label-warning">Đang tạm ngưng</span>
+                        <?php else: ?>
+                            <span class="label label-danger">Đã hủy</span>  
+                        <?php endif ?>              
                 </div>
              </div>
              <hr>
              <hr>
+             <?php echo $this->Form->create("Orders",['url' => ['action' => 'xuly']]); ?>
             <table class="table table-hover table-bordered">
                 <thead>
+                    <h4>Chi tiết đơn hàng</h4>
                     <tr>
                         <th>STT</th>
                         <th width="540px">Tên sách</th>
@@ -48,6 +60,7 @@
                     <?php foreach ($order_info as $book): ?>
                         <tr>
                             <td><?php echo $i++; ?></td>
+                            <?php echo $this->Form->input('id', ['type' => 'hidden', 'value' => $order['id']]); ?>
                             <td><?php echo $book->title; ?></td>
                             <td><?php echo $book->quantity; ?></td>
                             <td><?php echo $this->Number->format($book->sale_price,['places'=> 0,'after'=>'VNĐ']); ?></td>
@@ -55,6 +68,9 @@
                     <?php endforeach ?>
                 </tbody>
             </table>
+            <?php echo $this->Form->select('select_action',['1' => 'Chấp nhận đơn hàng','2' => 'Tạm ngưng đơn hàng', '3' => 'Hủy đơn hàng'],['empty' => false]); ?>
+            <?php echo $this->Form->button("Submit",['class'=>"btn btn-success", 'type' => 'submit']) ?>
+            <?php echo $this->Form->end(); ?>
         </div>
     </div>
 </div>

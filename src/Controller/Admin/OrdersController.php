@@ -103,7 +103,7 @@ class OrdersController extends AppController
      * @return \Cake\Http\Response|null Redirects to index.
      * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */
-    public function delete($id = null)
+    /*public function delete($id = null)
     {
         $this->request->allowMethod(['post', 'delete']);
         $order = $this->Orders->get($id);
@@ -114,7 +114,7 @@ class OrdersController extends AppController
         }
 
         return $this->redirect(['action' => 'index']);
-    }
+    }*/
 
     /*checkout*/
     public function checkout(){
@@ -167,5 +167,115 @@ class OrdersController extends AppController
             }
         }
         $this->set('cakeDescription','Chi tiết đơn hàng');
+    }
+
+    public function xuLyOrders(){  
+        foreach ($this->request->data['Orders']['id'] as $id => $value) {
+            # code...
+            if ($value == 1) {
+                # code...
+                $ids[] = $id;
+            }
+        }
+        $order = $this->Orders->newEntity();
+        if (!empty($ids)) {
+            # code...
+            switch ($this->request->data(['action'])) {
+                case 1:
+                    foreach ($ids as $id) {
+                        # code...
+                        $order = $this->Orders->get($id,[
+                            'contain' => []]);
+                        $order['status'] = 1;
+                        $this->Orders->save($order);
+                    }
+                    $this->Flash->success("Chấp nhận đơn hàng thành công!");
+                    break;
+                case 2:
+                    # code...
+                    foreach ($ids as $id) {
+                        # code...
+                        $order = $this->Orders->get($id,[
+                            'contain' => []]);
+                        $order['status'] = 2;
+                        $this->Orders->save($order);
+                    }
+                    $this->Flash->success("tạm ngưng đơn hàng thành công!");
+                    break;
+                    case 3:
+                    # code...
+                    foreach ($ids as $id) {
+                        # code...
+                        $order = $this->Orders->get($id,[
+                            'contain' => []]);
+                        $order['status'] = 3;
+                        $this->Orders->save($order);
+                    }
+                    $this->Flash->success("Hủy đơn hàng thành công!");
+                    break;
+                default:
+                    # code...
+                    $this->Flash->error("Không có hành động nào được chọn! vui lòng chọn hành động trước khi submit!");
+                    break;
+            }
+        }
+        else{
+            $this->Flash->error("Chưa có đơn hàng nào được chọn. Vui lòng chọn đơn hàng trước khi submit!");
+        }
+        $this->redirect(['action' => 'index']);
+    }
+
+    /*xu ly tung don hang*/
+    public function xuly(){
+        $order = $this->Orders->newEntity();
+        $id = $this->request->getData(['id']);
+        $order = $this->Orders->get($id,[
+            'contain' => []]);
+
+        if (!empty($order)) {
+            # code...
+            switch ($this->request->getData('select_action')) {
+                case 1:
+                    # code...
+                    $order['status'] = 1;
+                    if ($this->Orders->save($order)) {
+                        # code...
+                        $this->Flash->success("Chấp nhận đơn hàng thành công!");
+                    }else{
+                        $this->Flash->error("Không thề chấp nhận đơn hàng. Vui lòng thử lại!");
+                    }
+
+                    break;
+                case 2:
+                    # code...
+                    $order['status'] = 2;
+                    if ($this->Orders->save($order)) {
+                        # code...
+                        $this->Flash->success("Tạm ngưng đơn hàng thành công!");
+                    }else{
+                        $this->Flash->error("Không thề tạm ngưng đơn hàng. Vui lòng thử lại!");
+                    }
+
+                    break;
+                case 3:
+                    # code...
+                    $order['status'] = 3;
+                    if ($this->Orders->save($order)) {
+                        # code...
+                        $this->Flash->success("Hủy đơn hàng thành công!");
+                    }else{
+                        $this->Flash->error("Không thề hủy đơn hàng. Vui lòng thử lại!");
+                    }
+
+                    break;
+                default:
+                    # code...
+                    $this->Flash->error("Vui lòng chọn tác vụ trước khi submit!");
+                    break;
+            }
+        }else{
+            $this->Flash->error("Vui lòng chọn đơn hàng trước khi submit!");
+        }
+        $this->redirect($this->referer());
     }
 }
