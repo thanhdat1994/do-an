@@ -21,9 +21,11 @@
              </div>
              <hr>
              <hr>
+             <?php echo $this->Form->create('Orders', ['url' => ['action' => 'xuLyOrders']]); ?>
             <table class="table table-hover table-bordered">
                 <thead>
                     <tr>
+                        <th>Select</th>
                         <th scope="col"><?= $this->Paginator->sort('Mã đơn hàng') ?></th>
                         <th scope="col"><?= $this->Paginator->sort('Thời gian') ?></th>
                         <th scope="col"><?= $this->Paginator->sort('Tên tài khoản') ?></th>
@@ -36,6 +38,7 @@
                 <tbody>
                     <?php foreach ($orders as $order): ?>
                     <tr>
+                        <td><?php echo $this->Form->checkbox('Orders.id.'.$order['id']); ?></td>
                         <td><?= $this->Number->format($order->id) ?></td>
                         <td><?php echo $order['created']->format('d-m-Y H:i:s'); ?></td>
                         <td><?php echo $order['user']['username']; ?></td>
@@ -46,8 +49,10 @@
                                 <span class="label label-info">Đang xử lí</span>
                             <?php elseif($order['status'] == 1): ?>
                                 <span class="label label-success">Đã xử lí</span>
+                            <?php elseif($order['status'] == 2): ?>
+                                <span class="label label-warning">Đang tạm ngưng</span>
                             <?php else: ?>
-                                <span class="label label-danger">Hủy</span>
+                                <span class="label label-danger"> Đã hủy</span>
                             <?php endif ?>
                         </td>
                         <td class="actions">
@@ -59,6 +64,10 @@
                     <?php endforeach; ?>
                 </tbody>
             </table>
+            <br/>
+            <?php echo $this->Form->select('action',['1' => 'Chấp nhận đơn hàng','2' => 'Tạm ngưng đơn hàng', '3' => 'Hủy đơn hàng'],['empty' => false]); ?>
+            <?= $this->Form->button(__('Submit'), ['class' => 'btn btn-success','type' => 'submit']) ?> 
+            <?php echo $this->Form->end(); ?>
         </div>
     </div>
 </div>

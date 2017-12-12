@@ -2,21 +2,83 @@
 	$session = $this->request->session();
 ?>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script>
+<?= $this->Html->script('jquery-1.6.3.min.js') ?>
+<script type="text/javascript">
 	$(document).ready(function(){
 	    $("#quantity").click(function(){
 	        var quantity = $("#quantity").val();
 	    });
-	});
+	    $("#name, #address,#phone,#email").keyup(function(e) {
+                var ENTER_KEY = 13;
+                var code = "";
+                if (window.event) // IE
+                {
+                    code = e.keyCode;
+                }
+                else if (e.which) // Netscape/Firefox/Opera
+                {
+                    code = e.which;
+                }
 
-	function validateCoupon(){
-		var codecp = document.getElementsByTag('code').val();
-		if (codecp == null) {
-			alert("Bạn chưa nhập mã giảm giá! Vui lòng nhập mã giảm giá trước khi click Nhập.");
-		};
+                if (code == ENTER_KEY) {
+                    if (checkForm())
+                        $("form").submit();
+                }
+            });
+
+	});
+	function checkForm(){
+		/*if ($('#name').val() == '') {
+			$('#name').focus();
+			$('#Error').text('Vui lòng nhập họ và tên!');
+			return false;
+		}
+		if ($('#email').val() == '') {
+			$('#email').focus();
+			$('#Error').html('Vui lòng nhập địa chỉ Email!');
+			return false;
+		}
+		if ($('#address').val() == '') {
+			$('#address').focus();
+			$('#Error').html('Vui lòng nhập địa chỉ!');
+			return false;
+		}
+		if ($('#phone').val() == '') {
+			$('#phone').focus();
+			$('#Error').html('Vui lòng nhập số điện thoại!');
+			return false;
+		}*/
+		var name = document.getElementsById('name').value;
+		var email = document.getElementsById('email').value;
+		var address = document.getElementsById('address').value;
+		var phone = document.getElementsById('phone').value;
+		if (name.length == 0) {
+			alert("Vui lòng nhập họ và tên! ");
+			return false;
+		}else if(email.length == 0){
+			alert("vui lòng nhập địa chỉ email!");
+			return false;
+		}else if(address.length == 0){
+			alert("Vui lòng nhập địa chỉ!");
+			return false;
+		}else if(phone.length == 0){
+			alert("Vui lòng nhập số điện thoại!");
+			return false;
+		}
 	}
+	function validateCoupon(){
+		var codecp = document.getElementsById('code').val();
+		if (codecp.length == 0) {
+			alert("Bạn chưa nhập mã giảm giá! Vui lòng nhập mã giảm giá trước khi click Nhập.");
+			return false;
+		}else{
+			return true;
+		}
+	};
+
 </script>
 	<!-- $cart = $session->read('cart'); -->
+
 <div class="panel panel-default" style="width: 872px; font-size: 11pt;">
 <h4 class="panel-heading">
 	 <i class="fa fa-shopping-cart"></i> Chi tiết Giỏ hàng
@@ -27,7 +89,6 @@
 		<?php $payment = $session->read('payment.total');
 			$discount = $session->read('payment.discount');
 			$pay = $payment - ($payment * $discount/ 100);
-			
 		 ?>
 		<?php $stt = 1; ?>
 		<!-- Hiển thị chi tiết giỏ hàng -->
@@ -129,8 +190,8 @@
 				<?php pr($session->read('payment.coupon')); ?>
 					 Bạn đã nhập mã giảm giá!
 					<?php else: ?>
-						<?php echo $this->Form->create('Coupons',['url'=>['controller'=>'coupons','action'=>'add'],'class'=>"form-inline"]); ?>
-						<?php echo $this->Form->input('code',['class'=>'input text','placeholder'=>"Nhập mã giảm giá",'label'=>false,'div'=>false]); ?>
+						<?php echo $this->Form->create('Coupons',['url'=>['controller'=>'coupons','action'=>'add'],'class'=>"form-inline",'onclick' => 'validateCoupon()']); ?>
+						<?php echo $this->Form->input('code',['class'=>'input text','placeholder'=>"Nhập mã giảm giá",'label'=>false,'div'=>false,'id' => 'code']); ?>
 						<?php echo $this->Form->button('Nhập',['type'=>"submit",'class'=>"btn btn-primary"]); ?>
 						<?php echo $this->Form->end(); ?>
 						<h4>Ghi chú</h4>
@@ -147,23 +208,23 @@
 			<?php if ($user_info != null): ?>
 				<?php echo $this->Form->create('Orders',['url'=>['controller'=>'orders','action'=>'checkout'], 'class'=>'form-horizontal']); ?>
 					 <div class="col col-lg-10">
-					 	<?php echo $this->Form->input('name',['placeholder'=>"Nhập tên",'label'=>"Tên: ",'value'=> $user_info['firstname']." ".$user_info['lastname']]); ?>
+					 	<?php echo $this->Form->input('name',['placeholder'=>"Nhập tên",'label'=>"Tên: ",'id' => "name",'value'=> $user_info['firstname']." ".$user_info['lastname']]); ?>
 					 </div>
 					 <div class="col col-lg-10">
-					 	<?php echo $this->Form->input('email',['placeholder'=>"Nhập email",'value'=>$user_info['email']]); ?>
+					 	<?php echo $this->Form->input('email',['id' => "email",'placeholder'=>"Nhập email",'value'=>$user_info['email']]); ?>
 					 </div>
 					 <div class="col col-lg-10">
-					 	<?php echo $this->Form->input('address',['placeholder'=>"Nhập địa chỉ",'label'=>"Địa chỉ: ",'value'=>$user_info['address']]); ?>
+					 	<?php echo $this->Form->input('address',['id' => "address",'placeholder'=>"Nhập địa chỉ",'label'=>"Địa chỉ: ",'value'=>$user_info['address']]); ?>
 					 </div>
 					 <div class="col col-lg-10">
-					 	<?php echo $this->Form->input('phone',['placeholder'=>"Nhập số diện thoại",'label'=>"Số điện thoại: ",'value'=>$user_info['phone_number']]); ?>
+					 	<?php echo $this->Form->input('phone',['id' => "phone",'placeholder'=>"Nhập số diện thoại",'label'=>"Số điện thoại: ",'value'=>$user_info['phone_number']]); ?>
 					 </div>
 					<div class="col col-lg-10">
-						<?php echo $this->Form->button('Đặt hàng', ['class' => 'btn btn-primary', 'type' => 'submit','style' => 'margin: 10px 0px 10px 0px; float:right;']); ?>
+						<?php echo $this->Form->button('Đặt hàng', ['class' => 'btn btn-primary', 'type' => 'submit','style' => 'margin: 10px 0px 10px 0px; float:right;','onclick' => "checkForm();"]); ?>
 					</div>
 				<?php echo $this->Form->end(); ?>
 			<?php else: ?>
-				Bạn phải đăng nhập trước khi đặt hàng!
+				Bạn phải <?php echo $this->Html->link('đăng nhập','/dang-nhap'); ?> trước khi đặt hàng!
 			<?php endif ?>
 			
 		</div>
@@ -176,3 +237,5 @@
 	<?php endif ?>
 </div>
 </div>
+<?= $this->fetch('script') ?>
+<?php endif ?>

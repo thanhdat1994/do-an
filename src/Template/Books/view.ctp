@@ -29,8 +29,12 @@
                             <strong>Đánh giá: </strong><?= $this->Number->format($book->comment_count,['places'=>0,'before'=>'(','after'=>') đánh giá'])?></br>
                         </div>
                         <!-- Thêm giỏ hàng -->
+                        <?php if ($user_info['group_id'] == 1): ?>
+                            
+                        <?php else: ?>
                         <?php echo $this->Form->postLink('Thêm vào <i class="fa fa-shopping-cart"></i>','/books/add_to_cart/'.$book['id'],['class'=>'btn btn-primary','escape'=>false]); 
                         ?>
+                        <?php endif ?>
                     </div>
                 </div>
                 <div>
