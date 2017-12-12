@@ -17,7 +17,7 @@
                     <div class="input-group">
                         <div class="col-sm-10 pull-left">
                             <?php echo $this->Form->create('Coupons',['url'=>['action'=>'index']]); ?>
-                            <?php echo $this->Form->input('code',['label'=>'','placeholder'=>'Tìm kiếm mã giảm giá','error'=>false]); ?>
+                            <?php echo $this->Form->input('code',['label'=>'','placeholder'=>'Tìm kiếm mã giảm giá','error'=>false,'style' => 'height:30px;margin-top:-4px;']); ?>
                         </div>
                         <div class="input-btn pull-right">
                             <button type="submit" id="submitButton" class="btn btn-primary"><i class="fa fa-search"></i></button>

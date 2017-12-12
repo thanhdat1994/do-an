@@ -5,8 +5,8 @@
     <div class="form-group">
         <label class="col-sm-3 control-label">Tên danh mục:</label>
         <div class="col-sm-9">
-            <?php echo $this->Form->input('name', array( 'class' => 'form-control',
-            'options' => $categories, 'label' => false, 'div' => false, "placeholder" => "Tên danh mục"));?>
+            <?php echo $this->Form->control('name',['options' => $categories, 'label'=>false,'style' => 'margin-top:-4px;']) ?>
+
         </div>
     </div>
     <div class="form-group">

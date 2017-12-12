@@ -17,7 +17,7 @@
                     <div class="input-group">
                         <div class="col-sm-10 pull-left">
                             <?php echo $this->Form->create('Users',['url'=>['action'=>'index']]); ?>
-                            <?php echo $this->Form->input('name',['label'=>'','placeholder'=>'Tìm kiếm theo tên người dùng','error'=>false]); ?>
+                            <?php echo $this->Form->input('name',['label'=>'','placeholder'=>'Tìm kiếm theo tên người dùng','error'=>false,'style' => 'height:30px;margin-top:-4px;']); ?>
                         </div>
                         <div class="input-btn pull-right">
                             <button type="submit" id="submitButton" class="btn btn-primary"><i class="fa fa-search"></i></button>

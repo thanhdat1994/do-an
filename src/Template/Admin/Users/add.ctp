@@ -34,7 +34,9 @@
             <?php echo $this->Form->input('group_id', array( 'class' => 'form-control',
             'type' => 'text', 'label' => false, 'div' => false));?>
         </div> -->
-        <?php  echo $this->Form->control('group_id', ['options' => $groups, 'label'=>false]); ?>
+        <div class="col-sm-9">
+            <?php  echo $this->Form->control('group_id', ['options' => $groups, 'label'=>false,'style' => 'margin-top:-4px;']); ?>
+        </div>
     </div>
     <div class="form-group">
         <label class="col-sm-3 control-label">Tên đăng nhập:</label>

@@ -21,7 +21,7 @@
                                 <?php echo $this->Form->control('category_id', ['options' => $categories, 'empty' => 'Danh mục sách', 'label' => false]); ?>
                             </div>
                             <div class="col-sm-5">
-                                <?php echo $this->Form->input('name',['label'=>'','placeholder'=>'Tìm kiếm sách','error'=>false]); ?>
+                                <?php echo $this->Form->input('name',['label'=>'','placeholder'=>'Tìm kiếm sách','error'=>false,'style' => 'height:30px; margin-top:-4px;']); ?>
                             </div>
                             
                         </div>
