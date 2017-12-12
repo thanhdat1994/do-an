@@ -103,16 +103,12 @@ class BooksTable extends Table
             ->notEmpty('publish_date');
 
         $validator
-            ->requirePresence('link_download', 'create')
-            ->notEmpty('link_download');
-
-        $validator
             ->boolean('published')
             ->allowEmpty('published');
 
-        $validator
+        /*$validator
             ->requirePresence('keyword')
-            ->notEmpty('keyword','Vui lòng nhập từ khóa tìm kiếm.');
+            ->notEmpty('keyword','Vui lòng nhập từ khóa tìm kiếm.');*/
 
         return $validator;
     }

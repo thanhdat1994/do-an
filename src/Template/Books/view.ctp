@@ -20,13 +20,13 @@
                             <h5><?= h($book->title) ?></td></strong></h5>
                         </div>
                         <div>
-                            <strong>Publisher: </strong><?= h($book->publisher) ?></br>
+                            <strong>Nhà xuất bản: </strong><?= h($book->publisher) ?></br>
                         </div>
                         <div>
-                            <strong>Sale Price: </strong><?= $this->Number->format($book->sale_price,['places'=> 0,'after'=>' VNĐ']) ?></br>
+                            <strong>Giá bán: </strong><?= $this->Number->format($book->sale_price,['places'=> 0,'after'=>' VNĐ']) ?></br>
                         </div>
                         <div>
-                            <strong>Comments: </strong><?= $this->Number->format($book->comment_count,['places'=>0,'before'=>'(','after'=>') Comments'])?></br>
+                            <strong>Đánh giá: </strong><?= $this->Number->format($book->comment_count,['places'=>0,'before'=>'(','after'=>') đánh giá'])?></br>
                         </div>
                         <!-- Thêm giỏ hàng -->
                         <?php if ($user_info['group_id'] == 1): ?>
@@ -38,7 +38,7 @@
                     </div>
                 </div>
                 <div>
-                    <strong>Info: </strong></br>
+                    <strong>Thông tin sách: </strong></br>
                     <?= $this->Text->autoParagraph(h($book->info)); ?>
                 </div>
             </div>

@@ -84,8 +84,7 @@
 			<p><?php echo $this->Html->link('Về trang chủ','/',['class'=>"btn btn-primary"]); ?></p>
 	</div>
 	<?php else: ?>
-	
-<div class="panel panel-default" style="width: 872px;">
+<div class="panel panel-default" style="width: 872px; font-size: 11pt;">
 <h4 class="panel-heading">
 	 <i class="fa fa-shopping-cart"></i> Chi tiết Giỏ hàng
 </h4>
@@ -107,7 +106,8 @@
 							<tr>
 								<th>STT</th>
 								<th>Tên Sách</th>
-								<th> Số Lượng</th>
+								<th width="100"> Số Lượng</th>
+								<th></th>
 								<th>Đơn Giá</th>
 								<th>Thành Tiền</th>
 								<th>Xóa</th>
@@ -124,8 +124,10 @@
 									<td>
 										<?php echo $this->Form->create('Books',['url' => ['controller' => 'books','action' => 'quantityUpdate']],['class'=>"form-inline"]); ?>
 										<?php echo $this->Form->input('bookId', ['type' => 'hidden', 'value' => $book['id']]); ?>
-							            <?php echo $this->Form->input('quantity', ['value' => $book['quantity'], 'class' => 'col col-lg-2', 'label' => false, 'div' => false,'id'=>'quantity']); ?>
-							            <?php echo $this->Form->button('Cập nhật', ['class'=>"btn btn-link", 'type' => 'submit']); ?>
+							            <?php echo $this->Form->input('quantity', ['value' => $book['quantity'], 'class' => 'col col-lg-2', 'label' => false, 'div' => false,'id'=>'quantity', 'style' =>'width: 40px;']); ?>
+							            </td><td>
+							            <?php echo $this->Form->button('Cập nhật', ['class'=>"btn btn-primary", 'type' => 'submit']); ?>
+							        </td>
 							            <?php echo $this->Form->end(); ?>
 									</td>
 									<td>
@@ -140,7 +142,7 @@
 								</tr>
 							<?php endforeach ?>
 							<tr>
-								<td colspan="4">
+								<td colspan="5">
 									<p>Tổng tiền:</p>
 								</td>
 								<td colspan="2"><strong>
@@ -149,7 +151,7 @@
 							</tr>
 							<tr>
 								<?php if ($session->check('payment.coupon')): ?>
-									<td colspan="4">
+									<td colspan="5">
 										<p>Đã giảm: (Coupon <?php echo $session->read('payment.coupon'); ?> - giảm <?php echo $session->read('payment.discount'); ?> %)</p>
 									</td>
 									<td colspan="2"><strong>
@@ -158,7 +160,7 @@
 										?>
 									</strong></td>
 								<?php else: ?>
-									<td colspan="4">
+									<td colspan="5">
 										<p>Đã giảm:</p>
 									</td>
 									<td colspan="2"><strong>
@@ -167,7 +169,7 @@
 								<?php endif ?>
 							</tr>
 							<tr>
-								<td colspan="4">
+								<td colspan="5">
 									<p>Thành tiền:</p>
 								</td>
 								<td colspan="2"><span class = "label label-danger">
@@ -241,4 +243,3 @@
 </div>
 </div>
 <?= $this->fetch('script') ?>
-<?php endif ?>

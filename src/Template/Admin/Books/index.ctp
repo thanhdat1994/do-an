@@ -21,7 +21,7 @@
                                 <?php echo $this->Form->control('category_id', ['options' => $categories, 'empty' => 'Danh mục sách', 'label' => false]); ?>
                             </div>
                             <div class="col-sm-5">
-                                <?php echo $this->Form->input('name',['label'=>'','placeholder'=>'Tìm kiếm sách','error'=>false,'style' => 'height:30px; margin-top:-4px;']); ?>
+                                <?php echo $this->Form->input('name',['label'=>'','placeholder'=>'Tìm kiếm sách','error'=>false, 'style' => 'height:30px; margin-top:-4px;']); ?>
                             </div>
                             
                         </div>
@@ -43,8 +43,8 @@
                         <!-- <th scope="col"><?= $this->Paginator->sort('Slug') ?></th> -->
                         <th scope="col"><?= $this->Paginator->sort('Ảnh bìa') ?></th>
 						<th scope="col"><?= $this->Paginator->sort('Giá bán') ?></th>
-						<th scope="col"><?= $this->Paginator->sort('Nhà xuất bản') ?></th>
-						<th scope="col"><?= $this->Paginator->sort('Ngày tạo') ?></th>		
+						<th scope="col"><?= $this->Paginator->sort('Ngày xuất bản') ?></th>
+						<!-- <th scope="col"><?= $this->Paginator->sort('Ngày tạo') ?></th> -->		
                         <th scope="col" class="actions" style="width: 158px;"><?= __('') ?></th>
                     </tr>
                 </thead>
@@ -57,12 +57,12 @@
                         <!-- <td><?= h($book->slug) ?></td> -->
                         <td><?php echo $this->Html->image($book['image'],['class'=>'img img-responsive', 'style'=>'width:100px;']); ?></td>
                         <td><?php echo $this->Number->format($book['sale_price'],['places'=> 0,'after'=>'VNĐ']); ?></td>
-                        <td><?= h($book->publisher) ?></td>
-                        <td><?= h($book->created) ?></td>
+                        <td><?= h(date('d-m-Y', strtotime($book['publish_date']))) ?></td>
+                        <!-- <td><?= h(date('d-m-Y', strtotime($book['created']))) ?></td> -->
                         <td class="actions">
                             <!-- <?= $this->Html->link(__('View'), ['action' => 'view', $book->id]) ?> -->
                             <?= $this->Html->link(__('Chỉnh sửa'), [ 'action' => 'edit', $book->id], ['class' => 'btn btn-success']) ?>
-                            <?= $this->Form->postLink(__('Xóa'), ['action' => 'delete', $book->id], ['class' => 'btn btn-danger', 'confirm' => __('Bạn có chắc muốn xóa sách {0}?', $book->name)]) ?>
+                            <?= $this->Form->postLink(__('Xóa'), ['action' => 'delete', $book->id], ['class' => 'btn btn-danger', 'confirm' => __('Bạn có chắc muốn xóa sách {0}?', $book['title'])]) ?>
                         </td>
                     </tr>
                     <?php endforeach; ?>

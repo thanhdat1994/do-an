@@ -1,4 +1,4 @@
-<div class="panel panel-info" style="width: 872px;">
+<div class="panel panel-info" style="width: 872px; font-size: 11pt;">
 <h4 class="panel-heading"> <i class="fa fa-server"></i> Lịch sử mua hàng</h4>
 	<?php if(!empty($orders)): ?>
 	<h4>Dưới đây là toàn bộ thông tin mua hàng của bạn</h4>

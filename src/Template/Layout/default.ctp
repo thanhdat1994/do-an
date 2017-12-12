@@ -116,7 +116,6 @@
                 <a href="www.youtube.com"><img width="60" height="60" src="themes/images/youtube.png" title="youtube" alt="youtube"/></a>
             </div> 
         </div>
-        <p class="pull-right">&copy; Bootshop</p>
     </div><!-- Container End -->
 </div>
 
