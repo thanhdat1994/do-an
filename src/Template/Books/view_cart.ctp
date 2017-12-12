@@ -238,4 +238,3 @@
 </div>
 </div>
 <?= $this->fetch('script') ?>
-<?php endif ?>

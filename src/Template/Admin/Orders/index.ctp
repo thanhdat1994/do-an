@@ -66,7 +66,7 @@
             </table>
             <br/>
             <?php echo $this->Form->select('action',['1' => 'Chấp nhận đơn hàng','2' => 'Tạm ngưng đơn hàng', '3' => 'Hủy đơn hàng'],['empty' => false]); ?>
-            <?= $this->Form->button(__('Submit'), ['class' => 'btn btn-success','type' => 'submit']) ?> 
+            <?= $this->Form->button(__('Chấp nhận'), ['class' => 'btn btn-success','type' => 'submit']) ?> 
             <?php echo $this->Form->end(); ?>
         </div>
     </div>
