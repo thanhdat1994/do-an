@@ -79,7 +79,10 @@
 </script>
 	<!-- $cart = $session->read('cart'); -->
 	<?php if ($user_info['group_id'] == 1): ?>
-		<?php $this->redirect(['action' => 'index']); ?>
+		<div class="thumbnail">
+		<h5 style="text-align:center;"> &nbsp; &nbsp; &nbsp;Bạn không thể sử dụng chức năng này!</h5>
+			<p><?php echo $this->Html->link('Về trang chủ','/',['class'=>"btn btn-primary"]); ?></p>
+	</div>
 	<?php else: ?>
 	
 <div class="panel panel-default" style="width: 872px;">
