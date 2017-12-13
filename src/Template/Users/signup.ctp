@@ -12,7 +12,7 @@
                         Họ
                     </div>
                     <div class="col-sm-8">
-                        <?php echo $this->Form->input('firstname', array('type' => 'text', 'label' => false, 'div' => false, "placeholder" => "Họ"));?>
+                        <?php echo $this->Form->input('firstname', array('type' => 'text', 'label' => false, 'div' => false, "placeholder" => "Họ", 'style' => 'height:30px;margin-top:-4px;'));?>
                     </div>
                 </div>
                 <div class="control-group">
@@ -20,7 +20,7 @@
                         Tên
                     </div>
                     <div class="col-sm-8">
-                        <?php echo $this->Form->input('lastname', array('type' => 'text', 'label' => false, 'div' => false, "placeholder" => "Tên"));?>
+                        <?php echo $this->Form->input('lastname', array('type' => 'text', 'label' => false, 'div' => false, "placeholder" => "Tên", 'style' => 'height:30px;margin-top:-4px;'));?>
                     </div>
                 </div>
                 <div class="control-group">
@@ -28,7 +28,7 @@
                         Email
                     </div>
                     <div class="col-sm-8">
-                        <?php echo $this->Form->input('email', array('type' => 'text', 'label' => false, 'div' => false, "placeholder" => "Email"));?>
+                        <?php echo $this->Form->input('email', array('type' => 'text', 'label' => false, 'div' => false, "placeholder" => "Email", 'style' => 'height:30px;margin-top:-4px;'));?>
                     </div>
                 </div>
                 <div class="control-group">
@@ -36,7 +36,7 @@
                         Tài khoản
                     </div>
                     <div class="col-sm-8">
-                        <?php echo $this->Form->input('username', array('type' => 'text', 'label' => false, 'div' => false, "placeholder" => "Tên"));?>
+                        <?php echo $this->Form->input('username', array('type' => 'text', 'label' => false, 'div' => false, "placeholder" => "Tên", 'style' => 'height:30px;margin-top:-4px;'));?>
                     </div>
                 </div>
                 <div class="control-group">
@@ -44,7 +44,7 @@
                         Mật khẩu
                     </div>
                     <div class="col-sm-8">
-                        <?php echo $this->Form->input('password', array("placeholder" => "Mật khẩu", 'error' => false, 'label' => false));?>
+                        <?php echo $this->Form->input('password', array("placeholder" => "Mật khẩu", 'error' => false, 'label' => false, 'style' => 'height:30px;margin-top:-4px;'));?>
                     </div>
                 </div>
                 <div class="control-group">
@@ -52,7 +52,7 @@
                         Xác nhận mật khẩu
                     </div>
                     <div class="col-sm-8">
-                        <?php echo $this->Form->input('confirm_password', array('type' => 'password', 'error' => false, "placeholder" => "Xác nhận mật khẩu", 'label' => false));?>
+                        <?php echo $this->Form->input('confirm_password', array('type' => 'password', 'error' => false, "placeholder" => "Xác nhận mật khẩu", 'label' => false, 'style' => 'height:30px;margin-top:-4px;'));?>
                     </div>
                 </div>
                 <div class="control-group">
@@ -60,7 +60,7 @@
                         Địa chỉ
                     </div>
                     <div class="col-sm-8">
-                        <?php echo $this->Form->input('address', array('type' => 'text', 'label' => false, 'div' => false, "placeholder" => "Địa chỉ"));?>
+                        <?php echo $this->Form->input('address', array('type' => 'text', 'label' => false, 'div' => false, "placeholder" => "Địa chỉ", 'style' => 'height:30px;margin-top:-4px;'));?>
                     </div>
                 </div>
                 <div class="control-group">
@@ -68,7 +68,7 @@
                         Số điện thoại
                     </div>
                     <div class="col-sm-8">
-                        <?php echo $this->Form->input('phone_number', array('type' => 'text', 'label' => false, 'div' => false, "placeholder" => "Số điện thoại"));?>
+                        <?php echo $this->Form->input('phone_number', array('type' => 'text', 'label' => false, 'div' => false, "placeholder" => "Số điện thoại", 'style' => 'height:30px;margin-top:-4px;'));?>
                     </div>
                 </div>
                 <div class="form-group">

@@ -82,7 +82,7 @@
                         echo $this->Form->input('book_id',['type'=>'hidden','value'=>$book['id']]);
                         echo $this->Form->input('content',['type'=>'textarea','label'=>'']);
                         ?>
-                        <?php echo $this->Form->input('Gởi nhận xét',['type'=>'submit','class'=>'btn btn-info']); ?><?php echo $this->Form->end(); ?>
+                        <?php echo $this->Form->input('Gởi nhận xét',['type'=>'submit','class'=>'btn btn-primary']); ?><?php echo $this->Form->end(); ?>
                     <?php else: ?>
                             Bạn phải <?php echo $this->Html->link('đăng nhập','/dang-nhap'); ?> trước khi gởi nhận xét
                     <?php endif ?>                    

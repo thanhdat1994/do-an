@@ -27,8 +27,10 @@
 							<span class="label label-info">Đang xử lí</span>
 						<?php elseif($order['status'] == 1): ?>
 							<span class="label label-success">Đã xử lí</span>
+							<?php elseif($order['status'] == 2): ?>
+							<span class="label label-warning">Đã tạm ngưng</span>
 						<?php else: ?>
-							<span class="label label-danger">Hủy</span>
+							<span class="label label-danger">Đã hủy</span>
 						<?php endif ?>
 					</td>
 					<td><?php echo $this->Html->link('Xem','/don-hang/'.$order['id']); ?></td>

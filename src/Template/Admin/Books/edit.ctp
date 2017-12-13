@@ -72,7 +72,7 @@
 
 <h3><i class="fa fa-server"></i>&nbsp;&nbsp;Chỉnh sửa sách</h3>
 <hr>
-<div class="col-md-offset-3 col-md-6">
+<div class="col-md-offset-3 col-md-7">
     <?= $this->Form->create($book, ['novalidator'=>true, 'type'=>'file']) ?>
     <div class="form-group">
         <label class="col-sm-3 control-label">Sách bán chạy:</label>
@@ -84,14 +84,14 @@
         <label class="col-sm-3 control-label">Danh mục sách:</label>
         <div class="col-sm-9">
             <?php echo $this->Form->input('category_id', array( 'class' => 'form-control',
-            'options' => $categories, 'label' => false, 'div' => false, "placeholder" => "Danh mục sách"));?>
+            'options' => $categories, 'label' => false, 'div' => false, "placeholder" => "Danh mục sách",'style' => 'height: 30px;margin-top:-4px; '));?>
         </div>
     </div>
     <div class="form-group">
         <label class="col-sm-3 control-label">Tên Sách:</label>
         <div class="col-sm-9">
             <?php echo $this->Form->input('title', array( 'class' => 'form-control',
-            'type' => 'text', 'label' => false, 'div' => false, "placeholder" => "Tên sách"));?>
+            'type' => 'text', 'label' => false, 'div' => false, "placeholder" => "Tên sách",'style' => 'height: 30px;margin-top:-4px; '));?>
         </div>
     </div>
     <!-- <div class="form-group">
@@ -111,27 +111,27 @@
     <div class="form-group">
         <label class="col-sm-3 control-label">Giá nhập:</label>
         <div class="col-sm-9">
-            <input name="price" class="form-control" type="text" id="price" placeholder="Giá nhập sách" value="<?php echo $book['price'];?>" />
+            <input name="price" class="form-control" type="text" id="price" placeholder="Giá nhập sách" value="<?php echo $book['price'];?>" style = "height: 30px;margin-top:-4px;" />
         </div>
     </div>
     <div class="form-group">
         <label class="col-sm-3 control-label">Giá bán:</label>
         <div class="col-sm-9">
-            <input name="sale_price" class="form-control" type="text" id="sale" placeholder="Giá bán" value="<?php echo $book['sale_price'];?>" />
+            <input name="sale_price" class="form-control" type="text" id="sale" placeholder="Giá bán" value="<?php echo $book['sale_price'];?>" style = "height: 30px;margin-top:-4px;"  />
         </div>
     </div>
     <div class="form-group">
         <label class="col-sm-3 control-label">Nhà xuất bản:</label>
         <div class="col-sm-9">
             <?php echo $this->Form->input('publisher', array( 'class' => 'form-control',
-            'type' => 'text', 'label' => false, 'div' => false, "placeholder" => "Nhà xuất bản"));?>
-        </div>
+            'type' => 'text', 'label' => false, 'div' => false, "placeholder" => "Nhà xuất bản" ,'style' => 'height: 30px;margin-top:-4px; '));?>
+        </div> 
     </div>
     <div class="form-group">
         <label class="col-sm-3 control-label">Ngày xuất bản:</label>
         <div class="col-sm-9">
             <input name="publish_date" class="form-control datepicker" 
-                type="text" id="DealDate" placeholder="Ngày xuất bản" value="<?php echo $dateDeal ?>">
+                type="text" id="DealDate" placeholder="Ngày xuất bản" value="<?php echo $dateDeal ?>" style = "height: 30px;margin-top:-4px;" >
         </div>
     </div>
     <div class="form-group">
@@ -153,8 +153,8 @@
             <?php echo $this->Form->input('info', array( 'class' => 'ckeditor', 'label' => false, 'div' => false, "placeholder" => "Nội dung"));?>
         </div>
     </div>
-    <div class="form-group" style="text-align: center;">
-        <?= $this->Form->button(__('Cập nhật'), ['class'=>'btn btn-success']) ?>
+    <div class="form-group" style="text-align: center; margin-top: 10px;">
+        <?= $this->Form->button(__('Cập nhật'), ['class'=>'btn btn-primary']) ?>
     </div>
     <?= $this->Form->end() ?>
 </div>

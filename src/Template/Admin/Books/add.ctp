@@ -77,7 +77,7 @@
 </script>
 <h3><i class="fa fa-server"></i>&nbsp;&nbsp;Thêm sách mới</h3>
 <hr>
-<div class="col-md-offset-3 col-md-6">
+<div class="col-md-offset-3 col-md-7">
     <?= $this->Form->create($book, ['novalidator'=>true, 'type'=>'file']) ?>
     <div class="form-group">
         <label class="col-sm-3 control-label">Sách bán chạy:</label>
@@ -89,14 +89,14 @@
         <label class="col-sm-3 control-label">Danh mục sách:</label>
         <div class="col-sm-9">
             <?php echo $this->Form->input('category_id', array( 'class' => 'form-control',
-            'options' => $categories, 'label' => false, 'div' => false, "placeholder" => "Danh mục sách"));?>
+            'options' => $categories, 'label' => false, 'div' => false, "placeholder" => "Danh mục sách",'style' => 'height: 30px;margin-top:-4px; '));?>
         </div>
     </div>
     <div class="form-group">
         <label class="col-sm-3 control-label">Tên Sách:</label>
         <div class="col-sm-9">
             <?php echo $this->Form->input('title', array( 'class' => 'form-control',
-            'type' => 'text', 'label' => false, 'div' => false, "placeholder" => "Tên sách"));?>
+            'type' => 'text', 'label' => false, 'div' => false, "placeholder" => "Tên sách",'style' => 'height: 30px;margin-top:-4px; '));?>
         </div>
     </div>
     <!-- <div class="form-group">
@@ -109,35 +109,35 @@
     <div class="form-group">
         <label class="col-sm-3 control-label">Hình ảnh:</label>
         <div class="col-sm-9">
-            <input type="file" name="data[image]" accept="image/*" id="SalonImage">
+            <input type="file" name="data[image]" accept="image/*" id="SalonImage" style = "margin-top:-5px;" >
         </div>
     </div>    
     <div class="form-group">
         <label class="col-sm-3 control-label">Giá nhập:</label>
         <div class="col-sm-9">
             <?php echo $this->Form->input('price', array( 'class' => 'form-control',
-            'type' => 'text', 'label' => false, 'div' => false, "placeholder" => "Giá nhập sách", 'id'=>"price"/*, 'onblur'=>"format_price()"*/));?>
+            'type' => 'text', 'label' => false, 'div' => false,'style' => 'height: 30px;margin-top:-4px; ', "placeholder" => "Giá nhập sách", 'id'=>"price"/*, 'onblur'=>"format_price()"*/));?>
         </div>
     </div>
     <div class="form-group">
         <label class="col-sm-3 control-label">Giá bán:</label>
         <div class="col-sm-9">
             <?php echo $this->Form->input('sale_price', array( 'class' => 'form-control',
-            'type' => 'text', 'label' => false, 'div' => false, "placeholder" => "Giá bán", 'id'=>"sale"/*, 'onblur'=>"format_price()"*/));?>
+            'type' => 'text', 'label' => false, 'div' => false,'style' => 'height: 30px;margin-top:-4px; ', "placeholder" => "Giá bán", 'id'=>"sale"/*, 'onblur'=>"format_price()"*/));?>
         </div>
     </div>
     <div class="form-group">
         <label class="col-sm-3 control-label">Nhà xuất bản:</label>
         <div class="col-sm-9">
             <?php echo $this->Form->input('publisher', array( 'class' => 'form-control',
-            'type' => 'text', 'label' => false, 'div' => false, "placeholder" => "Nhà xuất bản"));?>
+            'type' => 'text', 'label' => false, 'div' => false, "placeholder" => "Nhà xuất bản",'style' => 'height: 30px;margin-top:-4px; '));?>
         </div>
     </div>
     <div class="form-group">
         <label class="col-sm-3 control-label">Ngày xuất bản:</label>
         <div class="col-sm-9">
             <?php echo $this->Form->input('publish_date', array( 'class' => 'form-control datepicker',
-            'type' => 'text', 'label' => false, 'div' => false, "placeholder" => "Ngày xuất bản"));?>
+            'type' => 'text', 'label' => false, 'div' => false, "placeholder" => "Ngày xuất bản",'style' => 'height: 30px;margin-top:-4px; '));?>
         </div>
     </div>
     <div class="form-group">

@@ -14,7 +14,7 @@
                         Mật khẩu tại
                     </div>
                     <div class="col-sm-8">
-                        <?php echo $this->Form->input('password_current', array("placeholder" => "Mật khẩu hiện tại", 'error' => false, 'label' => false, 'type' => 'password'));?>
+                        <?php echo $this->Form->input('password_current', array("placeholder" => "Mật khẩu hiện tại", 'error' => false, 'label' => false, 'type' => 'password', 'style' => 'height:30px;margin-top:-4px;'));?>
                     </div>
                 </div>
                 <div class="control-group">
@@ -22,7 +22,7 @@
                         Mật khẩu mới
                     </div>
                     <div class="col-sm-8">
-                        <?php echo $this->Form->input('password', array("placeholder" => "Mật khẩu mới", 'error' => false, 'label' => false));?>
+                        <?php echo $this->Form->input('password', array("placeholder" => "Mật khẩu mới", 'error' => false, 'label' => false, 'style' => 'height:30px;margin-top:-4px;'));?>
                     </div>
                 </div>
                 <div class="control-group">
@@ -30,7 +30,7 @@
                         Xác nhận mật khẩu
                     </div>
                     <div class="col-sm-8">
-                        <?php echo $this->Form->input('confirm_password', array('type' => 'password', 'error' => false, "placeholder" => "Xác nhận mật khẩu", 'label' => false));?>
+                        <?php echo $this->Form->input('confirm_password', array('type' => 'password', 'error' => false, "placeholder" => "Xác nhận mật khẩu", 'label' => false, 'style' => 'height:30px;margin-top:-4px;'));?>
                     </div>
                 </div>
                 <div class="form-group">

@@ -12,7 +12,7 @@
                         Tên đăng nhập
                     </div>
                     <div class="col-sm-8">
-                        <?php echo $this->Form->input('username', array('type' => 'text', 'label' => false, 'div' => false, "placeholder" => "Tên đăng nhập"));?>
+                        <?php echo $this->Form->input('username', array('type' => 'text', 'label' => false, 'div' => false, "placeholder" => "Tên đăng nhập",'style'=>'height:30px; margin-top:-4px;'));?>
                     </div>
                 </div>
                 <div class="control-group">
@@ -20,7 +20,7 @@
                         Mật khẩu
                     </div>
                     <div class="col-sm-8">
-                        <?php echo $this->Form->input('password', array('type' => 'password', 'label' => false, 'div' => false, "placeholder" => "Mật khẩu"));?>
+                        <?php echo $this->Form->input('password', array('type' => 'password', 'label' => false, 'div' => false, "placeholder" => "Mật khẩu",'style'=>'height:30px; margin-top:-4px;'));?>
                     </div>
                 </div>
                 <div class="control-group">

@@ -17,15 +17,15 @@
             <br/><br/>
                 <div class="form-group">
                     <?php echo $this->Form->input('fullname', array( 'class' => 'form-control','type' => 'text', 
-                        'label' => false, 'div' => false,'id' => "fullname", "placeholder" => "Họ và tên",'autofocus' => ""));?>
+                        'label' => false, 'div' => false,'id' => "fullname", "placeholder" => "Họ và tên",'autofocus' => "",'style' => 'height: 30px;margin-top:-4px; '));?>
                 </div>
                 <div class="form-group form_left">
-                   <?php echo $this->Form->input('email', array( 'class' => 'form-control','type' => 'email', 'label' => false, 'div' => false, "placeholder" => "Nhập email",'id' => "email"));?>
+                   <?php echo $this->Form->input('email', array( 'class' => 'form-control','type' => 'email', 'label' => false, 'div' => false, "placeholder" => "Nhập email",'id' => "email",'style' => 'height: 30px;margin-top:-4px; '));?>
                 </div>
               <div class="form-group">
               <textarea class="form-control textarea-contact" rows="5" id="comment" name="FB" placeholder="Nhập nội dung liên hệ tại đây..." required=""></textarea>
               <br>
-              <button class="btn btn-default btn-send" type="submit"> <span class="fa fa-send"></span> Send </button>
+              <button class="btn btn-default btn-send" type="submit"> <span class="fa fa-send"></span> Gửi </button>
               </div>
             <?= $this->Form->end() ?>
         </div>

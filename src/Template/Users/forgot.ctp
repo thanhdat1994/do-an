@@ -12,7 +12,7 @@
                         Nhập Email: 
                     </div>
                     <div class="col-sm-8">
-                        <?php echo $this->Form->input('email', array('type' => 'email', 'label' => false, 'div' => false, "placeholder" => "Vui lòng nhập email của bạn"));?>
+                        <?php echo $this->Form->input('email', array('type' => 'email', 'label' => false, 'div' => false, "placeholder" => "Vui lòng nhập email của bạn", 'style' => 'height:30px;margin-top:-4px;'));?>
                     </div>
                 </div>
                 <div class="form-group">

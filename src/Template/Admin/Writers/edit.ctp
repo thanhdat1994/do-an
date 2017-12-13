@@ -41,14 +41,14 @@
         <label class="col-sm-3 control-label">Tên tác giả:</label>
         <div class="col-sm-9">
             <?php echo $this->Form->input('name', ['class' => 'form-control',
-            'type' => 'text', 'label' => false, 'div' => false, "placeholder" => 'Tên tác giả']);?>
+            'type' => 'text', 'label' => false, 'div' => false, "placeholder" => 'Tên tác giả','style' => 'height: 30px;margin-top:-4px; ']);?>
         </div>
     </div>
     <div class="form-group">
         <label class="col-sm-3 control-label">Slug:</label>
         <div class="col-sm-9">
             <?php echo $this->Form->input('slug', ['class' => 'form-control',
-            'type' => 'text', 'label' => false, 'div' => false, "placeholder" => 'Slug']);?>
+            'type' => 'text', 'label' => false, 'div' => false, "placeholder" => 'Slug','style' => 'height: 30px;margin-top:-4px;']);?>
         </div>
     </div>
     <div class="form-group">
@@ -59,7 +59,7 @@
         </div>
     </div>
     <div class="form-group" style="text-align: center;">
-        <?= $this->Form->button(__('Cập nhật'), ['class'=>'btn btn-success']) ?>
+        <?= $this->Form->button(__('Cập nhật'), ['class'=>'btn btn-primary']) ?>
     </div>
     <?= $this->Form->end() ?>
 </div>
